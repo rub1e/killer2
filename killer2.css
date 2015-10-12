@@ -1,0 +1,24 @@
+/* CSS declarations go here */
+
+body {
+  background-color: #1474b6;
+}
+
+.thumbnail {
+  text-align: center;
+  border: none;
+  height: 174px;
+}
+
+.navbar-brand {
+  padding: 15px 15px 25px;
+}
+
+.navbar-brand > img {
+  height: 300%;
+}
+
+#killerLogo {
+  height: 12em;
+  margin-left: 0; 
+}
