@@ -1,0 +1,13 @@
+<template name="HomeLayout">
+  <body>
+    {{#if loggingIn}}
+      {{> LoggingInDialogue}}
+    {{else}}
+      {{#if currentUser}}
+        {{> MainLayout}}
+      {{else}}
+        {{> SignUpLogIn}}
+      {{/if}}
+    {{/if}}
+  </body>
+</template>

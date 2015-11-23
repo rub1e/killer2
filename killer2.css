@@ -1,13 +1,27 @@
 /* CSS declarations go here */
 
+html {
+	background: url(https://s3-eu-west-1.amazonaws.com/killerpicks/ball-bg.jpg) no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+ 	background-size: cover;
+}
+
 body {
-  background-color: #1474b6;
+  background-color:rgba(255,0,0,0);
+  height: 100%;
 }
 
 .thumbnail {
   text-align: center;
   border: none;
   height: 174px;
+  background-color:rgba(0,0,0,0.6);
+}
+
+.thumbnail .caption {
+  color: white;
 }
 
 .navbar-brand {
@@ -18,7 +32,23 @@ body {
   height: 300%;
 }
 
-#killerLogo {
-  height: 12em;
-  margin-left: 0; 
+#emailForm {
+  background-color:rgba(0,0,0,0.6);
+  color: white;
+  border-radius: 5px;
+  padding: 1em;
+  margin: 1em;
+}
+
+#mainKillerTitle {
+  background-color:rgba(0,0,0,0.6);
+  padding: 1em;
+  text-align: center;
+  color: white;
+  margin: 1em;
+  border-radius: 5px;
+}
+
+i {
+  margin-top: 0.2em;
 }

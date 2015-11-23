@@ -1,6 +1,4 @@
 if (Meteor.isClient) {
-  // counter starts at 0
-  Session.setDefault('counter', 0);
 
   // Template.hello.helpers({
   //   counter: function () {
@@ -8,16 +6,45 @@ if (Meteor.isClient) {
   //   }
   // });
   //
-  // Template.hello.events({
-  //   'click button': function () {
-  //     // increment the counter when button is clicked
-  //     Session.set('counter', Session.get('counter') + 1);
-  //   }
-  // });
+  Template.registerHelper('signedup', function () {
+      return Session.get("signedup");
+  });
+
+  Template.Signupform.events({
+    'submit form': function (e) {
+      e.preventDefault();
+      Meteor.call("sendAddressEmail", $("#emailInputBox").val(), function(error, response){
+        $("#emailInputBox").val("");
+        Session.set("signedup", true);
+      });
+    }
+  });
 }
 
 if (Meteor.isServer) {
   Meteor.startup(function () {
     // code to run on server at startup
+  });
+
+  Meteor.methods({
+    sendAddressEmail : function(address){
+      Mandrill.messages.send({
+        "message" : {
+          "to" : [
+            {
+                "email": "chairman@killer.football",
+            }
+          ],
+          "subject" : "New killer signup",
+          "text" : address,
+          "from_email" : "chairman@killer.football"
+        }
+      });
+    }
+  });
+
+  Mandrill.config({
+    username : process.env.MANDRILL_API_USER,
+    key : process.env.MANDRILL_API_KEY
   });
 }

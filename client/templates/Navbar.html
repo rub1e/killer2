@@ -1,0 +1,29 @@
+<template name="Navbar">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#KillerNavbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">LOGO HERE</a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="KillerNavbar">
+        <ul class="nav navbar-nav navbar-left">
+          <li><button class="btn" data-modal="modalStartKillerLeague">Start a league</button></li>
+          <li><button class="btn" data-modal="modalJoinKillerLeague">Join a league</button></li>
+          <li><button class="btn" data-modal="modalKillerRules">Rules</button></li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li>{{> TrophiesAndBadges}}</li>
+          <li>{{> MyKillerAccount}}</li>
+        </ul>
+
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+</template>
