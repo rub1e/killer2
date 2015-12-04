@@ -19,3 +19,10 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
 twbs:bootstrap
 fortawesome:fontawesome
 wylio:mandrill
+useraccounts:bootstrap
+accounts-password
+kadira:flow-router
+useraccounts:flow-routing
+aldeed:simple-schema
+peppelg:bootstrap-3-modal
+aldeed:collection2

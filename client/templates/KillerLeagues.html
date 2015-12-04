@@ -5,3 +5,28 @@
     {{> KillerFinishedLeagues}}
   </div>
 </template>
+
+<template name="KillerAliveLeagues">
+  <div id="KillerAliveLeagues">
+    <div class="table-responsive table-wrapper">
+      <table id="KillerAliveTable" class="table table-hover">
+        <thead>
+          <tr>
+            <th>League name</th>
+            <th>Pick for gameweek {{currentGameweekDateFormatted}}</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each userAliveLeaguesList}}
+            <tr>
+              <td>{{leagueName}}</td>
+              <td>{{> PickTeamOrPickedTeam}}</td>
+              <td>{{> MiniActiveLeagueDetails}}</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</template>
