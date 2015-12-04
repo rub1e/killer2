@@ -1,0 +1,12 @@
+<template name="KillerChoiceWidget">
+  <form>
+    <span>Pick a team</span>
+    <select class="teamsLeftDropDown" name="">
+      <option selected="true">Pick this week's team</option>
+      {{#each teamsLeft}}
+        <option value={{.}}>{{.}}</option>
+      {{/each}}
+    </select>
+    <input type="submit" name="killerChoiceButton" value="Submit">
+  </form>
+</template>

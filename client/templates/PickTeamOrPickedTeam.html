@@ -1,0 +1,10 @@
+<template name="PickTeamOrPickedTeam">
+  <div id="PickTeamOrPickedTeam">
+    {{#if chosenTeamName}}
+      <span>You picked: {{chosenTeamName}}</span>
+      <button>Change your pick</button>
+    {{else}}
+      {{> KillerChoiceWidget}}
+    {{/if}}
+  </div>
+</template>
