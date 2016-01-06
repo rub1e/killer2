@@ -1,13 +1,15 @@
 <template name="HomeLayout">
   <body>
-    {{#if loggingIn}}
-      {{> LoggingInDialogue}}
-    {{else}}
-      {{#if currentUser}}
-        {{> MainLayout}}
-      {{else}}
-        {{> SignUpLogIn}}
-      {{/if}}
-    {{/if}}
+    <div>
+      {{> Template.dynamic template=nav}}
+    </div>
+
+    <div>
+      {{> Template.dynamic template=main}}
+    </div>
+
+    <footer>
+      {{> Template.dynamic template=footer}}
+    </footer>
   </body>
 </template>
