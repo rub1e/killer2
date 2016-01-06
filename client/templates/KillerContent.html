@@ -1,0 +1,16 @@
+<template name="KillerContent">
+  {{#if loggingIn}}
+    {{> LoggingInDialogue}}
+  {{else}}
+    {{#if currentUser}}
+      {{> KillerAdBannerTop}}
+      {{> KillerAdBannerLeft}}
+      {{> KillerGameweekMatches}}
+      {{> KillerInstructions}}
+      {{> KillerLeagues}}
+      {{> KillerAdBannerRight}}
+    {{else}}
+      {{> SignUpLogIn}}
+    {{/if}}
+  {{/if}}
+</template>
