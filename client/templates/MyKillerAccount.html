@@ -1,5 +1,18 @@
 <template name="MyKillerAccount">
   <div id="MyKillerAccount">
-    <button id="logoutButton">Logout</button>
+    <ul class="nav nav-pills">
+      <li role="presentation" class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+          Account details <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li>Logged in as {{loggedInUserFullName}}</li>
+          <li><button id="changeEmailButton" class="modalButton" data-modal="modalChangeEmailForm">Change email</button></li>
+          <li><button id="changePwdButton" class="modalButton" data-modal="modalChangePwdForm">Change password</button></li>
+          <li><button id="logoutButton">Logout</button></li>
+          <li><a href="mailto:chairman@killer.football?subject=Help">Email help</a></li>
+        </ul>
+      </li>
+    </ul>
   </div>
 </template>
