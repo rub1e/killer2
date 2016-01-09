@@ -15,18 +15,47 @@
             <p>
               You can change the email address registered with your account below, but please be careful - if you don't enter a working email address there will be no way of recovering your account if you forget your password.
             </p>
-            <ul>
-              <li>Your registered email is currently {{loggedInUserEmail}}</li>
-              <li>
-                <form id="enterNewEmailForm">
-                  <label for="newEmail1">New email</label>
-                  <input type="email" name="newEmail1" placeholder="New email" required>
-                  <label for="newEmail2">Confirm new email</label>
-                  <input type="email" name="newEmail2" placeholder="Confirm new email" required>
-                  <button id="updateEmailButton">Apply changes</button>
-                </form>
-              </li>
-            </ul>
+            <p>
+              Your registered emails are currently:
+            </p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Address</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each emailsArray}}
+                  <tr>
+                    <td>{{address}}</td>
+                    <td>
+                      {{#if verified}}
+                        Verified
+                      {{else}}
+                        <button>Send verification email</button>
+                        <br>
+                        (Needed for real money games)
+                      {{/if}}
+                    </td>
+                    <td>
+                      <button {{multiEmails}}>Remove</button>
+                    </td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+            <br>
+            <form id="enterNewEmailForm">
+              <p>Add a new email</p>
+              <label for="newEmail1">New email</label>
+              <input type="email" name="newEmail1" placeholder="New email" required>
+              <label for="newEmail2">Confirm new email</label>
+              <input type="email" name="newEmail2" placeholder="Confirm new email" required>
+              <button id="updateEmailButton">Submit</button>
+            </form>
+              <!-- {{> quickForm id="changEmailQuickForm" collection="Meteor.users" fields="emails.0.address" type="update" doc=currentUser setArrayItems=true}} -->
   				</div>
 
   				<div class="modal-footer">
