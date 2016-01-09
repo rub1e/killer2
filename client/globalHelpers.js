@@ -12,6 +12,6 @@ Template.registerHelper("loggedInUserFullName", function(){
 });
 
 Template.registerHelper("loggedInUserEmail", function(){
-  // return full name of logged in user
-  return "@@@";
+  // return email of logged in user
+  return Meteor.user().emails[0];
 });

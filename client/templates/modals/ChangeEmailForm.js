@@ -17,15 +17,5 @@ Template.ChangeEmailForm.events({
 });
 
 Template.ChangeEmailForm.helpers({
-   emailsArray : function(){
-    return Meteor.user().emails;
-  },
-  multiEmails : function () {
-    if(Meteor.user().emails.length === 1) {
-      return {
-        disabled : "",
-        class : "disabled"
-      };
-    }
-  }
+
 });
