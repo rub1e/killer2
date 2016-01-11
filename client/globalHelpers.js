@@ -1,6 +1,6 @@
 Template.registerHelper("gameWeekDateFormatted", function(gameweek){
   // TODO: make UK dates
-  var d = new Date(gameweek)
+  var d = new Date(gameweek);
   return d.toDateString();
 });
 
