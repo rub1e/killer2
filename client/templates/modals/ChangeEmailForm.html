@@ -1,0 +1,49 @@
+<template name="ChangeEmailForm">
+  <div id="ChangeEmailForm">
+    <div class="modal fade" role="dialog">
+  		<div class="modal-dialog">
+  			<div class="modal-content">
+
+  				<div class="modal-header">
+  					<button type="button" class="close" data-dismiss="modal">
+  						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+  					</button>
+  					<h4 class="modal-title">Change your email</h4>
+  				</div>
+
+  				<div class="modal-body">
+            <p>
+              You can change the email address registered with your account below, but please be careful - if you don't enter a working email address there will be no way of recovering your account if you forget your password.
+            </p>
+            <p>
+              Your {{#if loggedInUserEmail.verified}}verified{{else}}registered{{/if}} address is: {{loggedInUserEmail.address}}
+            </p>
+
+            {{#unless loggedInUserEmail.verified}}
+              <p>
+                Your email address is currently unverified. You must verify your address if you want to join real money leagues so we can contact you when you win.
+              </p>
+              <button class="sendVerificationEmailButton">Send verification email</button>
+            {{/unless}}
+            <br>
+            <form id="enterNewEmailForm">
+              <p>Add a new email</p>
+              <label for="newEmail1">New email</label>
+              <input type="email" name="newEmail1" placeholder="New email" required>
+              <br>
+              <label for="newEmail2">Confirm new email</label>
+              <input type="email" name="newEmail2" placeholder="Confirm new email" required>
+              <button id="updateEmailButton">Submit</button>
+            </form>
+              <!-- {{> quickForm id="changEmailQuickForm" collection="Meteor.users" fields="emails.0.address" type="update" doc=currentUser setArrayItems=true}} -->
+  				</div>
+
+  				<div class="modal-footer">
+  					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+  				</div>
+
+  			</div>
+  		</div>
+  	</div>
+  </div>
+</template>
