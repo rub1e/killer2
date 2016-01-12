@@ -1,5 +1,21 @@
 <template name="KillerGameweekMatches">
   <div id="KillerGameweekMatches">
-    
+    <table>
+      <thead>
+      </thead>
+      <tbody>
+        <tr>
+        {{#each listOfCurrentMatches}}
+          <td>
+            <span>{{home}}</span>
+            <br>
+            <span>{{away}}</span>
+            <br>
+            <span>{{gameWeekDateFormatted time}}</span>
+          </td>
+        {{/each}}
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
