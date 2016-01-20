@@ -13,10 +13,9 @@ LeaguesSchema = new SimpleSchema({
     defaultValue : new Date()
   },
   dateStarting : {
-    type : Date, //should this just be a string????,
-    label : "League start date",
-    min : Date.now(),
-    max : new Date("2016-04-30")
+    type : String,
+    label : "Starting week",
+    allowedValues : pLGameweeksRemainingFormatted
   },
   entryFee : {
     type : Number,

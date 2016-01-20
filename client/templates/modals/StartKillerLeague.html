@@ -12,22 +12,15 @@
   				</div>
 
   				<div class="modal-body">
-              <form role="form" id="startLeagueForm">
-
-                <div class="form-group">
-                  <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
-                  <div class="input-group">
-                    <div class="input-group-addon">$</div>
-                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount">
-                    <div class="input-group-addon">.00</div>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="startLeagueFormName">League name:</label>
-                  <input type="text" id="startLeagueFormName" placeholder="Give your league a name">
-                </div>
-              </form>
+            {{#autoForm collection="Leagues" id="createLeagueForm" type="insert"}}
+              <fieldset>
+                <legend>Create a league</legend>
+                {{> afQuickField name="leagueName"}}
+                {{> afQuickField name="dateStarting" type="select" options="allowed"}}
+                {{> afQuickField name="entryFee"}}
+              </fieldset>
+              <button type="submit" class="btn btn-primary">Insert</button>
+            {{/autoForm}}
           </div>
 
           <div class="modal-footer">
