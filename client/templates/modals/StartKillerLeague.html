@@ -39,11 +39,11 @@
                 Please check the details below and confirm or make changes:
               </p>
               <ul>
-                <li>Your league name will be {{startLeagueFormFields.leagueName}}</li>
-                <li>Your league's first round of games will be on {{startLeagueFormFields.dateStarting}}</li>
+                <li>Your league name will be {{startLeagueFormFields.insertDoc.leagueName}}</li>
+                <li>Your league's first round of games will be on {{startLeagueFormFields.insertDoc.dateStarting}}</li>
 
-                {{#if startLeagueFormFields.entryFee}}
-                  <li>All players will pay £{{startLeagueFormFields.entryFee}} into the prize pool, plus a small processing fee</li>
+                {{#if startLeagueFormFields.insertDoc.entryFee}}
+                  <li>All players will pay £{{startLeagueFormFields.insertDoc.entryFee}} into the prize pool, plus a small processing fee</li>
                   <li>The winner will be paid within two weeks of the league ending</li>
                 {{else}}
                   <li>There is no prize pool. You play for honour alone</li>

@@ -1,5 +1,3 @@
-// AutoForm.validateForm("startLeagueForm")
-
 Template.StartKillerLeague.helpers({
 
   showFieldsPreview : function (){
@@ -20,11 +18,14 @@ Template.StartKillerLeague.events({
       template.showFieldsPreview.set(true);
       console.log("validated");
     }
+  },
+
+  "click #makeChangesButton" : function (event, template) {
+    event.preventDefault();
+    template.showFieldsPreview.set(false);
   }
 });
 
 Template.StartKillerLeague.onCreated(function () {
   this.showFieldsPreview = new ReactiveVar(false);
 });
-
-SimpleSchema.debug = true
