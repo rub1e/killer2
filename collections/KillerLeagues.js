@@ -43,15 +43,30 @@ LeaguesSchema = new SimpleSchema({
   },
   members : {
     type : [Object],
-    label : "League members"
+    label : "League members",
+    autoValue : function() {
+      if(this.isInsert) {
+        return [{playerId : Meteor.userId(), picks : [], livesLeft : 3, diedInRound : 0}];
+      }
+    }
   },
   "members.$.playerId" : {
       type : String,
-      label : "Users collection _id"
+      label : "Users collection _id",
+      autoValue : function() {
+        if(this.isInsert) {
+          return Meteor.userId();
+        }
+      }
   },
   "members.$.picks" : {
     type : [String],
-    label : "Ordered array of teams picked"
+    label : "Ordered array of teams picked",
+    autoValue : function() {
+      if(this.isInsert) {
+        return [];
+      }
+    }
   },
   "members.$.livesLeft" : {
     type : Number,

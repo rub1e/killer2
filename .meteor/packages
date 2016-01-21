@@ -32,3 +32,5 @@ http
 kadira:blaze-layout
 aldeed:autoform
 autopublish
+reactive-var
+insecure
