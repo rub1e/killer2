@@ -12,7 +12,16 @@
   				</div>
 
   				<div class="modal-body">
-
+            <div id="joinLeagueForm">
+              <p>
+                If you've been sent a league entry code, paste it below. You will be able to review the details after pressing "submit".
+              </p>
+              <input type="text" id="userLeagueCode" placeholder="Paste code here">
+              <div id="leagueCodeErrors" class="formErrorMessages">
+                <span>{{codeErrorMessage}}</span>
+              </div>
+              <button type="submit" class="btn btn-primary" id="submitLeagueCodeButton">Submit</button>
+            </div>
           </div>
 
           <div class="modal-footer">
