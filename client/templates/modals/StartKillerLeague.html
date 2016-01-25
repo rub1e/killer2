@@ -12,22 +12,48 @@
   				</div>
 
   				<div class="modal-body">
-              <form role="form" id="startLeagueForm">
-
-                <div class="form-group">
-                  <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
-                  <div class="input-group">
-                    <div class="input-group-addon">$</div>
-                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount">
-                    <div class="input-group-addon">.00</div>
+            {{#autoForm collection="Leagues" id="startLeagueForm" type="insert"}}
+              <div hidden={{showFieldsPreview}}>
+                <fieldset>
+                  <div id="startLeagueIntro">
+                    <p>
+                      Starting a new league couldn't be simpler! Just choose a name (nothing too naughty, please), pick which weekend you want to start with, and decide if you want to set a fee for your league so there's a prize pool for the winner.
+                    </p>
+                    <p>
+                      Once you've created your league, we'll show you how to invite your friends to play.
+                    </p>
+                    <p>
+                      If you have any questions, just email <a href="mailto:chairman@killer.football?subject=help">chairman@killer.football</a>
+                    </p>
                   </div>
-                </div>
+                  {{> afQuickField name="leagueName" placeholder="Give your league a name"}}
+                  {{> afQuickField name="dateStarting" type="select" options="allowed"}}
+                  {{> afQuickField name="entryFee"}}
+                </fieldset>
+                <button id="showPreviewButton" type="button" class="btn btn-primary">Start your league!</button>
+              </div>
+              {{#if showFieldsPreview}}
+              <div>
 
-                <div class="form-group">
-                  <label for="startLeagueFormName">League name:</label>
-                  <input type="text" id="startLeagueFormName" placeholder="Give your league a name">
-                </div>
-              </form>
+              <p>
+                Please check the details below and confirm or make changes:
+              </p>
+              <ul>
+                <li>Your league name will be {{startLeagueFormFields.insertDoc.leagueName}}</li>
+                <li>Your league's first round of games will be on {{startLeagueFormFields.insertDoc.dateStarting}}</li>
+
+                {{#if startLeagueFormFields.insertDoc.entryFee}}
+                  <li>All players will pay £{{startLeagueFormFields.insertDoc.entryFee}} into the prize pool, plus a small processing fee</li>
+                  <li>The winner will be paid within two weeks of the league ending</li>
+                {{else}}
+                  <li>There is no prize pool. You play for honour alone</li>
+                {{/if}}
+              </ul>
+              <button id="makeChangesButton" type="button" class="btn btn-primary">Make changes</button>
+              <button type="submit" class="btn btn-primary">Confirm</button>
+          </div>
+          {{/if}}
+            {{/autoForm}}
           </div>
 
           <div class="modal-footer">
