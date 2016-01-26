@@ -12,7 +12,7 @@
   				</div>
 
   				<div class="modal-body">
-            <div id="joinLeagueForm">
+            <div id="joinLeagueForm" hidden={{showLeaguePreview}}>
               <p>
                 If you've been sent a league entry code, paste it below. You will be able to review the details after pressing "submit".
               </p>
@@ -22,10 +22,29 @@
               </div>
               <button type="submit" class="btn btn-primary" id="submitLeagueCodeButton">Submit</button>
             </div>
+            {{#if showLeaguePreview}}
+            <div id="leaguePreviewBeforeJoining">
+              <p>
+                Please review the details below and then hit confirm. If you have any questions, please email <a href="mailto:chairman@killer.football?subject=help">chairman@killer.football</a>
+              </p>
+              <ul>
+                <li>You are joining a league called {{leaguePreviewDetails.leagueName}}</li>
+                <li>The first round of games for this league is played on {{leaguePreviewDetails.dateStarting}}</li>
+                <li>The chairman of this league is <!-- TODO: insert name --> </li>
+                {{#if leaguePreviewDetails.entryFee}}
+                  <li>This league has a prize pool. Players will pay £{{leaguePreviewDetails.entryFee}} plus 10% processing fee</li>
+                  <li>The winner will be paid within two weeks of the league ending</li>
+                {{else}}
+                  <li>There is no prize pool. You play for honour alone</li>
+                {{/if}}
+              </ul>
+              <button type="submit" class="btn btn-primary" id="confirmJoinLeagueButton">Confirm</button>
+            </div>
+          {{/if}}
           </div>
 
           <div class="modal-footer">
-			      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			      <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
           </div>
 
         </div>

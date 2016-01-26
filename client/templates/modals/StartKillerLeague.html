@@ -32,6 +32,8 @@
                 </fieldset>
                 <button id="showPreviewButton" type="button" class="btn btn-primary">Start your league!</button>
               </div>
+
+              <!-- TODO:  clean this up and move from #if to hidden= to match above-->
               {{#if showFieldsPreview}}
               <div>
 
@@ -43,7 +45,7 @@
                 <li>Your league's first round of games will be on {{startLeagueFormFields.insertDoc.dateStarting}}</li>
 
                 {{#if startLeagueFormFields.insertDoc.entryFee}}
-                  <li>All players will pay £{{startLeagueFormFields.insertDoc.entryFee}} into the prize pool, plus a small processing fee</li>
+                  <li>All players will pay £{{startLeagueFormFields.insertDoc.entryFee}} into the prize pool, plus 10% processing fee</li>
                   <li>The winner will be paid within two weeks of the league ending</li>
                 {{else}}
                   <li>There is no prize pool. You play for honour alone</li>
