@@ -1,5 +1,17 @@
 Template.KillerChoiceWidget.helpers({
-  teamsLeft: function(){
-    //return array of unpicked team names
+
+  teamsLeft : function () {
+    // TODO: check if this can be skipped by setting data context using #with
+    var choicesArray = this.members.filter(function(a){
+      return a.playerId === Meteor.userId();
+    })[0].picks;
+    var remaining = [];
+    for(var i = 0; i < pLTeamsArray.length; i += 1) {
+      if(choicesArray.indexOf(pLTeamsArray[i].longName) === -1) {
+        remaining.push(pLTeamsArray[i].longName);
+      }
+    }
+    return remaining;
   }
+
 });
