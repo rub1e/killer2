@@ -31,7 +31,7 @@ Template.JoinKillerLeague.events({
   },
 
   "click #confirmJoinLeagueButton" : function (event, template) {
-    var entry = Template.instance().showLeaguePreview.get();
+    var code = Template.instance().showLeaguePreview.get();
     Meteor.call("joinLeague", code);
   }
 });
