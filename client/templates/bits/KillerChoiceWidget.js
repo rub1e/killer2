@@ -15,3 +15,9 @@ Template.KillerChoiceWidget.helpers({
   }
 
 });
+
+Template.KillerChoiceWidget.events({
+  "click #killerChoiceButton" : function (event, template) {
+
+  }
+});
