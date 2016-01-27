@@ -2,7 +2,7 @@
   <div id="PickTeamOrPickedTeam">
     {{#if chosenTeamName}}
       <span>You picked: {{chosenTeamName}}</span>
-      <button>Change your pick</button>
+      <button type="button" id="REPICK{{this._id}}">Change your pick</button>
     {{else}}
       {{> KillerChoiceWidget}}
     {{/if}}

@@ -2,8 +2,8 @@
   <div id="KillerChoiceWidget">
     <form class="killerChoiceForm">
       <span>Pick a team</span>
-      <select class="teamsLeftDropDown" name="">
-        <option selected="true">Pick this week's team</option>
+      <select class="teamsLeftDropDown" id="DD{{this._id}}">
+        <option selected="true" disabled>Pick this week's team</option>
         {{#each teamsLeft}}
           <option value={{.}}>{{.}}</option>
         {{/each}}

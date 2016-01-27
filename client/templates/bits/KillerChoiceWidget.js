@@ -2,7 +2,7 @@ Template.KillerChoiceWidget.helpers({
 
   teamsLeft : function () {
     // TODO: check if this can be skipped by setting data context using #with
-    var choicesArray = this.members.filter(function(a){
+    var choicesArray = this.members.filter(function (a) {
       return a.playerId === Meteor.userId();
     })[0].picks;
     var remaining = [];
@@ -17,7 +17,10 @@ Template.KillerChoiceWidget.helpers({
 });
 
 Template.KillerChoiceWidget.events({
-  "click #killerChoiceButton" : function (event, template) {
-
+  "submit .killerChoiceForm" : function (event, template) {
+    event.preventDefault();
+    var id = "#DD" + this._id;
+    var choice = $(id).find(":selected").text();
+    Meteor.call("makeChoice", choice, this._id);
   }
 });
