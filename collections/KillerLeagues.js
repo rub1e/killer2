@@ -54,7 +54,7 @@ LeaguesSchema = new SimpleSchema({
       type : String,
       label : "Users collection _id",
       autoValue : function() {
-        if(this.isInsert) {
+        if(this.isUpdate) {
           return Meteor.userId();
         }
       }
@@ -63,7 +63,7 @@ LeaguesSchema = new SimpleSchema({
     type : [String],
     label : "Ordered array of teams picked",
     autoValue : function() {
-      if(this.isInsert) {
+      if(this.isUpdate) {
         return [];
       }
     }
@@ -74,7 +74,7 @@ LeaguesSchema = new SimpleSchema({
     max : 3,
     min : 0,
     autoValue : function() {
-      if(this.isInsert) {
+      if(this.isUpdate) {
         return 3;
       }
     }
@@ -83,7 +83,7 @@ LeaguesSchema = new SimpleSchema({
     type : Number,
     label : "Round user died in",
     autoValue : function() {
-      if(this.isInsert) {
+      if(this.isUpdate) {
         return 0;
       }
     }

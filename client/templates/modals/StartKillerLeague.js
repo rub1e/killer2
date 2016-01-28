@@ -1,14 +1,13 @@
 Template.StartKillerLeague.helpers({
 
   showFieldsPreview : function (){
-    return Template.instance().showFieldsPreview.get();
+    return Template.instance().showFieldsPreview.get() ? true : false;
   },
 
   startLeagueFormFields : function () {
     return AutoForm.getFormValues("startLeagueForm");
   }
 });
-
 
 Template.StartKillerLeague.events({
 
