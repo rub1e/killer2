@@ -12,7 +12,7 @@
         <tbody>
           {{#each userAliveLeaguesList}}
             <tr>
-              <td>{{leagueName}}</td>
+              <td><button class="btn modalButton" data-modal="modalFullActiveLeagueDetails">{{leagueName}}</button></td>
               {{#if round}}
                 <td>{{> KillerChoiceWidget}}</td>
               {{else}}
