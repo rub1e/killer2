@@ -14,7 +14,7 @@
   				<div class="modal-body">
             <ul>
               <li>League name: {{leagueName}}</li>
-              <li>League chairman: </li>
+              <li>League chairman: {{chairmanName}}</li>
               <li>The first round of games for this league is on {{gameWeekDateFormatted dateStarting}}</li>
               <li>The league entry code is <span>{{_id}}</span>. Click <a href="#">here</a> to send it in an email to your friends</li>
               {{#if entryFee}}
@@ -28,7 +28,7 @@
             </p>
             <ul>
               {{#each members}}
-                <li>{{playerId}}</li>
+                <li>{{fullName}}</li>
               {{/each}}
             </ul>
           </div>

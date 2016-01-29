@@ -1,5 +1,16 @@
 Leagues = new Mongo.Collection("Leagues");
 
+Leagues.helpers({
+  chairmanName : function () {
+    var firstId = this.members[0].playerId;
+    return Meteor.users.findOne(firstId).fullName();
+  },
+
+  playerName : function () {
+    
+  }
+});
+
 LeaguesSchema = new SimpleSchema({
   leagueName : {
     type : String,
