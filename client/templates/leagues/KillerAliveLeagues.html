@@ -13,7 +13,11 @@
           {{#each userAliveLeaguesList}}
             <tr>
               <td>{{leagueName}}</td>
-              <td>{{> PickTeamOrPickedTeam}}</td>
+              {{#if round}}
+                <td>{{> KillerChoiceWidget}}</td>
+              {{else}}
+                <td>This league hasn't started yet</td>
+              {{/if}}
               <td>{{> MiniActiveLeagueDetails}}</td>
             </tr>
           {{/each}}

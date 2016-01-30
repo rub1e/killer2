@@ -2,9 +2,18 @@
   <div id="PickTeamOrPickedTeam">
     {{#if chosenTeamName}}
       <span>You picked: {{chosenTeamName}}</span>
-      <button>Change your pick</button>
+      <button type="button" id="REPICK{{this._id}}">Change your pick</button>
     {{else}}
-      {{> KillerChoiceWidget}}
+      <form class="killerChoiceForm">
+        <span>Pick a team</span>
+        <select class="teamsLeftDropDown" id="DD{{this._id}}">
+          <option selected="true" disabled>Pick this week's team</option>
+          {{#each teamsLeft}}
+            <option value={{.}}>{{.}}</option>
+          {{/each}}
+        </select>
+        <input type="submit" name="killerChoiceButton" value="Submit">
+      </form>
     {{/if}}
   </div>
 </template>
