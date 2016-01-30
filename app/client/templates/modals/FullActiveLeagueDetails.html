@@ -1,0 +1,44 @@
+<template name="FullActiveLeagueDetails">
+  <div id="FullActiveLeagueDetails">
+    <div class="modal fade" role="dialog">
+  		<div class="modal-dialog">
+  			<div class="modal-content">
+
+  				<div class="modal-header">
+  					<button type="button" class="close" data-dismiss="modal">
+  						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+  					</button>
+  					<h4 class="modal-title">{{leagueName}} detail</h4>
+  				</div>
+
+  				<div class="modal-body">
+            <ul>
+              <li>League name: {{leagueName}}</li>
+              <li>League chairman: {{chairmanName}}</li>
+              <li>The first round of games for this league is on {{gameWeekDateFormatted dateStarting}}</li>
+              <li>The league entry code is <span>{{_id}}</span>. Click <a href="#">here</a> to send it in an email to your friends</li>
+              {{#if entryFee}}
+                <li>Prize pool so far: £</li>
+              {{else}}
+                <li>Free game - no prize pool</li>
+              {{/if}}
+            </ul>
+            <p>
+              The following players have already joined this league:
+            </p>
+            <ul>
+              {{#each members}}
+                <li>{{fullName}}</li>
+              {{/each}}
+            </ul>
+          </div>
+
+          <div class="modal-footer">
+			      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
