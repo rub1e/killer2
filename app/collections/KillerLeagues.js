@@ -6,9 +6,10 @@ Leagues.helpers({
     return Meteor.users.findOne(firstId).fullName();
   },
 
-  playerName : function () {
-    
+  prizePool : function () {
+    return this.entryFee * this.members.length;
   }
+
 });
 
 LeaguesSchema = new SimpleSchema({
@@ -42,7 +43,7 @@ LeaguesSchema = new SimpleSchema({
       }
     }
   },
-  status : {
+  leagueStatus : {
     type : String,
     label : "League status",
     allowedValues : ["active", "ended", "pending"],

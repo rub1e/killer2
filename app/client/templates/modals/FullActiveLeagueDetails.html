@@ -8,29 +8,67 @@
   					<button type="button" class="close" data-dismiss="modal">
   						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
   					</button>
-  					<h4 class="modal-title">{{leagueName}} detail</h4>
+  					<h4 class="modal-title">{{leagueName}} in detail</h4>
   				</div>
 
   				<div class="modal-body">
-            <ul>
-              <li>League name: {{leagueName}}</li>
-              <li>League chairman: {{chairmanName}}</li>
-              <li>The first round of games for this league is on {{gameWeekDateFormatted dateStarting}}</li>
-              <li>The league entry code is <span>{{_id}}</span>. Click <a href="#">here</a> to send it in an email to your friends</li>
-              {{#if entryFee}}
-                <li>Prize pool so far: £</li>
-              {{else}}
-                <li>Free game - no prize pool</li>
-              {{/if}}
-            </ul>
-            <p>
-              The following players have already joined this league:
-            </p>
-            <ul>
-              {{#each members}}
-                <li>{{fullName}}</li>
-              {{/each}}
-            </ul>
+            {{#if equals leagueStatus "pending"}}
+              <ul>
+                <li>League name: {{leagueName}}</li>
+                <li>League chairman: {{chairmanName}}</li>
+                <li>The first round of games for this league is on {{gameWeekDateFormatted dateStarting}}</li>
+                <li>The league entry code is <span>{{_id}}</span>. Click <a href="#">here</a> to send it in an email to your friends</li>
+                {{#if entryFee}}
+                  <li>Prize pool so far: £{{prizePool}}</li>
+                {{else}}
+                  <li>Free game - no prize pool</li>
+                {{/if}}
+              </ul>
+              <p>
+                The following players have already joined this league:
+              </p>
+              <ul>
+                {{#each members}}
+                  <li>{{memberName}}</li>
+                {{/each}}
+              </ul>
+            {{/if}}
+
+            {{#if equals leagueStatus "active"}}
+              <ul>
+                <li>League name: {{leagueName}}</li>
+                <li>League chairman: {{chairmanName}}</li>
+                <li>Deadline: make your choices by {{currentDeadline}}</li>
+                <li>Round: {{round}}</li>
+                {{#if entryFee}}
+                  <li>Total prize pool: {{prizePool}}</li>
+                {{else}}
+                  <li>Free game - no prize pool</li>
+                {{/if}}
+              </ul>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Lives left</th>
+                    {{#if equals currentGameStatus "active"}}
+                      <th>Choice</th>
+                    {{/if}}
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each members}}
+                  <tr>
+                    <td>{{memberName}}</td>
+                    <td>{{livesLeft}}</td>
+                    {{#if equals currentGameStatus "active"}}
+                      <td>{{memberChoice}}</td>
+                    {{/if}}
+                  </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+            {{/if}}
           </div>
 
           <div class="modal-footer">
