@@ -1,7 +1,7 @@
 GameStatus = new Mongo.Collection("gameStatus");
 
 GameStatusSchema = new SimpleSchema({
-  status : {
+  gameStatus : {
     type : String,
     label : "Game status",
     allowedValues : ["active", "updating", "pending"]
@@ -14,9 +14,3 @@ GameStatusSchema = new SimpleSchema({
 });
 
 GameStatus.attachSchema(GameStatusSchema);
-
-GameStatus.allow({
-  insert: function () { return true; },
-  update: function () { return true; },
-  remove: function () { return true; }
-});

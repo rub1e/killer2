@@ -1,5 +1,17 @@
 Leagues = new Mongo.Collection("Leagues");
 
+Leagues.helpers({
+  chairmanName : function () {
+    var firstId = this.members[0].playerId;
+    return Meteor.users.findOne(firstId).fullName();
+  },
+
+  prizePool : function () {
+    return this.entryFee * this.members.length;
+  }
+
+});
+
 LeaguesSchema = new SimpleSchema({
   leagueName : {
     type : String,
@@ -31,7 +43,7 @@ LeaguesSchema = new SimpleSchema({
       }
     }
   },
-  status : {
+  leagueStatus : {
     type : String,
     label : "League status",
     allowedValues : ["active", "ended", "pending"],

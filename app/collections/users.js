@@ -1,3 +1,11 @@
+Users = Meteor.users;
+
+Users.helpers({
+  fullName : function () {
+    return this.profile.firstName + ' ' + this.profile.lastName;
+  }
+});
+
 UserProfileSchema = new SimpleSchema({
     firstName: {
         type: String,

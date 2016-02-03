@@ -70,6 +70,11 @@ pLGameweeksRemainingFormatted = pLGameweeks.filter(function(a) {
   return new Date(b).toDateString();
 });
 
-currentGameWeek = function(){
+currentGameWeek = function () {
   return GameStatus.findOne().currentGameWeek;
+};
+
+currentDeadline = function () {
+  // TODO: deadline function
+  return "deadline";
 };

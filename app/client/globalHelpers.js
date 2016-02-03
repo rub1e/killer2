@@ -8,13 +8,17 @@ Template.registerHelper("currentGameWeek", function(){
   return GameStatus.findOne().currentGameWeek;
 });
 
+Template.registerHelper("currentGameStatus", function(){
+  return GameStatus.findOne().gameStatus;
+});
+
 Template.registerHelper("userAliveLeaguesList", function(){
   // return list of active league objects for current user
 });
 
 Template.registerHelper("loggedInUserFullName", function(){
   // return full name of logged in user
-  return "Bob";
+  return Meteor.user().fullName();
 });
 
 Template.registerHelper("loggedInUserEmail", function(){
@@ -25,4 +29,8 @@ Template.registerHelper("loggedInUserEmail", function(){
 Template.registerHelper("listOfCurrentMatches", function(){
   // return list of current matches
   return Matches.findOne({gameWeek : currentGameWeek()}).matches;
+});
+
+Template.registerHelper('equals',function(v1, v2) {
+  return (v1 === v2);
 });

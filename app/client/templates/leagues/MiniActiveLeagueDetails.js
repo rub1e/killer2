@@ -15,8 +15,4 @@ Template.MiniActiveLeagueDetails.helpers({
     })[0].livesLeft;
   },
 
-  prizePool : function () {
-    return this.entryFee * this.members.length;
-  }
-
 });
