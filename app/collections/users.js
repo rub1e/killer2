@@ -41,6 +41,11 @@ MeteorUsersSchema = new SimpleSchema({
         type: UserProfileSchema,
         optional: false
     },
+    roles: {
+      type: Object,
+      optional: true,
+      blackbox: true
+    },
     // Make sure this services field is in your schema if you're using any of the accounts packages
     services: {
         type: Object,
