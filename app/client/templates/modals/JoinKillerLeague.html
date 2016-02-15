@@ -31,12 +31,6 @@
                 <li>You are joining a league called {{leaguePreviewDetails.leagueName}}</li>
                 <li>The first round of games for this league is played on {{leaguePreviewDetails.dateStarting}}</li>
                 <li>The chairman of this league is <!-- TODO: insert name --> </li>
-                {{#if leaguePreviewDetails.entryFee}}
-                  <li>This league has a prize pool. Players will pay £{{leaguePreviewDetails.entryFee}} plus 10% processing fee</li>
-                  <li>The winner will be paid within two weeks of the league ending</li>
-                {{else}}
-                  <li>There is no prize pool. You play for honour alone</li>
-                {{/if}}
               </ul>
               <button type="submit" class="btn btn-primary" id="confirmJoinLeagueButton">Confirm</button>
             </div>

@@ -29,11 +29,6 @@ LeaguesSchema = new SimpleSchema({
     label : "Starting week",
     allowedValues : pLGameweeksRemainingFormatted
   },
-  entryFee : {
-    type : Number,
-    label : "League entry fee",
-    defaultValue : 0
-  },
   round : {
     type : Number,
     label : "Current round",
