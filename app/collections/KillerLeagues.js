@@ -5,11 +5,6 @@ Leagues.helpers({
     var firstId = this.members[0].playerId;
     return Meteor.users.findOne(firstId).fullName();
   },
-
-  prizePool : function () {
-    return this.entryFee * this.members.length;
-  }
-
 });
 
 LeaguesSchema = new SimpleSchema({
@@ -28,11 +23,6 @@ LeaguesSchema = new SimpleSchema({
     type : String,
     label : "Starting week",
     allowedValues : pLGameweeksRemainingFormatted
-  },
-  entryFee : {
-    type : Number,
-    label : "League entry fee",
-    defaultValue : 0
   },
   round : {
     type : Number,

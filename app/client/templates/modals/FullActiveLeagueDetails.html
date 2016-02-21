@@ -17,12 +17,8 @@
                 <li>League name: {{leagueName}}</li>
                 <li>League chairman: {{chairmanName}}</li>
                 <li>The first round of games for this league is on {{gameWeekDateFormatted dateStarting}}</li>
+                <!-- TODO: mailto solution -->
                 <li>The league entry code is <span>{{_id}}</span>. Click <a href="#">here</a> to send it in an email to your friends</li>
-                {{#if entryFee}}
-                  <li>Prize pool so far: £{{prizePool}}</li>
-                {{else}}
-                  <li>Free game - no prize pool</li>
-                {{/if}}
               </ul>
               <p>
                 The following players have already joined this league:
@@ -40,11 +36,6 @@
                 <li>League chairman: {{chairmanName}}</li>
                 <li>Deadline: make your choices by {{currentDeadline}}</li>
                 <li>Round: {{round}}</li>
-                {{#if entryFee}}
-                  <li>Total prize pool: {{prizePool}}</li>
-                {{else}}
-                  <li>Free game - no prize pool</li>
-                {{/if}}
               </ul>
               <table>
                 <thead>
