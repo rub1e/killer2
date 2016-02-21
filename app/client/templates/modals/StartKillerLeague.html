@@ -17,7 +17,7 @@
                 <fieldset>
                   <div id="startLeagueIntro">
                     <p>
-                      Starting a new league couldn't be simpler! Just choose a name (nothing too naughty, please), pick which weekend you want to start with, and decide if you want to set a fee for your league so there's a prize pool for the winner.
+                      Starting a new league couldn't be simpler! Just choose a name (nothing too naughty, please), and pick which weekend you want to start with.
                     </p>
                     <p>
                       Once you've created your league, we'll show you how to invite your friends to play.
@@ -28,33 +28,24 @@
                   </div>
                   {{> afQuickField name="leagueName" placeholder="Give your league a name"}}
                   {{> afQuickField name="dateStarting" type="select" options="allowed"}}
-                  {{> afQuickField name="entryFee"}}
                 </fieldset>
                 <button id="showPreviewButton" type="button" class="btn btn-primary">Start your league!</button>
               </div>
 
               <!-- TODO:  clean this up and move from #if to hidden= to match above-->
               {{#if showFieldsPreview}}
-              <div>
-
-              <p>
-                Please check the details below and confirm or make changes:
-              </p>
-              <ul>
-                <li>Your league name will be {{startLeagueFormFields.insertDoc.leagueName}}</li>
-                <li>Your league's first round of games will be on {{startLeagueFormFields.insertDoc.dateStarting}}</li>
-
-                {{#if startLeagueFormFields.insertDoc.entryFee}}
-                  <li>All players will pay £{{startLeagueFormFields.insertDoc.entryFee}} into the prize pool, plus 10% processing fee</li>
-                  <li>The winner will be paid within two weeks of the league ending</li>
-                {{else}}
-                  <li>There is no prize pool. You play for honour alone</li>
-                {{/if}}
-              </ul>
-              <button id="makeChangesButton" type="button" class="btn btn-primary">Make changes</button>
-              <button type="submit" class="btn btn-primary">Confirm</button>
-          </div>
-          {{/if}}
+                <div>
+                  <p>
+                    Please check the details below and confirm or make changes:
+                  </p>
+                  <ul>
+                    <li>Your league name will be {{startLeagueFormFields.insertDoc.leagueName}}</li>
+                    <li>Your league's first round of games will be on {{startLeagueFormFields.insertDoc.dateStarting}}</li>
+                  </ul>
+                  <button id="makeChangesButton" type="button" class="btn btn-primary">Make changes</button>
+                  <button type="submit" class="btn btn-primary">Confirm</button>
+                </div>
+              {{/if}}
             {{/autoForm}}
           </div>
 

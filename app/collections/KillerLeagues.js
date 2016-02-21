@@ -5,11 +5,6 @@ Leagues.helpers({
     var firstId = this.members[0].playerId;
     return Meteor.users.findOne(firstId).fullName();
   },
-
-  prizePool : function () {
-    return this.entryFee * this.members.length;
-  }
-
 });
 
 LeaguesSchema = new SimpleSchema({
