@@ -1,0 +1,22 @@
+<template name="KillerChoiceWidget">
+  <div id="KillerChoiceWidget">
+    {{#if chosenTeamName}}
+      <form id="REPICK_{{this._id}}" class="repickChoiceForm">
+        <span>You picked: {{chosenTeamName}}</span>
+        <!-- TODO: add global helper to disable repick button during matches - and in fact all buttons -->
+        <button type="submit">Change your pick</button>
+      </form>
+    {{else}}
+      <form class="killerChoiceForm">
+        <span>Pick a team</span>
+        <select class="teamsLeftDropDown" id="DD_{{this._id}}">
+          <option selected="true" disabled>Pick this week's team</option>
+          {{#each teamsLeft}}
+            <option value={{.}}>{{.}}</option>
+          {{/each}}
+        </select>
+        <input type="submit" name="killerChoiceButton" value="Submit">
+      </form>
+    {{/if}}
+  </div>
+</template>
