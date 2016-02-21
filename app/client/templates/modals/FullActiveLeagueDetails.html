@@ -41,7 +41,6 @@
                 <thead>
                   <tr>
                     <th>Name</th>
-                    <th>Lives left</th>
                     {{#if equals currentGameStatus "active"}}
                       <th>Choice</th>
                     {{/if}}
@@ -51,7 +50,6 @@
                   {{#each members}}
                   <tr>
                     <td>{{memberName}}</td>
-                    <td>{{livesLeft}}</td>
                     {{#if equals currentGameStatus "active"}}
                       <td>{{memberChoice}}</td>
                     {{/if}}

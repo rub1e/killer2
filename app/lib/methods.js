@@ -20,6 +20,7 @@ Meteor.methods({
     if(!entry.members.filter(function(e) {return e.playerId === Meteor.userId();}).length) {
       Leagues.update({_id : code}, {$push : {members : {}}}, function (error, result) {
         if(!error) {
+          // TODO should this be in the callback where it's called?
           Modal.hide();
         }
       });

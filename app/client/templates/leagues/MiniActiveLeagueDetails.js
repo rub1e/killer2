@@ -10,6 +10,7 @@ Template.MiniActiveLeagueDetails.helpers({
   },
 
   livesLeft : function () {
+    // TODO: probs don't need this
     return this.members.filter(function(a) {
       return a.playerId === Meteor.userId();
     })[0].livesLeft;
