@@ -1,4 +1,9 @@
 AutoForm.hooks({
+  startLeagueForm : {
+    onSuccess: function(formType, result) {
+      Session.set("newLeagueJustCreatedCode", result);
+    }
+  },
 
   changEmailQuickForm: {
     onSuccess: function(formType, result) {

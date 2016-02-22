@@ -10,6 +10,10 @@ Template.StartKillerLeague.helpers({
 
   startLeagueFormFields : function () {
     return AutoForm.getFormValues("startLeagueForm");
+  },
+
+  newLeagueCode : function () {
+    return Session.get("newLeagueJustCreatedCode");
   }
 });
 
@@ -36,4 +40,8 @@ Template.StartKillerLeague.events({
 
 Template.StartKillerLeague.onCreated(function () {
   this.displayControlStart = new ReactiveVar("form");
+});
+
+Template.StartKillerLeague.onDestroyed(function(){
+   Session.set("newLeagueJustCreatedCode", undefined);
 });

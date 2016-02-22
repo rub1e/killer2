@@ -47,7 +47,21 @@
                 </div>
               {{/if}}
               {{#if equals displayControlStart "success"}}
-              <h2>Success!</h2>
+                <h3>Success!</h3>
+                <!-- TODO: add deadline for games -->
+                <p>
+                  You have created {{startLeagueFormFields.insertDoc.leagueName}} - good luck!
+                </p>
+                <div>
+                  <p>
+                    Now invite your friends to join you - you can:
+                  </p>
+                  <ul>
+                    <li>Click here to open an email pre-filled with all the details</li>
+                    <li>Use the sharing links below</li>
+                    <li>Send them your unique league code however you like: {{newLeagueCode}}</li>
+                  </ul>
+                </div>
               {{/if}}
             {{/autoForm}}
           </div>
