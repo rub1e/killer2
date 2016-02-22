@@ -32,7 +32,17 @@ Template.JoinKillerLeague.events({
 
   "click #confirmJoinLeagueButton" : function (event, template) {
     var code = Template.instance().showLeaguePreview.get();
-    Meteor.call("joinLeague", code);
+    Meteor.call("joinLeague", code, function (error, result) {
+      if(!error) {
+        Modal.hide();
+        Meteor.setTimeout(function(){
+          Modal.show("JoinSuccess");
+          Meteor.setTimeout(function(){
+            Modal.hide();
+          }, 1500);
+        }, 500);
+      }
+    });
   }
 });
 
