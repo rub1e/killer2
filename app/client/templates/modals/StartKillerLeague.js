@@ -1,7 +1,11 @@
 Template.StartKillerLeague.helpers({
 
-  showFieldsPreview : function (){
-    return Template.instance().showFieldsPreview.get() ? true : false;
+  displayControlStart : function (){
+    return Template.instance().displayControlStart.get();
+  },
+
+  showForm : function () {
+    return Template.instance().displayControlStart.get() === "form" ? false : true;
   },
 
   startLeagueFormFields : function () {
@@ -14,17 +18,22 @@ Template.StartKillerLeague.events({
   "click #showPreviewButton": function(event, template){
     event.preventDefault();
     if(AutoForm.validateForm("startLeagueForm")) {
-      template.showFieldsPreview.set(true);
+      template.displayControlStart.set("preview");
       console.log("validated");
     }
   },
 
   "click #makeChangesButton" : function (event, template) {
     event.preventDefault();
-    template.showFieldsPreview.set(false);
+    template.displayControlStart.set("form");
+  },
+
+  "submit" : function (event, template) {
+    template.displayControlStart.set("success");
   }
+
 });
 
 Template.StartKillerLeague.onCreated(function () {
-  this.showFieldsPreview = new ReactiveVar(false);
+  this.displayControlStart = new ReactiveVar("form");
 });

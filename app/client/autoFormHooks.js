@@ -1,9 +1,4 @@
 AutoForm.hooks({
-  startLeagueForm : {
-    onSuccess: function(formType, result) {
-      Modal.hide();
-    }
-  },
 
   changEmailQuickForm: {
     onSuccess: function(formType, result) {
@@ -13,7 +8,7 @@ AutoForm.hooks({
       alert("Email updated!");
     }
   }
-  
+
 });
 
 SimpleSchema.debug = true;

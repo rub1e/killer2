@@ -13,7 +13,7 @@
 
   				<div class="modal-body">
             {{#autoForm collection="Leagues" id="startLeagueForm" type="insert"}}
-              <div hidden={{showFieldsPreview}}>
+              <div hidden={{showForm}}>
                 <fieldset>
                   <div id="startLeagueIntro">
                     <p>
@@ -33,7 +33,7 @@
               </div>
 
               <!-- TODO:  clean this up and move from #if to hidden= to match above-->
-              {{#if showFieldsPreview}}
+              {{#if equals displayControlStart "preview"}}
                 <div>
                   <p>
                     Please check the details below and confirm or make changes:
@@ -45,6 +45,9 @@
                   <button id="makeChangesButton" type="button" class="btn btn-primary">Make changes</button>
                   <button type="submit" class="btn btn-primary">Confirm</button>
                 </div>
+              {{/if}}
+              {{#if equals displayControlStart "success"}}
+              <h2>Success!</h2>
               {{/if}}
             {{/autoForm}}
           </div>
