@@ -34,6 +34,13 @@ Template.StartKillerLeague.events({
 
   "submit" : function (event, template) {
     template.displayControlStart.set("success");
+  },
+
+  "click #facebookShare" : function (event, template) {
+    FB.ui({
+      method: 'share',
+      href: 'https://developers.facebook.com/docs/',
+    }, function(response){});
   }
 
 });
