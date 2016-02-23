@@ -10,11 +10,8 @@ Template.StartKillerLeague.helpers({
 
   startLeagueFormFields : function () {
     return AutoForm.getFormValues("startLeagueForm");
-  },
-
-  newLeagueCode : function () {
-    return Session.get("newLeagueJustCreatedCode");
   }
+
 });
 
 Template.StartKillerLeague.events({
@@ -36,10 +33,10 @@ Template.StartKillerLeague.events({
     template.displayControlStart.set("success");
   },
 
-  "click #facebookShare" : function (event, template) {
+  "click #facebookNewLeagueShare" : function (event, template) {
     FB.ui({
       method: 'share',
-      href: 'https://developers.facebook.com/docs/',
+      href: 'http://killer.football',
     }, function(response){});
   }
 
@@ -51,4 +48,22 @@ Template.StartKillerLeague.onCreated(function () {
 
 Template.StartKillerLeague.onDestroyed(function(){
    Session.set("newLeagueJustCreatedCode", undefined);
+});
+
+Template.StartLeagueSuccess.helpers({
+  newLeagueCode : function () {
+    return Session.get("newLeagueJustCreatedCode");
+  }
+});
+
+Template.StartLeagueSuccess.onRendered(function(){
+  var code = Session.get("newLeagueJustCreatedCode");
+  twttr.widgets.createShareButton(
+    "http:\/\/killer.football",
+    document.getElementById("tw"),
+    {
+      size: "large",
+      text: "Join my league on killerDOTfootball! Code: " + code,
+    }
+  );
 });

@@ -34,37 +34,14 @@
 
               <!-- TODO:  clean this up and move from #if to hidden= to match above-->
               {{#if equals displayControlStart "preview"}}
-                <div>
-                  <p>
-                    Please check the details below and confirm or make changes:
-                  </p>
-                  <ul>
-                    <li>Your league name will be {{startLeagueFormFields.insertDoc.leagueName}}</li>
-                    <li>Your league's first round of games will be on {{startLeagueFormFields.insertDoc.dateStarting}}</li>
-                  </ul>
-                  <button id="makeChangesButton" type="button" class="btn btn-primary">Make changes</button>
-                  <button type="submit" class="btn btn-primary">Confirm</button>
-                </div>
+                {{#with startLeagueFormFields}}
+                  {{> StartLeaguePreview}}
+                {{/with}}
               {{/if}}
               {{#if equals displayControlStart "success"}}
-                <h3>Success!</h3>
-                <!-- TODO: add deadline for games -->
-                <p>
-                  You have created {{startLeagueFormFields.insertDoc.leagueName}} - good luck!
-                </p>
-                <div>
-                  <p>
-                    Now invite your friends to join you - you can:
-                  </p>
-                  <ul>
-                    <li>Click here to open an email pre-filled with all the details</li>
-                    <li>Use the sharing links below</li>
-                    <li>Send them your unique league code however you like: {{newLeagueCode}}</li>
-                  </ul>
-                  <ul>
-                    <li><a id="facebookShare" class="btn btn-default btn-sm" href="#"><i class="fa fa-facebook-square"></i>Share</a></li>
-                  </ul>
-                </div>
+                {{#with startLeagueFormFields}}
+                  {{> StartLeagueSuccess}}
+                {{/with}}
               {{/if}}
             {{/autoForm}}
           </div>
@@ -75,6 +52,44 @@
 
         </div>
       </div>
+    </div>
+  </div>
+</template>
+
+<template name="StartLeaguePreview">
+  <div id="StartLeaguePreview">
+    <p>
+      Please check the details below and confirm or make changes:
+    </p>
+    <ul>
+      <li>Your league name will be {{insertDoc.leagueName}}</li>
+      <li>Your league's first round of games will be on {{insertDoc.dateStarting}}</li>
+    </ul>
+    <button id="makeChangesButton" type="button" class="btn btn-primary">Make changes</button>
+    <button type="submit" class="btn btn-primary">Confirm</button>
+  </div>
+</template>
+
+<template name="StartLeagueSuccess">
+  <div id="StartLeagueSuccess">
+    <h3>Success!</h3>
+    <!-- TODO: add deadline for games -->
+    <p>
+      League "{{insertDoc.leagueName}}" has been successfully created - now you can invite your friends
+    </p>
+    <div>
+      <p>
+        Your unique league entry code is: {{newLeagueCode}}
+      </p>
+      <ul>
+        <li>Click here to open an email pre-filled with all the details</li>
+        <li>Use the sharing links below</li>
+        <li>Send them your unique league code however you like </li>
+      </ul>
+      <ul>
+        <li><a id="facebookNewLeagueShare" class="btn btn-default btn-lg" href="#"><i class="fa fa-facebook-square"></i> Share</a></li>
+        <li><div id="tw" class=""></div></li>
+      </ul>
     </div>
   </div>
 </template>
