@@ -34,3 +34,16 @@
     background: #30477a;
     color: #fff
 }
+/* TODO: change colours for email */
+.btn-email {
+    background: #3b5998;
+    border-radius: 0;
+    color: #fff
+}
+.btn-email:link, .btn-email:visited {
+    color: #fff
+}
+.btn-email:active, .btn-email:hover {
+    background: #30477a;
+    color: #fff
+}
