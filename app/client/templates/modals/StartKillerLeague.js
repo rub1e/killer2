@@ -20,7 +20,6 @@ Template.StartKillerLeague.events({
     event.preventDefault();
     if(AutoForm.validateForm("startLeagueForm")) {
       template.displayControlStart.set("preview");
-      console.log("validated");
     }
   },
 
@@ -43,12 +42,6 @@ Template.StartKillerLeague.onDestroyed(function(){
    Session.set("newLeagueJustCreatedCode", undefined);
 });
 
-Template.StartLeagueSuccess.helpers({
-  newLeagueCode : function () {
-    return Session.get("newLeagueJustCreatedCode");
-  }
-});
-
 Template.StartKillerLeague.events({
 
   "click #facebookNewLeagueShare" : function (event, template) {
@@ -57,5 +50,11 @@ Template.StartKillerLeague.events({
       href: 'http://killer.football',
     }, function(response){});
   }
-  
+
+});
+
+Template.StartLeagueSuccess.helpers({
+  newLeagueCode : function () {
+    return Session.get("newLeagueJustCreatedCode");
+  }
 });
