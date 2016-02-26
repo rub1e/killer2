@@ -13,7 +13,7 @@
 
   				<div class="modal-body">
             {{#autoForm collection="Leagues" id="startLeagueForm" type="insert"}}
-              <div hidden={{showFieldsPreview}}>
+              <div hidden={{showForm}}>
                 <fieldset>
                   <div id="startLeagueIntro">
                     <p>
@@ -33,18 +33,15 @@
               </div>
 
               <!-- TODO:  clean this up and move from #if to hidden= to match above-->
-              {{#if showFieldsPreview}}
-                <div>
-                  <p>
-                    Please check the details below and confirm or make changes:
-                  </p>
-                  <ul>
-                    <li>Your league name will be {{startLeagueFormFields.insertDoc.leagueName}}</li>
-                    <li>Your league's first round of games will be on {{startLeagueFormFields.insertDoc.dateStarting}}</li>
-                  </ul>
-                  <button id="makeChangesButton" type="button" class="btn btn-primary">Make changes</button>
-                  <button type="submit" class="btn btn-primary">Confirm</button>
-                </div>
+              {{#if equals displayControlStart "preview"}}
+                {{#with startLeagueFormFields}}
+                  {{> StartLeaguePreview}}
+                {{/with}}
+              {{/if}}
+              {{#if equals displayControlStart "success"}}
+                {{#with startLeagueFormFields}}
+                  {{> StartLeagueSuccess}}
+                {{/with}}
               {{/if}}
             {{/autoForm}}
           </div>
@@ -55,6 +52,45 @@
 
         </div>
       </div>
+    </div>
+  </div>
+</template>
+
+<template name="StartLeaguePreview">
+  <div id="StartLeaguePreview">
+    <p>
+      Please check the details below and confirm or make changes:
+    </p>
+    <ul>
+      <li>Your league name will be {{insertDoc.leagueName}}</li>
+      <li>Your league's first round of games will be on {{insertDoc.dateStarting}}</li>
+    </ul>
+    <button id="makeChangesButton" type="button" class="btn btn-primary">Make changes</button>
+    <button type="submit" class="btn btn-primary">Confirm</button>
+  </div>
+</template>
+
+<template name="StartLeagueSuccess">
+  <div id="StartLeagueSuccess">
+    <h3>Success!</h3>
+    <!-- TODO: add deadline for games -->
+    <p>
+      League "{{insertDoc.leagueName}}" has been successfully created - now you can invite your friends
+    </p>
+    <div>
+      <p>
+        Your unique league entry code is: {{newLeagueCode}}
+      </p>
+      <ul>
+        <li>Click here to open an email pre-filled with all the details</li>
+        <li>Use the sharing links below</li>
+        <li>Send them your unique league code however you like </li>
+      </ul>
+      <ul>
+        <li><a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fkiller.football&text=Join+my+league+on+killerDOTfootball+-+entry+code%3A+{{newLeagueCode}}" class="btn btn-default btn-twitter"><i class="fa fa-twitter"></i> Twitter</a></li>
+        <li><a id="facebookNewLeagueShare" class="btn btn-default btn-facebook"><i class="fa fa-facebook"></i> Facebook</a></li>
+        <li><a id="emailNewLeagueShare" class="btn btn-default btn-email"><i class="fa fa-envelope"></i> Email</a></li>
+      </ul>
     </div>
   </div>
 </template>

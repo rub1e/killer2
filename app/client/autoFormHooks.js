@@ -1,7 +1,7 @@
 AutoForm.hooks({
   startLeagueForm : {
     onSuccess: function(formType, result) {
-      Modal.hide();
+      Session.set("newLeagueJustCreatedCode", result);
     }
   },
 
@@ -13,7 +13,7 @@ AutoForm.hooks({
       alert("Email updated!");
     }
   }
-  
+
 });
 
 SimpleSchema.debug = true;

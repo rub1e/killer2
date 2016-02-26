@@ -1,12 +1,17 @@
 Template.StartKillerLeague.helpers({
 
-  showFieldsPreview : function (){
-    return Template.instance().showFieldsPreview.get() ? true : false;
+  displayControlStart : function (){
+    return Template.instance().displayControlStart.get();
+  },
+
+  showForm : function () {
+    return Template.instance().displayControlStart.get() === "form" ? false : true;
   },
 
   startLeagueFormFields : function () {
     return AutoForm.getFormValues("startLeagueForm");
   }
+
 });
 
 Template.StartKillerLeague.events({
@@ -14,17 +19,38 @@ Template.StartKillerLeague.events({
   "click #showPreviewButton": function(event, template){
     event.preventDefault();
     if(AutoForm.validateForm("startLeagueForm")) {
-      template.showFieldsPreview.set(true);
-      console.log("validated");
+      template.displayControlStart.set("preview");
     }
   },
 
   "click #makeChangesButton" : function (event, template) {
     event.preventDefault();
-    template.showFieldsPreview.set(false);
+    template.displayControlStart.set("form");
+  },
+
+  "submit" : function (event, template) {
+    template.displayControlStart.set("success");
+  },
+
+  "click #facebookNewLeagueShare" : function (event, template) {
+    FB.ui({
+      method: 'share',
+      href: 'http://killer.football',
+    }, function(response){});
   }
+
 });
 
 Template.StartKillerLeague.onCreated(function () {
-  this.showFieldsPreview = new ReactiveVar(false);
+  this.displayControlStart = new ReactiveVar("form");
+});
+
+Template.StartKillerLeague.onDestroyed(function(){
+   Session.set("newLeagueJustCreatedCode", undefined);
+});
+
+Template.StartLeagueSuccess.helpers({
+  newLeagueCode : function () {
+    return Session.get("newLeagueJustCreatedCode");
+  }
 });

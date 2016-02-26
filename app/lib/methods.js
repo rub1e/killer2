@@ -17,11 +17,12 @@ Meteor.methods({
 
   joinLeague : function (code) {
     var entry = Leagues.findOne({_id : code});
+    // check if member already in league
+    // TODO: does this exist because you could just call joinleague without the preview check?
     if(!entry.members.filter(function(e) {return e.playerId === Meteor.userId();}).length) {
       Leagues.update({_id : code}, {$push : {members : {}}}, function (error, result) {
         if(!error) {
-          // TODO should this be in the callback where it's called?
-          Modal.hide();
+          return result;
         }
       });
     }
