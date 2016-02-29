@@ -30,13 +30,6 @@ Template.StartKillerLeague.events({
 
   "submit" : function (event, template) {
     template.displayControlStart.set("success");
-  },
-
-  "click #facebookNewLeagueShare" : function (event, template) {
-    FB.ui({
-      method: 'share',
-      href: 'http://killer.football',
-    }, function(response){});
   }
 
 });

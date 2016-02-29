@@ -17,14 +17,22 @@
                 <li>League name: {{leagueName}}</li>
                 <li>League chairman: {{chairmanName}}</li>
                 <li>The first round of games for this league is on {{gameWeekDateFormatted dateStarting}}</li>
-                <!-- TODO: mailto solution -->
-                <li>The league entry code is <span>{{_id}}</span>. Click <a href="#">here</a> to send it in an email to your friends</li>
+                <!-- TODO: mailto solution AND deadline-->
+                <li>The league entry code is <span>{{_id}}</span>. Use the sharing buttons below to invite your friends (they open in a new window), or just copy and paste the code into an email</li>
               </ul>
+
+              <ul class="sharingButtonsList">
+                <li><a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fkiller.football&text=Join+my+league+on+killerDOTfootball+-+entry+code%3A+{{_id}}" class="btn btn-default btn-twitter"><i class="fa fa-twitter"></i> Twitter</a></li>
+                <li><a class="btn btn-default btn-facebook facebookShare"><i class="fa fa-facebook"></i> Facebook</a></li>
+                <li><a id="emailNewLeagueShare" class="btn btn-default btn-email"><i class="fa fa-envelope"></i> Email</a></li>
+              </ul>
+
               <p>
                 The following players have already joined this league:
               </p>
               <ul>
                 {{#each members}}
+                <!-- TODO: Surely this is just "fullName"??  -->
                   <li>{{memberName}}</li>
                 {{/each}}
               </ul>
