@@ -12,7 +12,7 @@ Template.DeadlineMethods.events({
   },
 
   "click #startMatchesButton" : function () {
-    Meteor.call("startMatches", function (error, response) {
+    Meteor.call("startMatches", function (error, result) {
       if(error) {
         console.log(error);
       } else {

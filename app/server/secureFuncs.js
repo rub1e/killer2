@@ -1,7 +1,7 @@
 SecureFuncs = {};
 
-SecureFuncs.statusToUpdating = function () {
-  GameStatus.update({}, {$set : {gameStatus : "updating"}});
+SecureFuncs.statusTo = function (status) {
+  GameStatus.update({}, {$set : {gameStatus : "status"}});
 };
 
 SecureFuncs.randomPickSweep = function () {

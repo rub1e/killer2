@@ -5,12 +5,13 @@ Meteor.methods({
   },
 
   statusToUpdating : function () {
-    SecureFuncs.statusToUpdating();
+    SecureFuncs.statusTo("updating");
   },
 
   startMatches : function () {
-    SecureFuncs.statusToUpdating();
-
+    SecureFuncs.statusTo("updating");
+    SecureFuncs.randomPickSweep();
+    SecureFuncs.statusTo("active");
   }
 
 });

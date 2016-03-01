@@ -14,6 +14,7 @@ Template.KillerChoiceWidget.helpers({
 
   teamsLeft : function () {
     // TODO: check if this can be skipped by setting data context using #with
+    // TODO: make filtering function for unpicked
     var choicesArray = this.members.filter(function (a) {
       return a.playerId === Meteor.userId();
     })[0].picks;
@@ -29,7 +30,7 @@ Template.KillerChoiceWidget.helpers({
 });
 
 Template.KillerChoiceWidget.events({
-
+  // TODO: this ID stuff can't be right
   "submit .killerChoiceForm" : function (event, template) {
     event.preventDefault();
     var id = "#DD_" + this._id;

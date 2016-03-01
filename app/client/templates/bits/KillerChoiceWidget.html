@@ -4,7 +4,7 @@
       <form id="REPICK_{{this._id}}" class="repickChoiceForm">
         <span>You picked: {{chosenTeamName}}</span>
         <!-- TODO: add global helper to disable repick button during matches - and in fact all buttons -->
-        <button type="submit">Change your pick</button>
+        <button disabled={{disablePickButtons}} type="submit">Change your pick</button>
       </form>
     {{else}}
       <form class="killerChoiceForm">
@@ -15,7 +15,7 @@
             <option value={{.}}>{{.}}</option>
           {{/each}}
         </select>
-        <input type="submit" name="killerChoiceButton" value="Submit">
+        <button disabled={{disablePickButtons}} type="submit" name="killerChoiceButton" value="Submit"></button>
       </form>
     {{/if}}
   </div>
