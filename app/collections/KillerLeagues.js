@@ -115,11 +115,6 @@ LeaguesSchema = new SimpleSchema({
     label : "Round events occurred in",
     optional : true
   },
-  "events.$.playersLostLives" : {
-    type : [String],
-    label : "Array of _id of players losing lives this round",
-    optional : true
-  },
   "events.$.autoPicks" : {
     type : [String],
     label : "Array of _id of players with autopicks",

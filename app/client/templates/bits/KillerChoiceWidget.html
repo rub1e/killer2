@@ -3,7 +3,7 @@
     {{#if chosenTeamName}}
       <form id="REPICK_{{this._id}}" class="repickChoiceForm">
         <span>You picked: {{chosenTeamName}}</span>
-        <!-- TODO: add global helper to disable repick button during matches - and in fact all buttons -->
+        <!-- TODO: change whole template based on updating/active -->
         <button disabled={{disablePickButtons}} type="submit">Change your pick</button>
       </form>
     {{else}}

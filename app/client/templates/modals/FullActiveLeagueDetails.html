@@ -38,13 +38,18 @@
             {{/if}}
 
             {{#if equals leagueStatus "active"}}
+
               <ul>
                 <li>League name: {{leagueName}}</li>
                 <li>League chairman: {{chairmanName}}</li>
-                <li>Deadline: make your choices by {{currentDeadline}}</li>
+                {{#if equals currentGameStatus "active"}}
+                  <li>Deadline: make your choices by {{currentDeadline}}</li>
+                {{/if}}
                 <li>Round: {{round}}</li>
               </ul>
+
               <table>
+                <h4>Remaining players</h4>
                 <thead>
                   <tr>
                     <th>Name</th>
@@ -54,16 +59,24 @@
                   </tr>
                 </thead>
                 <tbody>
-                  {{#each members}}
-                  <tr>
-                    <td>{{memberName}}</td>
-                    {{#if equals currentGameStatus "active"}}
-                      <td>{{memberChoice}}</td>
-                    {{/if}}
-                  </tr>
+                  {{#each aliveMembers}}
+                    <tr>
+                      <td>{{memberName}}</td>
+                      {{#if equals currentGameStatus "active"}}
+                        <td>{{memberChoice}} {{#if isAutoPick}}(autopick){{/if}}</td>
+                      {{/if}}
+                    </tr>
                   {{/each}}
                 </tbody>
               </table>
+
+              <h4>Eliminated players</h4>
+              <ul>
+                {{#each deadMembers}}
+                  <li>{{memberName}} (round {{diedInRound}})</li>
+                {{/each}}
+              </ul>
+
             {{/if}}
           </div>
 
