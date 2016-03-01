@@ -78,3 +78,8 @@ currentDeadline = function () {
   // TODO: deadline function
   return "deadline";
 };
+
+arrayOfPlayingTeams = function () {
+  // TODO: array of playing teams
+  return ["CHE", "BOU", "AVL", "TOT"];
+};

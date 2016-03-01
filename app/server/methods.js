@@ -5,13 +5,17 @@ Meteor.methods({
   },
 
   statusToUpdating : function () {
-    SecureFuncs.statusTo("updating");
+    if(Roles.userIsInRole(Meteor.userId(), "admin")) {
+      SecureFuncs.statusTo("updating");
+    }
   },
 
   startMatches : function () {
-    SecureFuncs.statusTo("updating");
-    SecureFuncs.randomPickSweep();
-    SecureFuncs.statusTo("active");
+    if(Roles.userIsInRole(Meteor.userId(), "admin")) {
+      SecureFuncs.statusTo("updating");
+      SecureFuncs.randomPickSweep();
+      SecureFuncs.statusTo("active");
+    }
   }
 
 });

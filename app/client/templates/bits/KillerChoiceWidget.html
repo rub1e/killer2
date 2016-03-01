@@ -9,7 +9,7 @@
     {{else}}
       <form class="killerChoiceForm">
         <span>Pick a team</span>
-        <select class="teamsLeftDropDown" id="DD_{{this._id}}">
+        <select disabled={{disablePickButtons}} class="teamsLeftDropDown" id="DD_{{this._id}}">
           <option selected="true" disabled>Pick this week's team</option>
           {{#each teamsLeft}}
             <option value={{.}}>{{.}}</option>

@@ -1,7 +1,7 @@
 SecureFuncs = {};
 
 SecureFuncs.statusTo = function (status) {
-  GameStatus.update({}, {$set : {gameStatus : "status"}});
+  GameStatus.update({}, {$set : {gameStatus : status}});
 };
 
 SecureFuncs.randomPickSweep = function () {
@@ -21,6 +21,10 @@ SecureFuncs.randomPickSweep = function () {
             remaining.push(pLTeamsArray[i].longName);
           }
         }
+        //filter remaining teams to only those playing this week
+        remaining = remaining.filter(function (b) {
+          return arrayOfPlayingTeams().indexOf(b) > -1;
+        });
 
         var randomIndex = Math.round(Math.random() * (remaining.length - 1));
         var randomTeam = remaining[randomIndex];

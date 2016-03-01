@@ -24,7 +24,9 @@ Template.KillerChoiceWidget.helpers({
         remaining.push(pLTeamsArray[i].longName);
       }
     }
-    return remaining;
+    return remaining.filter(function (b) {
+      return arrayOfPlayingTeams().indexOf(b) > -1;
+    });
   }
 
 });
