@@ -6,6 +6,10 @@ MatchesSchema = new SimpleSchema({
     label : "gameWeek",
     allowedValues : pLGameweeks
   },
+  deadline : {
+    type : String,
+    label : "GW deadline"
+  },
   matches : {
     type : [Object],
     label : "Array of match objects"
@@ -19,17 +23,7 @@ MatchesSchema = new SimpleSchema({
     type : String,
     label : "Away team",
     allowedValues : ["ARS", "AVL", "BOU", "CHE", "CPL", "EVE", "LEI", "LIV", "MCI", "MUN", "NEW", "NOR", "SOU", "STK", "SUN", "SWA", "TOT", "WAT", "WBA", "WHU"]
-  },
-  "matches.$.time" : {
-    type : Date, // TODO: find a way of making this datetime
-    label : "Time of match"
   }
 });
 
 Matches.attachSchema(MatchesSchema);
-
-Matches.allow({
-  insert: function () { return true; },
-  update: function () { return true; },
-  remove: function () { return true; }
-});

@@ -30,13 +30,7 @@ Meteor.methods({
 
   makeChoice : function (team, league) {
     // TODO: function to return list of user choices
-    var leagueObject = Leagues.findOne({_id : league});
-    var choicesArray = leagueObject.members.filter(function (a) {
-      return a.playerId === Meteor.userId();
-    })[0].picks;
-    if(choicesArray.indexOf(team) === -1 && choicesArray.length === leagueObject.round - 1 && leagueObject.round > 0) {
-      Leagues.update({_id : league, "members.playerId" : Meteor.userId()}, {$push : {"members.$.picks" : team}});
-    }
+    SecureFuncs.makeChoice(team, league, Meteor.userId());
   },
 
   allowRepick : function (league) {

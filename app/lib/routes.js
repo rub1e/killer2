@@ -19,3 +19,14 @@ FlowRouter.route("/matches", {
     });
   }
 });
+
+FlowRouter.route("/deadline", {
+  name : "deadline",
+  action : function (params, queryParams) {
+    BlazeLayout.render("HomeLayout", {
+      footer : "KillerFooter",
+      main : "DeadlineMethods",
+      nav : "Navbar"
+    });
+  }
+});

@@ -1,6 +1,13 @@
 <template name="KillerLeagues">
   <div id="KillerLeagues">
-    {{> KillerAliveLeagues}}
-    {{> KillerFinishedLeagues}}
+    {{#if equals currentGameStatus "updating"}}
+    <!-- TODO: Nice updating spinner? -->
+      <p>
+        Leagues updating!
+      </p>
+    {{else}}
+      {{> KillerAliveLeagues}}
+      {{> KillerFinishedLeagues}}
+    {{/if}}
   </div>
 </template>
