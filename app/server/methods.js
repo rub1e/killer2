@@ -11,8 +11,7 @@ Meteor.methods({
   },
 
   startMatches : function () {
-    if(Roles.userIsInRole(Meteor.userId(), "admin")) {
-      SecureFuncs.statusTo("updating");
+    if(Roles.userIsInRole(Meteor.userId(), "admin") && GameStatus.findOne().gameStatus === "updating") {
       SecureFuncs.randomPickSweep();
       SecureFuncs.statusTo("active");
     }
