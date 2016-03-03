@@ -11,15 +11,18 @@ Meteor.methods({
   },
 
   startMatches : function () {
-    if(Roles.userIsInRole(Meteor.userId(), "admin") && GameStatus.findOne().gameStatus === "updating") {
-      SecureFuncs.randomPickSweep();
-      SecureFuncs.statusTo("active");
+    if(Roles.userIsInRole(Meteor.userId(), "admin")) {
+      SecureFuncs.randomPickSweep(function () {
+        SecureFuncs.statusTo("active");
+      });
     }
   },
 
-  killLeagues : function () {
-    if(Roles.userIsInRole(Meteor.userId(), "admin") && GameStatus.findOne().gameStatus === "updating") {
-      SecureFuncs.kill();
+  nextGameWeek : function () {
+    if(Roles.userIsInRole(Meteor.userId(), "admin")) {
+      SecureFuncs.finishRound(function () {
+        SecureFuncs.statusTo("pending");
+      });
     }
   }
 
