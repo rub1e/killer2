@@ -48,7 +48,7 @@ LeaguesSchema = new SimpleSchema({
     label : "League members",
     autoValue : function() {
       if(this.isInsert) {
-        return [{playerId : Meteor.userId(), picks : [], livesLeft : 1, diedInRound : 0}];
+        return [{playerId : Meteor.userId(), picks : [], diedInRound : 0}];
       }
     }
   },
@@ -67,19 +67,6 @@ LeaguesSchema = new SimpleSchema({
     autoValue : function() {
       if(this.isUpdate) {
         return [];
-      }
-    }
-  },
-  "members.$.livesLeft" : {
-    type : Number,
-    label : "Lives left in this league",
-    max : 1,
-    min : 0,
-    autoValue : function() {
-      // TODO: this will set lives to 1 every time there is any sort of update??
-      if(this.isUpdate) {
-        console.log("lives autovalue");
-        return 1;
       }
     }
   },

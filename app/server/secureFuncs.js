@@ -63,6 +63,7 @@ SecureFuncs.finishRound = function (callback) {
     var aliveMembers = doc.members.filter(function (a) {
       return a.diedInRound === 0;
     });
+    var round = doc.round;
 
     aliveMembers.forEach(function (element, index, array) {
       if (winnersIRL.indexOf(element.picks[element.picks.length - 1]) === -1) {
@@ -71,7 +72,7 @@ SecureFuncs.finishRound = function (callback) {
     });
 
     if (losers.length < aliveMembers.length) {
-      SecureFuncs.loseLeagueLives(doc._id, losers);
+      SecureFuncs.loseLeagueLives(doc._id, losers, round);
     } else if (losers.length === aliveMembers.length) {
       SecureFuncs.forgiveDeath(doc._id);
     }
@@ -82,3 +83,19 @@ SecureFuncs.finishRound = function (callback) {
 
   callback();
 };
+
+SecureFuncs.loseLeagueLives = function (id, losers, round) {
+  Leagues.update({_id : id, "members.playerId" : {$in : losers}}, {$set : {"members.diedInRound" : round}});
+};
+
+SecureFuncs.forgiveDeath = function (id) {
+  // TODO: place for forgiven leagues
+  console.log("forgiven", id);
+};
+
+SecureFuncs.killLeagues = function (callback) {
+  Leagues.update({leagueStatus : "active", },{});
+  callback();
+};
+
+// because you can't access the winner from an update operation, you'll have to revert to the previous iteration where you collect winners and losers and ids and only then update.
