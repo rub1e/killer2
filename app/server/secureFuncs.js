@@ -7,10 +7,10 @@ SecureFuncs.statusTo = function (status) {
 SecureFuncs.randomPickSweep = function () {
   var activeLeaguesCursor = Leagues.find({leagueStatus : "active"});
   // iterate over all active leagues
-  activeLeaguesCursor.forEach(function () {
+  activeLeaguesCursor.forEach(function (el, ind, arr) {
     var autoPickersArray = [];
     //iterate over the members array in each active league
-    members.forEach(function (element, index, array) {
+    el.members.forEach(function (element, index, array) {
       // check if number of picks is one lower than the round
       if(element.picks.length === round - 1 && element.diedInRound === 0) {
         // get remaining teams for the player
@@ -46,4 +46,31 @@ SecureFuncs.makeChoice = function (team, league, player) {
   if(choicesArray.indexOf(team) === -1 && choicesArray.length === leagueObject.round - 1 && leagueObject.round > 0) {
     Leagues.update({_id : league, "members.playerId" : player}, {$push : {"members.$.picks" : team}});
   }
+};
+
+SecureFuncs.kill = function () {
+  // check next gameweek has been inputted
+
+  // cycle through active leagues; kill the losers or forgive them
+  var activeLeaguesCursor = Leagues.find({leagueStatus : "active"});
+  var winnersArray = []; // TODO: Winners collection
+
+  activeLeaguesCursor.forEach(function (el, ind, arr) {
+    var losers = [];
+    el.members.forEach(function (element, index, array) {
+      if(element.picks.length === round - 1 && element.diedInRound === 0) {
+        if (winnersArray.indexOf(element.picks[element.picks.length - 1]) === -1) {
+          losers.push(element.playerId);
+        }
+      }
+    });
+
+    // check if losers is the same length as formerly alive players. So actually filter it earlier in the foreach. 
+
+  });
+  // kill the finished leagues, announce winners
+
+  // activate leagues starting in the next GW
+
+  // set gameStatus to pending
 };

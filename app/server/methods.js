@@ -15,6 +15,12 @@ Meteor.methods({
       SecureFuncs.randomPickSweep();
       SecureFuncs.statusTo("active");
     }
+  },
+
+  killLeagues : function () {
+    if(Roles.userIsInRole(Meteor.userId(), "admin") && GameStatus.findOne().gameStatus === "updating") {
+      SecureFuncs.kill();
+    }
   }
 
 });
