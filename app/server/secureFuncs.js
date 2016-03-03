@@ -88,6 +88,7 @@ SecureFuncs.finishRound = function (callback) {
   });
 
   SecureFuncs.incrementRounds();
+
   callback();
 };
 
