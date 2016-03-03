@@ -6,7 +6,7 @@ SecureFuncs.statusTo = function (status) {
 
 // TODO: this is so crucial - introduce a check to ensure correct number of picks or throw error
 SecureFuncs.randomPickSweep = function (callback) {
-  var activeLeaguesCursor = Leagues.find({leagueStatus : "active"});
+  var activeLeaguesCursor = Leagues.find({round : {$gt : 0}, leagueStatus : "active"});
   // iterate over all active leagues with Mongo foreach
   activeLeaguesCursor.forEach(function (doc) {
     var autoPickersArray = [];
@@ -35,7 +35,10 @@ SecureFuncs.randomPickSweep = function (callback) {
       }
     });
     // add randoms to autopicks array in round event
-    Leagues.update({_id : _id}, {$push : {events : {round : round, autoPicks : autoPickersArray}}});
+    Leagues.update({_id : doc._id}, {$push : {events : {round : round, autoPicks : autoPickersArray}}});
+    if(doc.acceptingNewMembers) {
+      Leagues.update({_id : doc._id}, {$set : {acceptingNewMembers : false}});
+    }
   });
   callback();
 };
@@ -54,12 +57,13 @@ SecureFuncs.finishRound = function (callback) {
   // check next gameweek has been inputted
 
   // cycle through active leagues with mongo foreach; kill the losers or forgive them
-  var activeLeaguesCursor = Leagues.find({leagueStatus : "active"});
+  var liveLeaguesCursor = Leagues.find({round : {$gt : 0}, leagueStatus : "active"});
   var winnersIRL = ["CHE", "BOU", "TOT", "CPL"]; // TODO: Winners collection
 
-  activeLeaguesCursor.forEach(function (doc) {
+  liveLeaguesCursor.forEach(function (doc) {
 
     var losers = [];
+    var winners = [];
     var aliveMembers = doc.members.filter(function (a) {
       return a.diedInRound === 0;
     });
@@ -68,10 +72,14 @@ SecureFuncs.finishRound = function (callback) {
     aliveMembers.forEach(function (element, index, array) {
       if (winnersIRL.indexOf(element.picks[element.picks.length - 1]) === -1) {
         losers.push(element.playerId);
+      } else {
+        winners.push(element.playerId);
       }
     });
 
-    if (losers.length < aliveMembers.length) {
+    if (winners.length === 1) {
+      SecureFuncs.announceWinner(doc._id, winners[0]);
+    } else if (losers.length < aliveMembers.length) {
       SecureFuncs.loseLeagueLives(doc._id, losers, round);
     } else if (losers.length === aliveMembers.length) {
       SecureFuncs.forgiveDeath(doc._id);
@@ -79,13 +87,12 @@ SecureFuncs.finishRound = function (callback) {
 
   });
 
-  SecureFuncs.killLeagues(SecureFuncs.activateLeagues);
-
+  SecureFuncs.incrementRounds();
   callback();
 };
 
 SecureFuncs.loseLeagueLives = function (id, losers, round) {
-  Leagues.update({_id : id, "members.playerId" : {$in : losers}}, {$set : {"members.diedInRound" : round}});
+  Leagues.update({_id : id, "members.playerId" : {$in : losers}}, {$set : {"members.diedInRound" : round}}, {multi : true});
 };
 
 SecureFuncs.forgiveDeath = function (id) {
@@ -93,9 +100,31 @@ SecureFuncs.forgiveDeath = function (id) {
   console.log("forgiven", id);
 };
 
-SecureFuncs.killLeagues = function (callback) {
-  Leagues.update({leagueStatus : "active", },{});
-  callback();
+SecureFuncs.announceWinner = function (id, winner) {
+  Leagues.update({_id : id}, {$set : {winner : winner, leagueStatus : "ended"}});
+  //TODO email winners and template for won leagues and trophies
 };
 
-// because you can't access the winner from an update operation, you'll have to revert to the previous iteration where you collect winners and losers and ids and only then update.
+SecureFuncs.incrementRounds = function () {
+  var activeLeaguesCursor = Leagues.find({leagueStatus : "active"});
+  activeLeaguesCursor.forEach(function (doc) {
+    if(new Date(doc.dateStarting) <= new Date(nextGameWeek())) {
+      Leagues.update({_id : doc._id}, {$inc : {round : 1}});
+    }
+  });
+};
+
+SecureFuncs.denyJoiningLeague = function (code, player) {
+  var entry = Leagues.findOne({_id : code});
+  if(!entry) {
+    return "Incorrect code: please check and try again";
+  } else if (entry.members.filter(function (e) {
+      return e.playerId === player;
+    }).length) {
+      return "You are already part of this league";
+  } else if (entry.leagueStatus === "ended" || entry.round > 1) {
+    return "This league has already started so you cannot join it";
+  } else {
+    return undefined;
+  }
+};

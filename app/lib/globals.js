@@ -74,6 +74,10 @@ currentGameWeek = function () {
   return GameStatus.findOne().currentGameWeek;
 };
 
+nextGameWeek = function () {
+  return GameStatus.findOne().currentGameWeek;
+};
+
 currentDeadline = function () {
   // TODO: deadline function
   return "deadline";

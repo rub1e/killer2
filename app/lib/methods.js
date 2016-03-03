@@ -5,21 +5,12 @@ Meteor.methods({
   },
 
   joinLeaguePreviewCheck : function (code) {
-    var entry = Leagues.findOne({_id : code});
-    if(!entry) {
-      return "Incorrect code: please check and try again";
-    } else if (entry.members.filter(function(e) {return e.playerId === Meteor.userId();}).length) {
-      return "You are already part of this league";
-    } else {
-      return undefined;
-    }
+    // TODO: check return
+    return SecureFuncs.denyJoiningLeague(code, Meteor.userId());
   },
 
   joinLeague : function (code) {
-    var entry = Leagues.findOne({_id : code});
-    // check if member already in league
-    // TODO: does this exist because you could just call joinleague without the preview check?
-    if(!entry.members.filter(function(e) {return e.playerId === Meteor.userId();}).length) {
+    if(!SecureFuncs.denyJoiningLeague(code, Meteor.userId())) {
       Leagues.update({_id : code}, {$push : {members : {}}}, function (error, result) {
         if(!error) {
           return result;

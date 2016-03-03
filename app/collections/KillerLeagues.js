@@ -24,24 +24,30 @@ LeaguesSchema = new SimpleSchema({
     label : "Starting week",
     allowedValues : pLGameweeksRemainingFormatted
   },
+  acceptingNewMembers : {
+    type : Boolean,
+    label : "Accepting new members?",
+    defaultValue : true
+  },
   round : {
     type : Number,
     label : "Current round",
     autoValue : function() {
       if(this.isInsert) {
-        return 0;
+        var starting = this.field("dateStarting");
+        if (starting.value === currentGameWeek()) {
+          return 1;
+        } else {
+          return 0;
+        }
       }
     }
   },
   leagueStatus : {
     type : String,
     label : "League status",
-    allowedValues : ["active", "ended", "pending"],
-    autoValue : function() {
-      if(this.isInsert) {
-        return "pending"; //what if it should be active??? TODO add prev/current/next gw logic for setting status
-      }
-    }
+    allowedValues : ["active", "ended"],
+    defaultValue : "active"
   },
   members : {
     type : [Object],
@@ -79,14 +85,10 @@ LeaguesSchema = new SimpleSchema({
       }
     }
   },
-  winners : {
-    type : [String],
-    label : "Array of one or more winners",
-    autoValue : function() {
-      if(this.isInsert) {
-        return [];
-      }
-    }
+  winner : {
+    type : String,
+    label : "The winner",
+    defaultValue : ""
   },
   events : {
     type : [Object],

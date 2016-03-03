@@ -12,11 +12,16 @@
   				</div>
 
   				<div class="modal-body">
-            {{#if equals leagueStatus "pending"}}
+            {{#if acceptingNewMembers}}
               <ul>
                 <li>League name: {{leagueName}}</li>
                 <li>League chairman: {{chairmanName}}</li>
-                <li>The first round of games for this league is on {{gameWeekDateFormatted dateStarting}}</li>
+                {{#if equals round 0}}
+                  <li>The first round of games for this league is on {{gameWeekDateFormatted dateStarting}}</li>
+                {{else}}
+                  <li>Deadline: invite friends and make your choices by {{currentDeadline}}</li>
+                {{/if}}>
+
                 <!-- TODO: mailto solution AND deadline-->
                 <li>The league entry code is <span>{{_id}}</span>. Use the sharing buttons below to invite your friends (they open in a new window), or just copy and paste the code into an email</li>
               </ul>
@@ -35,9 +40,8 @@
                   <li>{{memberName}}</li>
                 {{/each}}
               </ul>
-            {{/if}}
 
-            {{#if equals leagueStatus "active"}}
+            {{else}}
 
               <ul>
                 <li>League name: {{leagueName}}</li>
