@@ -14,11 +14,6 @@ LeaguesSchema = new SimpleSchema({
     min : 5,
     max : 35
   },
-  dateCreated : {
-    type : Date,
-    label : "League creation date",
-    defaultValue : new Date()
-  },
   dateStarting : {
     type : String,
     label : "Starting week",
@@ -27,7 +22,11 @@ LeaguesSchema = new SimpleSchema({
   acceptingNewMembers : {
     type : Boolean,
     label : "Accepting new members?",
-    defaultValue : true
+    autoValue : function () {
+      if(this.isInsert) {
+        return true;
+      }
+    }
   },
   round : {
     type : Number,
@@ -47,7 +46,11 @@ LeaguesSchema = new SimpleSchema({
     type : String,
     label : "League status",
     allowedValues : ["active", "ended"],
-    defaultValue : "active"
+    autoValue : function () {
+      if(this.isInsert) {
+        return "active";
+      }
+    }
   },
   members : {
     type : [Object],
@@ -57,7 +60,7 @@ LeaguesSchema = new SimpleSchema({
         return [{playerId : Meteor.userId(), picks : [], diedInRound : 0}];
       }
     }
-  },
+  }, // TODO: remove autovalues from updates and just do it manually you lazy boy
   "members.$.playerId" : {
       type : String,
       label : "Users collection _id",
@@ -88,7 +91,11 @@ LeaguesSchema = new SimpleSchema({
   winner : {
     type : String,
     label : "The winner",
-    defaultValue : ""
+    autoValue : function () {
+      if(this.isInsert) {
+        return "";
+      }
+    }
   },
   events : {
     type : [Object],
