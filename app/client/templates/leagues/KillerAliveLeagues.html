@@ -13,11 +13,12 @@
           {{#each userAliveLeaguesList}}
             <tr>
               <td><button class="btn leagueDetailsButton" data-modal="modalFullActiveLeagueDetails">{{leagueName}}</button></td>
-              {{#if round}}
-                <td>{{> KillerChoiceWidget}}</td>
-              {{else}}
-                <td>This league hasn't started yet</td>
-              {{/if}}
+              <td>
+                {{> KillerChoiceWidget}}
+                {{#if equals round 0}}
+                  Starts on {{dateStarting}}
+                {{/if}}
+              </td>
               <td>{{> MiniActiveLeagueDetails}}</td>
             </tr>
           {{/each}}
