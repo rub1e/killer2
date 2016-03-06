@@ -123,7 +123,7 @@ SecureFuncs.denyJoiningLeague = function (code, player) {
       return e.playerId === player;
     }).length) {
       return "You are already part of this league";
-  } else if (entry.leagueStatus === "ended" || entry.round > 1) {
+  } else if (!entry.acceptingNewMembers) {
     return "This league has already started so you cannot join it";
   } else {
     return undefined;
