@@ -12,6 +12,7 @@ Meteor.methods({
 
   startMatches : function () {
     if(Roles.userIsInRole(Meteor.userId(), "admin")) {
+      SecureFuncs.deferSingletonLeagues();
       SecureFuncs.randomPickSweep(function () {
         SecureFuncs.statusTo("active");
       });

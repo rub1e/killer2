@@ -6,7 +6,7 @@ SecureFuncs.statusTo = function (status) {
 
 // TODO: this is so crucial - introduce a check to ensure correct number of picks or throw error
 SecureFuncs.randomPickSweep = function (callback) {
-  var activeLeaguesCursor = Leagues.find({round : {$gt : 0}, leagueStatus : "active"});
+  var activeLeaguesCursor = Leagues.find({round : {$gt : 0}, leagueStatus : "active", "members.1" : {$exists : true}});
   // iterate over all active leagues with Mongo foreach
   activeLeaguesCursor.forEach(function (doc) {
     var autoPickersArray = [];
@@ -107,6 +107,7 @@ SecureFuncs.announceWinner = function (id, winner) {
 };
 
 SecureFuncs.incrementRounds = function () {
+  // TODO: just simple update with date comparison??
   var activeLeaguesCursor = Leagues.find({leagueStatus : "active"});
   activeLeaguesCursor.forEach(function (doc) {
     if(new Date(doc.dateStarting) <= new Date(nextGameWeek())) {
@@ -128,4 +129,18 @@ SecureFuncs.denyJoiningLeague = function (code, player) {
   } else {
     return undefined;
   }
+};
+
+SecureFuncs.deferSingletonLeagues = function() {
+  // TODO: place for deferred leagues
+  // array of singlton league IDs
+  var singletonLeaguesArray = Leagues.distinct("_id",
+    {round : 1, leagueStatus : "active", "members.1" : {$exists : false}}
+  );
+  Leagues.update(
+    {round : 1, leagueStatus : "active", "members.1" : {$exists : false}},
+    {$set : {"members.0.picks" : [], dateStarting : nextGameWeek(), acceptingNewMembers : true}},
+    {multi : true}
+  );
+
 };
