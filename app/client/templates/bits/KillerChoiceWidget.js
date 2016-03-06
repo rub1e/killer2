@@ -16,8 +16,6 @@ Template.KillerChoiceWidget.helpers({
   },
 
   teamsLeft : function () {
-    // TODO: check if this can be skipped by setting data context using #with
-    // TODO: make filtering function for unpicked
     var choicesArray = this.members.filter(function (a) {
       return a.playerId === Meteor.userId();
     })[0].picks;
@@ -27,9 +25,13 @@ Template.KillerChoiceWidget.helpers({
         remaining.push(pLTeamsArray[i].longName);
       }
     }
-    return remaining.filter(function (b) {
-      return arrayOfPlayingTeams().indexOf(b) > -1;
-    });
+    if (this.round === 0) {
+      return remaining;
+    } else {
+      return remaining.filter(function (b) {
+        return arrayOfPlayingTeams().indexOf(b) > -1;
+      });
+    }
   }
 
 });
