@@ -1,15 +1,18 @@
 Template.KillerChoiceWidget.helpers({
 
   chosenTeamName : function () {
-    var choicesArray = this.members.filter(function(a){
+    var choicesArray = this.members.filter(function (a) {
       return a.playerId === Meteor.userId();
     })[0].picks;
-    // if number of picks equals round then user is up to date with picks
-    if(choicesArray.length && choicesArray.length === this.round) {
-      return choicesArray[choicesArray.length - 1];
+
+    // if league is open to members, it's either in round 0 or 1, so any choice made should be displayed or undefined
+    if (this.acceptingNewMembers) {
+      return choicesArray[0];
     } else {
-      return undefined;
+      //if choices are up to date, length of array is round - 1; if choices not up to date, length is round - 2, so undefined
+      return choicesArray[this.round -1];
     }
+
   },
 
   teamsLeft : function () {
