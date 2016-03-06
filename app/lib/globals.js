@@ -70,12 +70,17 @@ pLGameweeksRemainingFormatted = pLGameweeks.filter(function(a) {
   return new Date(b).toDateString();
 });
 
+// TODO: remake all current gw functions on current round
 currentGameWeek = function () {
   return GameStatus.findOne().currentGameWeek;
 };
 
 nextGameWeek = function () {
   return GameStatus.findOne().currentGameWeek;
+};
+
+currentKillerRound = function () {
+  return GameStatus.findOne().killerRound;
 };
 
 currentDeadline = function () {

@@ -6,9 +6,12 @@ SecureFuncs.statusTo = function (status) {
 
 // TODO: this is so crucial - introduce a check to ensure correct number of picks or throw error
 SecureFuncs.randomPickSweep = function (callback) {
-  var activeLeaguesCursor = Leagues.find({round : {$gt : 0}, leagueStatus : "active", "members.1" : {$exists : true}});
+  SecureFuncs.deferSingletonLeagues();
+
+  var liveLeaguesCursor = Leagues.find({round : {$gt : 0}, leagueStatus : "active", "members.1" : {$exists : true}});
+
   // iterate over all active leagues with Mongo foreach
-  activeLeaguesCursor.forEach(function (doc) {
+  liveLeaguesCursor.forEach(function (doc) {
     var autoPickersArray = [];
     //iterate over the members array in each active league
     doc.members.forEach(function (element, index, array) {
@@ -35,9 +38,10 @@ SecureFuncs.randomPickSweep = function (callback) {
       }
     });
     // add randoms to autopicks array in round event
+    // TODO: check adding object to array
     Leagues.update({_id : doc._id}, {$push : {events : {round : round, autoPicks : autoPickersArray}}});
     if(doc.acceptingNewMembers) {
-      Leagues.update({_id : doc._id}, {$set : {acceptingNewMembers : false}});
+      Leagues.update({_id : doc._id}, {$set : {acceptingNewMembers : false}});element.picks.element.picks.length
     }
   });
   callback();
@@ -54,10 +58,10 @@ SecureFuncs.makeChoice = function (team, league, player) {
 };
 
 SecureFuncs.finishRound = function (callback) {
-  // check next gameweek has been inputted
+  // TODO check next gameweek has been inputted
 
   // cycle through active leagues with mongo foreach; kill the losers or forgive them
-  var liveLeaguesCursor = Leagues.find({round : {$gt : 0}, leagueStatus : "active"});
+  var liveLeaguesCursor = Leagues.find({round : {$gt : 0}, leagueStatus : "active", "members.1" : {$exists : true}});
   var winnersIRL = ["CHE", "BOU", "TOT", "CPL"]; // TODO: Winners collection
 
   liveLeaguesCursor.forEach(function (doc) {
@@ -70,7 +74,7 @@ SecureFuncs.finishRound = function (callback) {
     var round = doc.round;
 
     aliveMembers.forEach(function (element, index, array) {
-      if (winnersIRL.indexOf(element.picks[element.picks.length - 1]) === -1) {
+      if (winnersIRL.indexOf(element.picks[doc.round - 1]) === -1) {
         losers.push(element.playerId);
       } else {
         winners.push(element.playerId);
@@ -87,18 +91,20 @@ SecureFuncs.finishRound = function (callback) {
 
   });
 
-  SecureFuncs.incrementRounds();
-
+  SecureFuncs.activateGameWeek();
   callback();
 };
 
 SecureFuncs.loseLeagueLives = function (id, losers, round) {
+  // TODO: check the query operator works
   Leagues.update({_id : id, "members.playerId" : {$in : losers}}, {$set : {"members.diedInRound" : round}}, {multi : true});
+  Leagues.update({_id : id},{$inc : {round : 1}});
 };
 
 SecureFuncs.forgiveDeath = function (id) {
   // TODO: place for forgiven leagues
   console.log("forgiven", id);
+  Leagues.update({_id : id},{$inc : {round : 1}});
 };
 
 SecureFuncs.announceWinner = function (id, winner) {
@@ -106,12 +112,12 @@ SecureFuncs.announceWinner = function (id, winner) {
   //TODO email winners and template for won leagues and trophies
 };
 
-SecureFuncs.incrementRounds = function () {
-  // TODO: just simple update with date comparison??
-  var activeLeaguesCursor = Leagues.find({leagueStatus : "active"});
-  activeLeaguesCursor.forEach(function (doc) {
-    if(new Date(doc.dateStarting) <= new Date(nextGameWeek())) {
-      Leagues.update({_id : doc._id}, {$inc : {round : 1}});
+SecureFuncs.activateGameWeek = function () {
+  Leagues.update({round : 0, dateStarting : nextGameWeek()},{$set : {round : 1}}, function (error, response) {
+    if(error) {
+      console.log(error);
+    } else {
+      GameStatus.update({}, {$inc : {killerRound : 1}});
     }
   });
 };
@@ -142,5 +148,4 @@ SecureFuncs.deferSingletonLeagues = function() {
     {$set : {"members.0.picks" : [], dateStarting : nextGameWeek(), acceptingNewMembers : true}},
     {multi : true}
   );
-
 };

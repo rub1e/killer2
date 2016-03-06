@@ -6,9 +6,13 @@ GameStatusSchema = new SimpleSchema({
     label : "Game status",
     allowedValues : ["active", "updating", "pending"]
   },
+  killerRound : {
+    type : Number,
+    label : "Current gameWeek round number"
+  },
   currentGameWeek : {
     type : String,
-    label : "Current gw",
+    label : "Current gameWeek date string",
     allowedValues : pLGameweeks
   },
 });
