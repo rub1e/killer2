@@ -1,7 +1,5 @@
 Matches = new Mongo.Collection("matches");
 
-//TODO add a new field killlerRound and link to gameStatus
-
 MatchesSchema = new SimpleSchema({
   gameWeek : {
     type : String,

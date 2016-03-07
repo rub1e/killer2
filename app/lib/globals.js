@@ -92,5 +92,11 @@ currentDeadline = function () {
 
 arrayOfPlayingTeams = function () {
   // TODO: array of playing teams
+  // var matchesObjects = Matches.findOne({killerRound : currentKillerRound()})
+  // var playingTeams = [];
+  // matchesObjects.forEach(function (element, index, array) {
+  //   playingTeams.push(element.home, element.away);
+  // });
+  // return playingTeams;
   return ["CHE", "BOU", "AVL", "TOT"];
 };
