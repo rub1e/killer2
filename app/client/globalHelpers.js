@@ -5,7 +5,7 @@ Template.registerHelper("gameWeekDateFormatted", function(gameweek){
 });
 
 Template.registerHelper("currentGameWeek", function(){
-  return GameStatus.findOne().currentGameWeek;
+  return currentGameWeek();
 });
 
 Template.registerHelper("currentGameStatus", function(){
@@ -28,7 +28,7 @@ Template.registerHelper("loggedInUserEmail", function(){
 
 Template.registerHelper("listOfCurrentMatches", function(){
   // return list of current matches
-  return Matches.findOne({gameWeek : currentGameWeek()}).matches;
+  return Matches.findOne({round : currentKillerRound()}).matches;
 });
 
 Template.registerHelper('equals',function(v1, v2) {

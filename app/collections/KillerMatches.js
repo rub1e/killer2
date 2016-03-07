@@ -5,8 +5,12 @@ Matches = new Mongo.Collection("matches");
 MatchesSchema = new SimpleSchema({
   gameWeek : {
     type : String,
-    label : "gameWeek",
+    label : "GameWeek date string",
     allowedValues : pLGameweeks
+  },
+  killerRound : {
+    type : Number,
+    label : "GameWeek round number"
   },
   deadline : {
     type : String,
