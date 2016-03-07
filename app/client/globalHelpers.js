@@ -34,3 +34,7 @@ Template.registerHelper("listOfCurrentMatches", function(){
 Template.registerHelper('equals',function(v1, v2) {
   return (v1 === v2);
 });
+
+Template.registerHelper("disablePickButtons", function(){
+  return GameStatus.findOne().gameStatus !== "pending";
+});

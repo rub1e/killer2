@@ -5,21 +5,12 @@ Meteor.methods({
   },
 
   joinLeaguePreviewCheck : function (code) {
-    var entry = Leagues.findOne({_id : code});
-    if(!entry) {
-      return "Incorrect code: please check and try again";
-    } else if (entry.members.filter(function(e) {return e.playerId === Meteor.userId();}).length) {
-      return "You are already part of this league";
-    } else {
-      return undefined;
-    }
+    // TODO: check return
+    return SecureFuncs.denyJoiningLeague(code, Meteor.userId());
   },
 
   joinLeague : function (code) {
-    var entry = Leagues.findOne({_id : code});
-    // check if member already in league
-    // TODO: does this exist because you could just call joinleague without the preview check?
-    if(!entry.members.filter(function(e) {return e.playerId === Meteor.userId();}).length) {
+    if(!SecureFuncs.denyJoiningLeague(code, Meteor.userId())) {
       Leagues.update({_id : code}, {$push : {members : {}}}, function (error, result) {
         if(!error) {
           return result;
@@ -30,13 +21,7 @@ Meteor.methods({
 
   makeChoice : function (team, league) {
     // TODO: function to return list of user choices
-    var leagueObject = Leagues.findOne({_id : league});
-    var choicesArray = leagueObject.members.filter(function (a) {
-      return a.playerId === Meteor.userId();
-    })[0].picks;
-    if(choicesArray.indexOf(team) === -1 && choicesArray.length === leagueObject.round - 1 && leagueObject.round > 0) {
-      Leagues.update({_id : league, "members.playerId" : Meteor.userId()}, {$push : {"members.$.picks" : team}});
-    }
+    SecureFuncs.makeChoice(team, league, Meteor.userId());
   },
 
   allowRepick : function (league) {

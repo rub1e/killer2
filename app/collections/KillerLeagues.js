@@ -14,32 +14,41 @@ LeaguesSchema = new SimpleSchema({
     min : 5,
     max : 35
   },
-  dateCreated : {
-    type : Date,
-    label : "League creation date",
-    defaultValue : new Date()
-  },
   dateStarting : {
     type : String,
     label : "Starting week",
     allowedValues : pLGameweeksRemainingFormatted
+  },
+  acceptingNewMembers : {
+    type : Boolean,
+    label : "Accepting new members?",
+    autoValue : function () {
+      if(this.isInsert) {
+        return true;
+      }
+    }
   },
   round : {
     type : Number,
     label : "Current round",
     autoValue : function() {
       if(this.isInsert) {
-        return 0;
+        var starting = this.field("dateStarting");
+        if (starting.value === currentGameWeek()) {
+          return 1;
+        } else {
+          return 0;
+        }
       }
     }
   },
   leagueStatus : {
     type : String,
     label : "League status",
-    allowedValues : ["active", "ended", "pending"],
-    autoValue : function() {
+    allowedValues : ["active", "ended"],
+    autoValue : function () {
       if(this.isInsert) {
-        return "pending"; //what if it should be active??? TODO add prev/current/next gw logic for setting status
+        return "active";
       }
     }
   },
@@ -48,10 +57,10 @@ LeaguesSchema = new SimpleSchema({
     label : "League members",
     autoValue : function() {
       if(this.isInsert) {
-        return [{playerId : Meteor.userId(), picks : [], livesLeft : 1, diedInRound : 0}];
+        return [{playerId : Meteor.userId(), picks : [], diedInRound : 0}];
       }
     }
-  },
+  }, // TODO: remove autovalues from updates and just do it manually you lazy boy
   "members.$.playerId" : {
       type : String,
       label : "Users collection _id",
@@ -70,19 +79,6 @@ LeaguesSchema = new SimpleSchema({
       }
     }
   },
-  "members.$.livesLeft" : {
-    type : Number,
-    label : "Lives left in this league",
-    max : 1,
-    min : 0,
-    autoValue : function() {
-      // TODO: this will set lives to 1 every time there is any sort of update??
-      if(this.isUpdate) {
-        console.log("lives autovalue");
-        return 1;
-      }
-    }
-  },
   "members.$.diedInRound" : {
     type : Number,
     label : "Round user died in",
@@ -92,12 +88,12 @@ LeaguesSchema = new SimpleSchema({
       }
     }
   },
-  winners : {
-    type : [String],
-    label : "Array of one or more winners",
-    autoValue : function() {
+  winner : {
+    type : String,
+    label : "The winner",
+    autoValue : function () {
       if(this.isInsert) {
-        return [];
+        return "";
       }
     }
   },
@@ -113,11 +109,6 @@ LeaguesSchema = new SimpleSchema({
   "events.$.round" : {
     type : Number,
     label : "Round events occurred in",
-    optional : true
-  },
-  "events.$.playersLostLives" : {
-    type : [String],
-    label : "Array of _id of players losing lives this round",
     optional : true
   },
   "events.$.autoPicks" : {
