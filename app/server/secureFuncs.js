@@ -6,8 +6,6 @@ SecureFuncs.statusTo = function (status) {
 
 // TODO: this is so crucial - introduce a check to ensure correct number of picks or throw error
 SecureFuncs.randomPickSweep = function (callback) {
-  SecureFuncs.deferSingletonLeagues();
-
   var liveLeaguesCursor = Leagues.find({round : {$gt : 0}, leagueStatus : "active", "members.1" : {$exists : true}});
 
   // iterate over all active leagues with Mongo foreach
@@ -21,7 +19,7 @@ SecureFuncs.randomPickSweep = function (callback) {
         var remaining = [];
 
         for(var i = 0; i < pLTeamsArray.length; i += 1) {
-          if(picks.indexOf(pLTeamsArray[i].longName) === -1) {
+          if(element.picks.indexOf(pLTeamsArray[i].longName) === -1) {
             remaining.push(pLTeamsArray[i].longName);
           }
         }
@@ -33,7 +31,7 @@ SecureFuncs.randomPickSweep = function (callback) {
         var randomIndex = Math.round(Math.random() * (remaining.length - 1));
         var randomTeam = remaining[randomIndex];
         //make random choice
-        SecureFuncs.makeChoice(randomTeam, _id, element.playerId);
+        SecureFuncs.makeChoice(randomTeam, doc._id, element.playerId);
         autoPickersArray.push(element.playerId);
       }
     });
@@ -41,7 +39,7 @@ SecureFuncs.randomPickSweep = function (callback) {
     // TODO: check adding object to array
     Leagues.update({_id : doc._id}, {$push : {events : {round : round, autoPicks : autoPickersArray}}});
     if(doc.acceptingNewMembers) {
-      Leagues.update({_id : doc._id}, {$set : {acceptingNewMembers : false}});element.picks.element.picks.length
+      Leagues.update({_id : doc._id}, {$set : {acceptingNewMembers : false}});
     }
   });
   callback();
@@ -59,52 +57,56 @@ SecureFuncs.makeChoice = function (team, league, player) {
 
 SecureFuncs.finishRound = function (callback) {
   // TODO check next gameweek has been inputted
+  var nextRound = currentKillerRound() + 1;
+  if (Matches.findOne({killerRound : nextRound})) {
+    // cycle through active leagues with mongo foreach; kill the losers or forgive them
+    var liveLeaguesCursor = Leagues.find({round : {$gt : 0}, leagueStatus : "active", "members.1" : {$exists : true}});
+    var winnersIRL = ["CHE", "BOU", "TOT", "CPL"]; // TODO: Winners collection
 
-  // cycle through active leagues with mongo foreach; kill the losers or forgive them
-  var liveLeaguesCursor = Leagues.find({round : {$gt : 0}, leagueStatus : "active", "members.1" : {$exists : true}});
-  var winnersIRL = ["CHE", "BOU", "TOT", "CPL"]; // TODO: Winners collection
+    liveLeaguesCursor.forEach(function (doc) {
 
-  liveLeaguesCursor.forEach(function (doc) {
+      var losers = [];
+      var winners = [];
+      var aliveMembers = doc.members.filter(function (a) {
+        return a.diedInRound === 0;
+      });
+      var round = doc.round;
 
-    var losers = [];
-    var winners = [];
-    var aliveMembers = doc.members.filter(function (a) {
-      return a.diedInRound === 0;
-    });
-    var round = doc.round;
+      aliveMembers.forEach(function (element, index, array) {
+        if (winnersIRL.indexOf(element.picks[doc.round - 1]) === -1) {
+          losers.push(element.playerId);
+        } else {
+          winners.push(element.playerId);
+        }
+      });
 
-    aliveMembers.forEach(function (element, index, array) {
-      if (winnersIRL.indexOf(element.picks[doc.round - 1]) === -1) {
-        losers.push(element.playerId);
-      } else {
-        winners.push(element.playerId);
+      if (winners.length === 1) {
+        SecureFuncs.announceWinner(doc._id, winners[0]);
+      } else if (losers.length < aliveMembers.length) {
+        SecureFuncs.loseLeagueLives(doc._id, losers, round);
+      } else if (losers.length === aliveMembers.length) {
+        SecureFuncs.forgiveDeath(doc._id);
       }
+
     });
 
-    if (winners.length === 1) {
-      SecureFuncs.announceWinner(doc._id, winners[0]);
-    } else if (losers.length < aliveMembers.length) {
-      SecureFuncs.loseLeagueLives(doc._id, losers, round);
-    } else if (losers.length === aliveMembers.length) {
-      SecureFuncs.forgiveDeath(doc._id);
-    }
-
-  });
-
-  SecureFuncs.activateGameWeek();
-  callback();
+    SecureFuncs.activateGameWeek();
+    callback();
+  } else {
+    console.log("next matches not inputted");
+  }
 };
 
 SecureFuncs.loseLeagueLives = function (id, losers, round) {
   // TODO: check the query operator works
   Leagues.update({_id : id, "members.playerId" : {$in : losers}}, {$set : {"members.diedInRound" : round}}, {multi : true});
-  Leagues.update({_id : id},{$inc : {round : 1}});
+  Leagues.update({_id : id}, {$inc : {round : 1}});
 };
 
 SecureFuncs.forgiveDeath = function (id) {
   // TODO: place for forgiven leagues
   console.log("forgiven", id);
-  Leagues.update({_id : id},{$inc : {round : 1}});
+  Leagues.update({_id : id}, {$inc : {round : 1}});
 };
 
 SecureFuncs.announceWinner = function (id, winner) {
