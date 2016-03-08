@@ -15,3 +15,5 @@ AdminConfig = {
     Matches : {} // TODO: fix date-time and use admin dash for matches input
   }
 };
+
+// TODO: stop autoform from validating on keypress

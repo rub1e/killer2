@@ -12,7 +12,12 @@ MatchesSchema = new SimpleSchema({
   },
   deadline : {
     type : Date,
-    label : "GW deadline"
+    label : "GW deadline",
+    autoform: {
+      afFieldInput: {
+        type: "bootstrap-datetimepicker"
+      }
+    }
   },
   matches : {
     type : [Object],
