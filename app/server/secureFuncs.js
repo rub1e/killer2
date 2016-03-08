@@ -45,7 +45,7 @@ SecureFuncs.makeChoice = function (team, leagueId, playerId) {
     return a.playerId === playerId;
   })[0].picks;
   if(choicesArray.indexOf(team) === -1 && choicesArray.length === leagueObject.round - 1 && leagueObject.round > 0) {
-    Leagues.update({_id : league, "members.playerId" : player}, {$push : {"members.$.picks" : team}});
+    Leagues.update({_id : leagueId, "members.playerId" : playerId}, {$push : {"members.$.picks" : team}});
   }
 };
 
