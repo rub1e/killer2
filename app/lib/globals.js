@@ -72,8 +72,7 @@ pLGameweeksRemainingFormatted = pLGameweeks.filter(function(a) {
 
 // TODO: remake all current gw functions on current round
 currentGameWeek = function () {
-  var currentRound = currentKillerRound();
-  return Matches.findOne({killerRound : currentRound}).gameWeek;
+  return GameStatus.findOne().currentGameWeek;
 };
 
 nextGameWeek = function () {

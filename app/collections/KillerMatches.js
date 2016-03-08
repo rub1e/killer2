@@ -11,7 +11,7 @@ MatchesSchema = new SimpleSchema({
     label : "GameWeek round number"
   },
   deadline : {
-    type : String,
+    type : Date,
     label : "GW deadline"
   },
   matches : {
