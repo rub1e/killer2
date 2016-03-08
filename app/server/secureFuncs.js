@@ -10,29 +10,23 @@ SecureFuncs.randomPickSweep = function (callback) {
 
   // iterate over all active leagues with Mongo foreach
   liveLeaguesCursor.forEach(function (doc) {
+    var liveMembers = doc.members.filter(function (a) {
+      return a.diedInRound === 0;
+    });
     var autoPickersArray = [];
     //iterate over the members array in each active league
-    doc.members.forEach(function (element, index, array) {
+    liveMembers.forEach(function (element, index, array) {
       // check if number of picks is one lower than the round
-      if(element.picks.length === doc.round - 1 && element.diedInRound === 0) {
-        // get remaining teams for the player
-        var remaining = [];
-
-        for(var i = 0; i < pLTeamsArray.length; i += 1) {
-          if(element.picks.indexOf(pLTeamsArray[i].longName) === -1) {
-            remaining.push(pLTeamsArray[i].longName);
-          }
-        }
-        //filter remaining teams to only those playing this week
-        remaining = remaining.filter(function (b) {
-          return arrayOfPlayingTeams().indexOf(b) > -1;
-        });
-
-        var randomIndex = Math.round(Math.random() * (remaining.length - 1));
-        var randomTeam = remaining[randomIndex];
-        //make random choice
-        SecureFuncs.makeChoice(randomTeam, doc._id, element.playerId);
+      if(element.picks.length === doc.round - 1) {
+        SecureFuncs.makeRandomPick(element.picks, doc._id, element.playerId);
         autoPickersArray.push(element.playerId);
+      } else if (element.picks.length === doc.round) {
+        // check in case inelegible team
+        if (arrayOfPlayingTeams().indexOf(element.picks[doc.round - 1]) === -1) {
+          Leagues.update({_id : doc._id, "members.playerId" : element.playerId}, {$pop : {"members.$.picks" : 1}}, function (error, response) {
+            SecureFuncs.makeRandomPick(element.picks, doc._id, element.playerId);
+          });
+        }
       }
     });
     // add randoms to autopicks array in round event
@@ -45,14 +39,34 @@ SecureFuncs.randomPickSweep = function (callback) {
   callback();
 };
 
-SecureFuncs.makeChoice = function (team, league, player) {
-  var leagueObject = Leagues.findOne({_id : league});
+SecureFuncs.makeChoice = function (team, leagueId, playerId) {
+  var leagueObject = Leagues.findOne({_id : leagueId});
   var choicesArray = leagueObject.members.filter(function (a) {
-    return a.playerId === player;
+    return a.playerId === playerId;
   })[0].picks;
   if(choicesArray.indexOf(team) === -1 && choicesArray.length === leagueObject.round - 1 && leagueObject.round > 0) {
-    Leagues.update({_id : league, "members.playerId" : player}, {$push : {"members.$.picks" : team}});
+    Leagues.update({_id : leagueId, "members.playerId" : playerId}, {$push : {"members.$.picks" : team}});
   }
+};
+
+SecureFuncs.makeRandomPick = function (picksArray, leagueId, playerId) {
+  // get remaining teams for the player
+  var remaining = [];
+
+  for(var i = 0; i < pLTeamsArray.length; i += 1) {
+    if(picksArray.indexOf(pLTeamsArray[i].longName) === -1) {
+      remaining.push(pLTeamsArray[i].longName);
+    }
+  }
+  //filter remaining teams to only those playing this week
+  remaining = remaining.filter(function (b) {
+    return arrayOfPlayingTeams().indexOf(b) > -1;
+  });
+
+  var randomIndex = Math.round(Math.random() * (remaining.length - 1));
+  var randomTeam = remaining[randomIndex];
+  //make random choice
+  SecureFuncs.makeChoice(randomTeam, leagueId, playerId);
 };
 
 SecureFuncs.finishRound = function (callback) {

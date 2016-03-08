@@ -1,7 +1,8 @@
 <template name="KillerLeagues">
   <div id="KillerLeagues">
+    <!-- TODO: centre updating stuff in div-->
     {{#if equals currentGameStatus "updating"}}
-    <!-- TODO: Nice updating spinner? -->
+      {{> spinner}}
       <p>
         Leagues updating!
       </p>
