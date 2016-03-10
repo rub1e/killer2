@@ -20,17 +20,13 @@ pLTeamsArray = [{longName : "Arsenal", shortName : "ARS"},
                   {longName : "West Ham United", shortName : "WHU"}];
 
 pLGameweeks = function () {
-  if(!Matches) {
-    return [];
-  } else {
-    var objectArray = Matches.find({}, {_id : 0, gameWeek : 1});
-    var gWArray = [];
-    objectArray.forEach(function (doc) {
-      gWArray.push(doc.gameWeek);
-    });
-    // TODO: sort by date?
-    return gWArray;
-  }
+  var objectArray = Matches.find({}, {_id : 0, gameWeek : 1});
+  var gWArray = [];
+  objectArray.forEach(function (doc) {
+    gWArray.push(doc.gameWeek);
+  });
+  // TODO: sort by date?
+  return gWArray;
 };
 
 pLGameweeksRemainingFormatted = function () {
