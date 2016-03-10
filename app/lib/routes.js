@@ -9,17 +9,6 @@ FlowRouter.route("/", {
   }
 });
 
-FlowRouter.route("/matches", {
-  name : "matches",
-  action : function (params, queryParams) {
-    BlazeLayout.render("HomeLayout", {
-      footer : "KillerFooter",
-      main : "MatchesForm",
-      nav : "Navbar"
-    });
-  }
-});
-
 FlowRouter.route("/deadline", {
   name : "deadline",
   action : function (params, queryParams) {

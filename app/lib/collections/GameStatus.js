@@ -1,5 +1,13 @@
 GameStatus = new Mongo.Collection("gameStatus");
 
+GameStatus.helpers({
+
+  currentGameWeek : function () {
+    return Matches.findOne({killerRound : this.killerRound}).gameWeek;
+  }
+
+});
+
 GameStatusSchema = new SimpleSchema({
   gameStatus : {
     type : String,
@@ -9,12 +17,7 @@ GameStatusSchema = new SimpleSchema({
   killerRound : {
     type : Number,
     label : "Current gameWeek round number"
-  },
-  currentGameWeek : {
-    type : String,
-    label : "Current gameWeek date string",
-    allowedValues : pLGameweeks
-  },
+  }
 });
 
 GameStatus.attachSchema(GameStatusSchema);

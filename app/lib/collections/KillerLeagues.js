@@ -17,7 +17,6 @@ LeaguesSchema = new SimpleSchema({
   dateStarting : {
     type : String,
     label : "Starting week",
-    allowedValues : pLGameweeksRemainingFormatted
   },
   acceptingNewMembers : {
     type : Boolean,

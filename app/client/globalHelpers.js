@@ -38,3 +38,12 @@ Template.registerHelper('equals',function(v1, v2) {
 Template.registerHelper("disablePickButtons", function(){
   return GameStatus.findOne().gameStatus !== "pending";
 });
+
+Template.registerHelper("pLGameweeksRemainingOptions", function () {
+  var stringArray = pLGameweeksRemainingFormatted();
+  var objArray = [];
+  stringArray.forEach(function (element, index, array) {
+    objArray.push({label : element, value : element});
+  });
+  return objArray;
+});
