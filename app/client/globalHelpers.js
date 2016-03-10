@@ -46,3 +46,7 @@ Template.registerHelper("pLGameweeksRemainingOptions", function () {
   });
   return objArray;
 });
+
+Template.registerHelper("currentDeadline", function () {
+  return currentDeadline();
+});

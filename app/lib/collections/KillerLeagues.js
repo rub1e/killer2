@@ -5,6 +5,15 @@ Leagues.helpers({
     var firstId = this.members[0].playerId;
     return Meteor.users.findOne(firstId).fullName();
   },
+
+  leagueDeadline : function () {
+    var round = this.round;
+    if(this.round > 0) {
+      return currentDeadline();
+    } else {
+      return Matches.findOne({gameWeek : this.dateStarting}).deadline;
+    }
+  }
 });
 
 LeaguesSchema = new SimpleSchema({

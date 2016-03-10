@@ -32,7 +32,7 @@
                 <button id="showPreviewButton" type="button" class="btn btn-primary">Start your league!</button>
               </div>
 
-              <!-- TODO:  clean this up and move from #if to hidden= to match above-->
+              <!-- TODO:  unique league names?-->
               {{#if equals displayControlStart "preview"}}
                 {{#with startLeagueFormFields}}
                   {{> StartLeaguePreview}}
@@ -82,9 +82,11 @@
         Your unique league entry code is: {{newLeagueCode}}
       </p>
       <ul>
-        <li>Click here to open an email pre-filled with all the details</li>
-        <li>Use the sharing links below</li>
-        <li>Send them your unique league code however you like </li>
+        <ul>
+          <li>Invite your friends using the sharing buttons below</li>
+          <li>Or send them the league code however you like: {{_id}}</li>
+          <li>First round deadline: {{formatDate newLeagueDeadline "deadlineDate"}}</li>
+        </ul>
       </ul>
       <ul class="sharingButtonsList">
         <li><a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fkiller.football&text=Join+my+league+on+killerDOTfootball+-+entry+code%3A+{{newLeagueCode}}" class="btn btn-default btn-twitter"><i class="fa fa-twitter"></i> Twitter</a></li>
