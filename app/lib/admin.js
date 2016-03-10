@@ -12,7 +12,14 @@ AdminConfig = {
       ]
     },
     GameStatus : {},
-    Matches : {} // TODO: fix date-time and use admin dash for matches input
+    Matches : new SimpleSchema ({
+      gameWeek : {
+        type: String,
+        label : "test",
+        allowedValues : ["a", "b"]
+      }
+    })
+   // TODO: fix date-time and use admin dash for matches input
   }
 };
 

@@ -20,20 +20,29 @@ pLTeamsArray = [{longName : "Arsenal", shortName : "ARS"},
                   {longName : "West Ham United", shortName : "WHU"}];
 
 pLGameweeks = function () {
-  var objectArray = Matches.find({}, {_id : 0, gameWeek : 1});
-  var gWArray = [];
-  objectArray.forEach(function (doc) {
-    gWArray.push(doc.gameWeek);
-  });
-  // TODO: sort by date?
-  return gWArray;
+  if(!Matches) {
+    return [];
+  } else {
+    var objectArray = Matches.find({}, {_id : 0, gameWeek : 1});
+    var gWArray = [];
+    objectArray.forEach(function (doc) {
+      gWArray.push(doc.gameWeek);
+    });
+    // TODO: sort by date?
+    console.log(gWArray);
+    return gWArray;
+  }
 };
 
-pLGameweeksRemainingFormatted = pLGameweeks.filter(function(a) {
-  return new Date(a) > Date.now();
-}).map(function(b) {
-  return new Date(b).toDateString();
-});
+pLGameweeksRemainingFormatted = function () {
+  var array = pLGameweeks().filter(function(a) {
+    return new Date(a) > Date.now();
+  }).map(function(b) {
+    return new Date(b).toDateString();
+  });
+  console.log(array);
+  return array;
+};
 
 // TODO: remake all current gw functions on current round
 currentGameWeek = function () {
