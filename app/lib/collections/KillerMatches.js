@@ -3,7 +3,7 @@ Matches = new Mongo.Collection("matches");
 MatchesSchema = new SimpleSchema({
   gameWeek : {
     type : String,
-    label : "GameWeek date"
+    label : "GameWeek date YYYY-MM-DD"
   },
   killerRound : {
     type : Number,
@@ -20,17 +20,20 @@ MatchesSchema = new SimpleSchema({
   },
   matches : {
     type : [Object],
-    label : "Array of match objects"
+    label : "Array of match objects",
+    optional : true
   },
   "matches.$.home" : {
     type : String,
     label : "Home team",
-    allowedValues : ["ARS", "AVL", "BOU", "CHE", "CPL", "EVE", "LEI", "LIV", "MCI", "MUN", "NEW", "NOR", "SOU", "STK", "SUN", "SWA", "TOT", "WAT", "WBA", "WHU"]
+    allowedValues : ["ARS", "AVL", "BOU", "CHE", "CPL", "EVE", "LEI", "LIV", "MCI", "MUN", "NEW", "NOR", "SOU", "STK", "SUN", "SWA", "TOT", "WAT", "WBA", "WHU"],
+    optional : true
   },
   "matches.$.away" : {
     type : String,
     label : "Away team",
-    allowedValues : ["ARS", "AVL", "BOU", "CHE", "CPL", "EVE", "LEI", "LIV", "MCI", "MUN", "NEW", "NOR", "SOU", "STK", "SUN", "SWA", "TOT", "WAT", "WBA", "WHU"]
+    allowedValues : ["ARS", "AVL", "BOU", "CHE", "CPL", "EVE", "LEI", "LIV", "MCI", "MUN", "NEW", "NOR", "SOU", "STK", "SUN", "SWA", "TOT", "WAT", "WBA", "WHU"],
+    optional : true
   }
 });
 

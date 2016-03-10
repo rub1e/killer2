@@ -12,15 +12,16 @@ AdminConfig = {
       ]
     },
     GameStatus : {},
-    Matches : new SimpleSchema ({
-      gameWeek : {
-        type: String,
-        label : "test",
-        allowedValues : ["a", "b"]
-      }
-    })
-   // TODO: fix date-time and use admin dash for matches input
+    Matches : {
+      tableColumns : [
+        {label : "round", name : "killerRound"},
+        {label : "GameWeek", name : "gameWeek"},
+        {label : "deadline", name : "deadline"},
+        {label : "matches", name : "matches"}
+      ]
+    }
   }
 };
 
 // TODO: stop autoform from validating on keypress
+// TODO: customise GameStatus
