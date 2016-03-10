@@ -1,7 +1,6 @@
-Template.registerHelper("gameWeekDateFormatted", function(gameweek){
+Template.registerHelper("formatDate", function(date, format){
   // TODO: make UK dates
-  var d = new Date(gameweek);
-  return d.toDateString();
+  return moment(new Date(date)).format(MomentDateFormats[format]);
 });
 
 Template.registerHelper("currentGameWeek", function(){

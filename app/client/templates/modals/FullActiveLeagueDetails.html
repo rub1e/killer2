@@ -18,9 +18,9 @@
                 <li>League name: {{leagueName}}</li>
                 <li>League chairman: {{chairmanName}}</li>
                 {{#if equals round 0}}
-                  <li>The first round of games for this league is on {{gameWeekDateFormatted dateStarting}}</li>
+                  <li>The first round of games for this league is on {{formatDate dateStarting "gameWeekDate"}}</li>
                 {{else}}
-                  <li>Deadline: invite friends and make your choices by {{deadline}}</li>
+                  <li>Deadline: invite friends and make your choices by {{formatDate deadline "deadlineDate"}}</li>
                 {{/if}}>
 
                 <!-- TODO: mailto solution AND deadline-->
