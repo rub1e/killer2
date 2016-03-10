@@ -29,7 +29,6 @@ pLGameweeks = function () {
       gWArray.push(doc.gameWeek);
     });
     // TODO: sort by date?
-    console.log(gWArray);
     return gWArray;
   }
 };
@@ -40,7 +39,6 @@ pLGameweeksRemainingFormatted = function () {
   }).map(function(b) {
     return new Date(b).toDateString();
   });
-  console.log(array);
   return array;
 };
 
