@@ -48,6 +48,6 @@ Template.StartLeagueSuccess.helpers({
   },
 
   newLeagueDeadline : function () {
-    return Leagues.findOne({_id : Session.get("newLeagueJustCreatedCode")}).deadline;
+    return Leagues.findOne({_id : Session.get("newLeagueJustCreatedCode")}).leagueDeadlinedeadline;
   }
 });
