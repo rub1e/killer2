@@ -20,10 +20,10 @@ pLTeamsArray = [{longName : "Arsenal", shortName : "ARS"},
                   {longName : "West Ham United", shortName : "WHU"}];
 
 pLGameweeks = function () {
-  var objectArray = Matches.find({}, {_id : 0, gameWeek : 1});
+  var objectArray = Matches.find({}, {_id : 0, deadline : 1});
   var gWArray = [];
   objectArray.forEach(function (doc) {
-    gWArray.push(doc.gameWeek);
+    gWArray.push(doc.deadline);
   });
   // TODO: sort by date?
   return gWArray;
