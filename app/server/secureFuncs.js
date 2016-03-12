@@ -39,16 +39,6 @@ SecureFuncs.randomPickSweep = function (callback) {
   callback();
 };
 
-SecureFuncs.makeChoice = function (team, leagueId, playerId) {
-  var leagueObject = Leagues.findOne({_id : leagueId});
-  var choicesArray = leagueObject.members.filter(function (a) {
-    return a.playerId === playerId;
-  })[0].picks;
-  if(choicesArray.indexOf(team) === -1 && choicesArray.length === leagueObject.round - 1 && leagueObject.round > 0) {
-    Leagues.update({_id : leagueId, "members.playerId" : playerId}, {$push : {"members.$.picks" : team}});
-  }
-};
-
 SecureFuncs.makeRandomPick = function (picksArray, leagueId, playerId) {
   // get remaining teams for the player
   var remaining = [];
@@ -66,7 +56,7 @@ SecureFuncs.makeRandomPick = function (picksArray, leagueId, playerId) {
   var randomIndex = Math.round(Math.random() * (remaining.length - 1));
   var randomTeam = remaining[randomIndex];
   //make random choice
-  SecureFuncs.makeChoice(randomTeam, leagueId, playerId);
+  makeChoice(randomTeam, leagueId, playerId);
 };
 
 SecureFuncs.finishRound = function (callback) {

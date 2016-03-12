@@ -21,7 +21,7 @@ Meteor.methods({
 
   makeChoice : function (team, league) {
     // TODO: function to return list of user choices
-    SecureFuncs.makeChoice(team, league, Meteor.userId());
+    makeChoice(team, league, Meteor.userId());
   },
 
   allowRepick : function (league) {
