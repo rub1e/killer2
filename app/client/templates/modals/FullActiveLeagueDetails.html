@@ -17,11 +17,7 @@
               <ul>
                 <li>League name: {{leagueName}}</li>
                 <li>League chairman: {{chairmanName}}</li>
-                {{#if equals round 0}}
-                  <li>The first round of games for this league is on {{gameWeekDateFormatted dateStarting}}</li>
-                {{else}}
-                  <li>Deadline: invite friends and make your choices by {{deadline}}</li>
-                {{/if}}>
+                <li>Deadline: invite friends and make your choices by {{formatDate leagueDeadline "deadlineDate"}}</li>
 
                 <!-- TODO: mailto solution AND deadline-->
                 <li>The league entry code is <span>{{_id}}</span>. Use the sharing buttons below to invite your friends (they open in a new window), or just copy and paste the code into an email</li>
@@ -47,8 +43,8 @@
               <ul>
                 <li>League name: {{leagueName}}</li>
                 <li>League chairman: {{chairmanName}}</li>
-                {{#if equals currentGameStatus "active"}}
-                  <li>Deadline: make your choices by {{currentDeadline}}</li>
+                {{#if equals currentGameStatus "pending"}}
+                  <li>Deadline: make your choices by {{formatDate currentDeadline "deadlineDate"}}</li>
                 {{/if}}
                 <li>Round: {{round}}</li>
               </ul>

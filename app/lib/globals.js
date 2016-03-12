@@ -53,8 +53,7 @@ currentKillerRound = function () {
 };
 
 currentDeadline = function () {
-  // TODO: deadline function
-  return "deadline";
+  return Matches.findOne({killerRound : currentKillerRound()}).deadline;
 };
 
 arrayOfPlayingTeams = function () {

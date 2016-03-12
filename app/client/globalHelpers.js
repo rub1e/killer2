@@ -1,7 +1,6 @@
-Template.registerHelper("gameWeekDateFormatted", function(gameweek){
+Template.registerHelper("formatDate", function(date, format){
   // TODO: make UK dates
-  var d = new Date(gameweek);
-  return d.toDateString();
+  return moment(new Date(date)).format(MomentDateFormats[format]);
 });
 
 Template.registerHelper("currentGameWeek", function(){
@@ -46,4 +45,8 @@ Template.registerHelper("pLGameweeksRemainingOptions", function () {
     objArray.push({label : element, value : element});
   });
   return objArray;
+});
+
+Template.registerHelper("currentDeadline", function () {
+  return currentDeadline();
 });
