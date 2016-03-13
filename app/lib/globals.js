@@ -40,7 +40,7 @@ pLGameweeksRemainingFormatted = function () {
 
 // TODO: remake all current gw functions on current round
 currentGameWeek = function () {
-  return GameStatus.findOne().currentGameWeek;
+  return GameStatus.findOne().currentGameWeek();
 };
 
 nextGameWeek = function () {
