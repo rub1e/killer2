@@ -73,7 +73,7 @@ makeChoice = function (team, leagueId, playerId) {
     return a.playerId === playerId;
   })[0].picks;
   // TODO: fix for round 0 picks
-  if(choicesArray.indexOf(team) === -1 && choicesArray.length === leagueObject.round - 1 && leagueObject.round > 0) {
+  if(choicesArray.indexOf(team) === -1) {
     Leagues.update({_id : leagueId, "members.playerId" : playerId}, {$push : {"members.$.picks" : team}});
   }
 };

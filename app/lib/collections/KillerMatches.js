@@ -3,7 +3,7 @@ Matches = new Mongo.Collection("matches");
 MatchesSchema = new SimpleSchema({
   gameWeek : {
     type : String,
-    label : "GameWeek date YYYY-MM-DD"
+    label : "GameWeek date YYYY MM DD"
   },
   killerRound : {
     type : Number,
