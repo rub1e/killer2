@@ -29,7 +29,7 @@ Meteor.methods({
     var choicesArray = leagueObject.members.filter(function (a) {
       return a.playerId === Meteor.userId();
     })[0].picks;
-    if(choicesArray.length === leagueObject.round && leagueObject.round > 0) {
+    if((leagueObject.round === 0 && choicesArray.length === 1) || (choicesArray.length === leagueObject.round && leagueObject.round > 0)) {
       Leagues.update({_id : league, "members.playerId" : Meteor.userId()}, {$pop : {"members.$.picks" : 1}});
     }
   }

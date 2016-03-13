@@ -1,3 +1,19 @@
+pLTeamsShort = function () {
+  var shortNames = [];
+  for (var i = 0; i < pLTeamsArray.length; i += 1) {
+    shortNames.push(pLTeamsArray[i].shortName);
+  }
+  return shortNames;
+};
+
+pLTeamsLong = function () {
+  var longNames = [];
+  for (var i = 0; i < pLTeamsArray.length; i += 1) {
+    longNames.push(pLTeamsArray[i].longName);
+  }
+  return longNames;
+};
+
 pLTeamsArray = [{longName : "Arsenal", shortName : "ARS"},
                   {longName : "Aston Villa", shortName : "AVL"},
                   {longName : "Bournemouth", shortName : "BOU"},

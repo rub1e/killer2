@@ -28,9 +28,15 @@ Template.KillerChoiceWidget.helpers({
     if (this.round === 0) {
       return remaining;
     } else {
-      return remaining.filter(function (b) {
-        return arrayOfPlayingTeams().indexOf(b) > -1;
-      });
+      var remainingPlaying = [];
+      for (var j = 0; j < remaining.length; j += 1) {
+        var index = pLTeamsLong().indexOf(remaining[j]);
+        var shortName = pLTeamsShort()[index];
+        if (arrayOfPlayingTeams().indexOf(shortName) > -1) {
+          remainingPlaying.push(remaining[j]);
+        }
+      }
+      return remainingPlaying;
     }
   }
 
