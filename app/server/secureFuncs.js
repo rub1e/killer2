@@ -148,6 +148,7 @@ SecureFuncs.deferSingletonLeagues = function() {
   var nextGW = new Date(nextGameWeek()).toDateString();
   var singletonLeaguesCursor = Leagues.find({round : 1, leagueStatus : "active", "members.1" : {$exists : false}}
   );
+
   Leagues.update(
     {round : 1, leagueStatus : "active", "members.1" : {$exists : false}},
     {$set : {"members.0.picks" : [], dateStarting : nextGW, acceptingNewMembers : true}},
