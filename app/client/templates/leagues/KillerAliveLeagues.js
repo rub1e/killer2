@@ -1,8 +1,9 @@
 Template.KillerAliveLeagues.helpers({
 
   userAliveLeaguesList : function () {
-    return Leagues.find({"members.playerId" : Meteor.userId()});
-  },
+    return Leagues.find({"members.playerId" : Meteor.userId(), leagueStatus : {$ne : "ended"}});
+    // TODO: add sorting
+  }
 
 });
 

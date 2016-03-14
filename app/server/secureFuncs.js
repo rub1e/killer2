@@ -65,7 +65,7 @@ SecureFuncs.finishRound = function (callback) {
   if (Matches.findOne({killerRound : nextRound})) {
     // cycle through active leagues with mongo foreach; kill the losers or forgive them
     var liveLeaguesCursor = Leagues.find({round : {$gt : 0}, leagueStatus : "active", "members.1" : {$exists : true}});
-    var winnersIRL = ["CHE", "BOU", "TOT", "CPL"]; // TODO: Winners collection
+    var winnersIRL = Matches.findOne({killerRound : currentKillerRound()}).winners;
 
     liveLeaguesCursor.forEach(function (doc) {
 
