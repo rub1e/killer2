@@ -16,8 +16,8 @@
               <td><button class="btn leagueDetailsButton" data-modal="modalFullActiveLeagueDetails">{{leagueName}}</button></td>
               <td>
                 {{> KillerChoiceWidget}}
-                {{#if equals round 0}}
-                  (Starts on {{formatDate dateStarting "gameWeekDate"}})
+                {{#if acceptingNewMembers}}
+                  (Starts on {{formatDate leagueDeadline "gameWeekDate"}})
                 {{/if}}
               </td>
               <td>{{> MiniActiveLeagueDetails}}</td>

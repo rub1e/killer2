@@ -20,7 +20,6 @@ Meteor.methods({
   },
 
   makeChoice : function (team, league) {
-    // TODO: function to return list of user choices
     makeChoice(team, league, Meteor.userId());
   },
 

@@ -31,7 +31,7 @@ SecureFuncs.randomPickSweep = function (callback) {
     });
     // add randoms to autopicks array in round event
     // TODO: check adding object to array
-    Leagues.update({_id : doc._id}, {$push : {events : {round : round, autoPicks : autoPickersArray}}});
+    Leagues.update({_id : doc._id}, {$push : {events : {round : doc.round, autoPicks : autoPickersArray}}});
     if(doc.acceptingNewMembers) {
       Leagues.update({_id : doc._id}, {$set : {acceptingNewMembers : false}});
     }
@@ -144,14 +144,16 @@ SecureFuncs.denyJoiningLeague = function (code, player) {
 };
 
 SecureFuncs.deferSingletonLeagues = function() {
-  // TODO: place for deferred leagues
   // array of singlton league IDs
-  var singletonLeaguesArray = Leagues.distinct("_id",
-    {round : 1, leagueStatus : "active", "members.1" : {$exists : false}}
+  var nextGW = new Date(nextGameWeek()).toDateString();
+  var singletonLeaguesCursor = Leagues.find({round : 1, leagueStatus : "active", "members.1" : {$exists : false}}
   );
   Leagues.update(
     {round : 1, leagueStatus : "active", "members.1" : {$exists : false}},
-    {$set : {"members.0.picks" : [], dateStarting : nextGameWeek(), acceptingNewMembers : true}},
-    {multi : true}
+    {$set : {"members.0.picks" : [], dateStarting : nextGW, acceptingNewMembers : true}},
+    {multi : true},
+    function (error, response) {
+      // TODO: place for deferred leagues
+    }
   );
 };
