@@ -72,15 +72,20 @@ currentDeadline = function () {
   return Matches.findOne({killerRound : currentKillerRound()}).deadline;
 };
 
-arrayOfPlayingTeams = function () {
+arrayOfPlayingTeams = function (output) {
   // TODO: array of playing teams
-  // var matchesObjects = Matches.findOne({killerRound : currentKillerRound()})
-  // var playingTeams = [];
-  // matchesObjects.forEach(function (element, index, array) {
-  //   playingTeams.push(element.home, element.away);
-  // });
-  // return playingTeams;
-  return ["CHE", "BOU", "AVL", "TOT"];
+  var matchesObjects = Matches.findOne({killerRound : currentKillerRound()}).matches;
+  if (output === "object") {
+    return matchesObjects;
+  }
+
+  var playingTeams = [];
+  if (output === "short") {
+    matchesObjects.forEach(function (element, index, array) {
+      playingTeams.push(element.home, element.away);
+    });
+    return playingTeams;
+  }
 };
 
 makeChoice = function (team, leagueId, playerId) {
@@ -88,7 +93,7 @@ makeChoice = function (team, leagueId, playerId) {
   var choicesArray = leagueObject.members.filter(function (a) {
     return a.playerId === playerId;
   })[0].picks;
-  // TODO: fix for round 0 picks
+  // TODO: fix for round 0 picks. If round O and array has no length, just make the choice. If round > 0 then do checks
   if(choicesArray.indexOf(team) === -1) {
     Leagues.update({_id : leagueId, "members.playerId" : playerId}, {$push : {"members.$.picks" : team}});
   }

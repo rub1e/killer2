@@ -14,7 +14,7 @@ Template.KillerChoiceWidget.helpers({
     }
 
   },
-
+// TODO: sort this nonsense out - teamsleft shouldn't be so complicated
   teamsLeft : function () {
     var choicesArray = this.members.filter(function (a) {
       return a.playerId === Meteor.userId();
