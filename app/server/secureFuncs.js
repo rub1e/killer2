@@ -22,7 +22,7 @@ SecureFuncs.randomPickSweep = function (callback) {
         autoPickersArray.push(element.playerId);
       } else if (element.picks.length === doc.round) {
         // check in case inelegible team
-        if (arrayOfPlayingTeams().indexOf(element.picks[doc.round - 1]) === -1) {
+        if (arrayOfPlayingTeams("long").indexOf(element.picks[doc.round - 1]) === -1) {
           Leagues.update({_id : doc._id, "members.playerId" : element.playerId}, {$pop : {"members.$.picks" : 1}}, function (error, response) {
             SecureFuncs.makeRandomPick(element.picks, doc._id, element.playerId);
           });
@@ -50,7 +50,7 @@ SecureFuncs.makeRandomPick = function (picksArray, leagueId, playerId) {
   }
   //filter remaining teams to only those playing this week
   remaining = remaining.filter(function (b) {
-    return arrayOfPlayingTeams().indexOf(b) > -1;
+    return arrayOfPlayingTeams("long").indexOf(b) > -1;
   });
 
   var randomIndex = Math.round(Math.random() * (remaining.length - 1));

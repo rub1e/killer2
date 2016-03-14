@@ -84,8 +84,15 @@ arrayOfPlayingTeams = function (output) {
     matchesObjects.forEach(function (element, index, array) {
       playingTeams.push(element.home, element.away);
     });
-    return playingTeams;
   }
+  if (output === "long") {
+    matchesObjects.forEach(function (element, index, array) {
+      var homeIndex = pLTeamsShort().indexOf(element.home);
+      var awayIndex = pLTeamsShort().indexOf(element.away);
+      playingTeams.push(pLTeamsLong()[homeIndex], pLTeamsLong()[awayIndex]);
+    });
+  }
+  return playingTeams;
 };
 
 makeChoice = function (team, leagueId, playerId) {

@@ -16,6 +16,10 @@ Template.KillerChoiceWidget.helpers({
   },
 // TODO: sort this nonsense out - teamsleft shouldn't be so complicated
   teamsLeft : function () {
+    if (this.round === 0) {
+      return pLTeamsLong();
+    }
+
     var choicesArray = this.members.filter(function (a) {
       return a.playerId === Meteor.userId();
     })[0].picks;
@@ -25,19 +29,9 @@ Template.KillerChoiceWidget.helpers({
         remaining.push(pLTeamsArray[i].longName);
       }
     }
-    if (this.round === 0) {
-      return remaining;
-    } else {
-      var remainingPlaying = [];
-      for (var j = 0; j < remaining.length; j += 1) {
-        var index = pLTeamsLong().indexOf(remaining[j]);
-        var shortName = pLTeamsShort()[index];
-        if (arrayOfPlayingTeams().indexOf(shortName) > -1) {
-          remainingPlaying.push(remaining[j]);
-        }
-      }
-      return remainingPlaying;
-    }
+    return remaining.filter(function (a) {
+      return arrayOfPlayingTeams("long").indexOf(a) > -1;
+    });
   }
 
 });
