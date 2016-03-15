@@ -6,9 +6,17 @@
   color : red;
 }
 
+.inline {
+  display: inline;
+}
+
 /*Sharing buttons*/
 
 /* TODO: Change border radius */
+
+.sharingButtonsList li {
+  display: inline;
+}
 
 .btn-twitter {
     background: #00acee;
@@ -46,4 +54,27 @@
 .btn-email:active, .btn-email:hover {
     background: #30477a;
     color: #fff
+}
+
+/*footer*/
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+.footerLeft {
+  float: left;
+}
+
+.footerRight {
+  float: right;
 }
