@@ -1,3 +1,19 @@
+pLTeamsShort = function () {
+  var shortNames = [];
+  for (var i = 0; i < pLTeamsArray.length; i += 1) {
+    shortNames.push(pLTeamsArray[i].shortName);
+  }
+  return shortNames;
+};
+
+pLTeamsLong = function () {
+  var longNames = [];
+  for (var i = 0; i < pLTeamsArray.length; i += 1) {
+    longNames.push(pLTeamsArray[i].longName);
+  }
+  return longNames;
+};
+
 pLTeamsArray = [{longName : "Arsenal", shortName : "ARS"},
                   {longName : "Aston Villa", shortName : "AVL"},
                   {longName : "Bournemouth", shortName : "BOU"},
@@ -20,10 +36,10 @@ pLTeamsArray = [{longName : "Arsenal", shortName : "ARS"},
                   {longName : "West Ham United", shortName : "WHU"}];
 
 pLGameweeks = function () {
-  var objectArray = Matches.find({}, {_id : 0, gameWeek : 1});
+  var objectArray = Matches.find({}, {_id : 0, deadline : 1});
   var gWArray = [];
   objectArray.forEach(function (doc) {
-    gWArray.push(doc.gameWeek);
+    gWArray.push(doc.deadline);
   });
   // TODO: sort by date?
   return gWArray;
@@ -40,7 +56,7 @@ pLGameweeksRemainingFormatted = function () {
 
 // TODO: remake all current gw functions on current round
 currentGameWeek = function () {
-  return GameStatus.findOne().currentGameWeek;
+  return GameStatus.findOne().currentGameWeek();
 };
 
 nextGameWeek = function () {
@@ -56,13 +72,36 @@ currentDeadline = function () {
   return Matches.findOne({killerRound : currentKillerRound()}).deadline;
 };
 
-arrayOfPlayingTeams = function () {
+arrayOfPlayingTeams = function (output) {
   // TODO: array of playing teams
-  // var matchesObjects = Matches.findOne({killerRound : currentKillerRound()})
-  // var playingTeams = [];
-  // matchesObjects.forEach(function (element, index, array) {
-  //   playingTeams.push(element.home, element.away);
-  // });
-  // return playingTeams;
-  return ["CHE", "BOU", "AVL", "TOT"];
+  var matchesObjects = Matches.findOne({killerRound : currentKillerRound()}).matches;
+  if (output === "object") {
+    return matchesObjects;
+  }
+
+  var playingTeams = [];
+  if (output === "short") {
+    matchesObjects.forEach(function (element, index, array) {
+      playingTeams.push(element.home, element.away);
+    });
+  }
+  if (output === "long") {
+    matchesObjects.forEach(function (element, index, array) {
+      var homeIndex = pLTeamsShort().indexOf(element.home);
+      var awayIndex = pLTeamsShort().indexOf(element.away);
+      playingTeams.push(pLTeamsLong()[homeIndex], pLTeamsLong()[awayIndex]);
+    });
+  }
+  return playingTeams;
+};
+
+makeChoice = function (team, leagueId, playerId) {
+  var leagueObject = Leagues.findOne({_id : leagueId});
+  var choicesArray = leagueObject.members.filter(function (a) {
+    return a.playerId === playerId;
+  })[0].picks;
+  // TODO: fix for round 0 picks. If round O and array has no length, just make the choice. If round > 0 then do checks
+  if(choicesArray.indexOf(team) === -1) {
+    Leagues.update({_id : leagueId, "members.playerId" : playerId}, {$push : {"members.$.picks" : team}});
+  }
 };

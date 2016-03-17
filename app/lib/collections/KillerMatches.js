@@ -3,7 +3,7 @@ Matches = new Mongo.Collection("matches");
 MatchesSchema = new SimpleSchema({
   gameWeek : {
     type : String,
-    label : "GameWeek date YYYY-MM-DD"
+    label : "GameWeek date YYYY MM DD"
   },
   killerRound : {
     type : Number,
@@ -34,6 +34,12 @@ MatchesSchema = new SimpleSchema({
     label : "Away team",
     allowedValues : ["ARS", "AVL", "BOU", "CHE", "CPL", "EVE", "LEI", "LIV", "MCI", "MUN", "NEW", "NOR", "SOU", "STK", "SUN", "SWA", "TOT", "WAT", "WBA", "WHU"],
     optional : true
+  },
+  winners : {
+    type : [String],
+    label : "List of winners",
+    allowedValues : ["ARS", "AVL", "BOU", "CHE", "CPL", "EVE", "LEI", "LIV", "MCI", "MUN", "NEW", "NOR", "SOU", "STK", "SUN", "SWA", "TOT", "WAT", "WBA", "WHU"],
+    optional : true,
   }
 });
 

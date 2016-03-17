@@ -27,7 +27,7 @@ Template.registerHelper("loggedInUserEmail", function(){
 
 Template.registerHelper("listOfCurrentMatches", function(){
   // return list of current matches
-  return Matches.findOne({round : currentKillerRound()}).matches;
+  return arrayOfPlayingTeams("object");
 });
 
 Template.registerHelper('equals',function(v1, v2) {

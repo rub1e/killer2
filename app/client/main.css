@@ -1,3 +1,17 @@
+body {
+  /* Margin bottom by footer height */
+  /*margin-bottom: 60px;*/
+}
+
+#KillerContent {
+  background-image: url("http://www.micronationalnews.com/wp-content/uploads/2015/06/Limes-Football-2015.jpg");
+  background-size: cover;
+}
+
+.bigLogo {
+  max-height : 100px;
+}
+
 .disabled {
   opacity : .6;
 }
@@ -6,9 +20,70 @@
   color : red;
 }
 
+.inline {
+  display: inline;
+}
+
+.smaller-font {
+  font-size : 13px !important;
+}
+
+.navbar {
+  margin-bottom: 0;
+}
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.footer {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+/* Custom page header */
+.header {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e5e5e5;
+}
+/* Make the masthead heading the same height as the navigation */
+/*.header h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 40px;
+}*/
+
+/* Customize container */
+@media (min-width: 768px) {
+  .container {
+    max-width: 730px;
+  }
+}
+.container-narrow > hr {
+  margin: 30px 0;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;  background-size: cover;
+
+  padding-top: 18px;
+  padding-bottom: 18px;
+  margin-top: 10px;
+}
+.jumbotron .btn {
+  padding: 14px 24px;
+  font-size: 21px;
+}
+
 /*Sharing buttons*/
 
 /* TODO: Change border radius */
+/* TODO: move to its own css file */
+
+.sharingButtonsList li {
+  display: inline;
+}
 
 .btn-twitter {
     background: #00acee;
@@ -46,4 +121,51 @@
 .btn-email:active, .btn-email:hover {
     background: #30477a;
     color: #fff
+}
+
+/*footer*/
+
+/* TODO: font-size */
+.footer {
+  /*position: absolute;*/
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+/*.footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+}*/
+
+/* TODO: padding for left and right */
+.footerLeft {
+  float: left;
+  font-size: 10px;
+}
+
+.footerRight {
+  float: right;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  /* Remove the padding we set earlier */
+  .header,
+  .marketing,
+  .footer {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+  }
+  /* Remove the bottom border on the jumbotron for visual effect */
+  .jumbotron {
+    border-bottom: 0;
+  }
 }

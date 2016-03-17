@@ -1,16 +1,20 @@
 <template name="KillerContent">
-  {{#if loggingIn}}
-    {{> LoggingInDialogue}}
-  {{else}}
-    {{#if currentUser}}
-      {{> KillerAdBannerTop}}
-      {{> KillerAdBannerLeft}}
-      {{> KillerGameweekMatches}}
-      {{> KillerInstructions}}
-      {{> KillerLeagues}}
-      {{> KillerAdBannerRight}}
-    {{else}}
-      {{> SignUpLogIn}}
-    {{/if}}
-  {{/if}}
+  <div id="KillerContent">
+    <div class="container">
+      {{#if loggingIn}}
+        {{> LoggingInDialogue}}
+      {{else}}
+        {{#if currentUser}}
+          {{> KillerAdBannerTop}}
+          {{> KillerAdBannerLeft}}
+          {{> KillerGameweekMatches}}
+          {{> KillerInstructions}}
+          {{> KillerLeagues}}
+          {{> KillerAdBannerRight}}
+        {{else}}
+          {{> SignUpLogIn}}
+        {{/if}}
+      {{/if}}
+    </div>
+  </div>
 </template>

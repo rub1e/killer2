@@ -7,11 +7,19 @@ Leagues.helpers({
   },
 
   leagueDeadline : function () {
-    var round = this.round;
-    if(this.round > 0) {
+    // TODO: check your maths on acceptingNewMembers
+    if(!this.acceptingNewMembers) {
       return currentDeadline();
     } else {
-      return Matches.findOne({gameWeek : this.dateStarting}).deadline;
+      var dateProper = new Date(this.dateStarting);
+      var year = dateProper.getFullYear();
+      var month = dateProper.getMonth() + 1;
+      var day = dateProper.getDate();
+      var dateString;
+      month = month < 10 ? "0" + month : month;
+      day = day < 10 ? "0" + day : day;
+      dateString = year + " " + month + " " + day;
+      return Matches.findOne({gameWeek : dateString}).deadline;
     }
   }
 });
@@ -42,7 +50,7 @@ LeaguesSchema = new SimpleSchema({
     autoValue : function() {
       if(this.isInsert) {
         var starting = this.field("dateStarting");
-        if (starting.value === currentGameWeek()) {
+        if (Date.parse(starting.value) === Date.parse(currentGameWeek())) {
           return 1;
         } else {
           return 0;

@@ -1,5 +1,24 @@
 <template name="KillerFinishedLeagues">
   <div id="KillerFinishedLeagues">
-    FINISHED LEAGUES HIDDEN
+    <div class="table-responsive table-wrapper">
+      <table id="KillerFinishedTable" class="table table-hover">
+        <thead>
+          <tr>
+            <th>League name</th>
+            <th>Winner</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each this}}
+            <tr>
+              <td>{{leagueName}}</td>
+              <td>{{leagueWinner}}</td>
+              <td>{{> MiniFinishedLeagueDetails}}</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
