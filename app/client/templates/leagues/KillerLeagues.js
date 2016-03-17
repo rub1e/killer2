@@ -17,6 +17,10 @@ Template.KillerLeagues.helpers({
     }
     // TODO: add sorting
     // TODO: only publish other players' choices during active times
+  },
+
+  endedLeaguesExist : function () {
+    return !!Leagues.findOne({"members.playerId" : Meteor.userId(), leagueStatus : "ended"});
   }
 
 });
