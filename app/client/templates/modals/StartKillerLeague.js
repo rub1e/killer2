@@ -43,11 +43,13 @@ Template.StartKillerLeague.onDestroyed(function(){
 });
 
 Template.StartLeagueSuccess.helpers({
+
   newLeagueCode : function () {
     return Session.get("newLeagueJustCreatedCode");
   },
 
   newLeagueDeadline : function () {
-    return Leagues.findOne({_id : Session.get("newLeagueJustCreatedCode")}).deadline;
+    return Leagues.findOne({_id : Session.get("newLeagueJustCreatedCode")}).leagueDeadline();
   }
+
 });

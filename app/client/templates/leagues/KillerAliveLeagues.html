@@ -4,19 +4,22 @@
       <table id="KillerAliveTable" class="table table-hover">
         <thead>
           <tr>
-            <th>League name</th>
+            <!-- TODO: give span below class of small text -->
+            <th>League name<br><span>(Tap for more details)</span></th>
             <th>Pick for gameweek {{formatDate currentGameWeek "gameWeekDate"}}</th>
             <th>Details</th>
           </tr>
         </thead>
         <tbody>
-          {{#each userAliveLeaguesList}}
+          <!-- TODO: if no leagues, display instructions -->
+          <!-- TODO: shade dead leagues red??? And sort to bottom??-->
+          {{#each this}}
             <tr>
               <td><button class="btn leagueDetailsButton" data-modal="modalFullActiveLeagueDetails">{{leagueName}}</button></td>
               <td>
                 {{> KillerChoiceWidget}}
-                {{#if equals round 0}}
-                  (Starts on {{formatDate dateStarting "gameWeekDate"}})
+                {{#if acceptingNewMembers}}
+                  (Starts on {{formatDate leagueDeadline "gameWeekDate"}})
                 {{/if}}
               </td>
               <td>{{> MiniActiveLeagueDetails}}</td>

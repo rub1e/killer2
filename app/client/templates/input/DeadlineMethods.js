@@ -19,5 +19,9 @@ Template.DeadlineMethods.events({
         console.log("matches started");
       }
     });
+  },
+
+  "click #nextGameWeekButton" : function () {
+    Meteor.call("nextGameWeek");
   }
 });

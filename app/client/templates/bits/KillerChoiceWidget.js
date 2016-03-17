@@ -12,26 +12,6 @@ Template.KillerChoiceWidget.helpers({
       //if choices are up to date, length of array is round - 1; if choices not up to date, length is round - 2, so undefined
       return choicesArray[this.round -1];
     }
-
-  },
-
-  teamsLeft : function () {
-    var choicesArray = this.members.filter(function (a) {
-      return a.playerId === Meteor.userId();
-    })[0].picks;
-    var remaining = [];
-    for(var i = 0; i < pLTeamsArray.length; i += 1) {
-      if(choicesArray.indexOf(pLTeamsArray[i].longName) === -1) {
-        remaining.push(pLTeamsArray[i].longName);
-      }
-    }
-    if (this.round === 0) {
-      return remaining;
-    } else {
-      return remaining.filter(function (b) {
-        return arrayOfPlayingTeams().indexOf(b) > -1;
-      });
-    }
   }
 
 });
@@ -52,4 +32,26 @@ Template.KillerChoiceWidget.events({
     Meteor.call("allowRepick", this._id);
   }
 
+});
+
+Template.KillerChoiceForm.helpers({
+  // TODO: sort this nonsense out - teamsleft shouldn't be so complicated
+    teamsLeft : function () {
+      if (this.round === 0 || (this.round === 1 && !this.members[1])) {
+        return pLTeamsLong();
+      }
+
+      var choicesArray = this.members.filter(function (a) {
+        return a.playerId === Meteor.userId();
+      })[0].picks;
+      var remaining = [];
+      for(var i = 0; i < pLTeamsArray.length; i += 1) {
+        if(choicesArray.indexOf(pLTeamsArray[i].longName) === -1) {
+          remaining.push(pLTeamsArray[i].longName);
+        }
+      }
+      return remaining.filter(function (a) {
+        return arrayOfPlayingTeams("long").indexOf(a) > -1;
+      });
+    }
 });

@@ -1,0 +1,12 @@
+<template name="MiniFinishedLeagueDetails">
+  <div id="MiniFinishedLeagueDetails">
+    <ul>
+      <li>Chairman: {{chairmanName}}</li>
+      <li>Last round: {{round}}</li>
+      <li>Number of players: {{numberOfPlayers}}</li>
+      {{#if userDiedInRound}}
+        <li>You were eliminated in round: {{userDiedInRound}}</li>
+      {{/if}}
+    </ul>
+  </div>
+</template>

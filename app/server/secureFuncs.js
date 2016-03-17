@@ -22,7 +22,7 @@ SecureFuncs.randomPickSweep = function (callback) {
         autoPickersArray.push(element.playerId);
       } else if (element.picks.length === doc.round) {
         // check in case inelegible team
-        if (arrayOfPlayingTeams().indexOf(element.picks[doc.round - 1]) === -1) {
+        if (arrayOfPlayingTeams("long").indexOf(element.picks[doc.round - 1]) === -1) {
           Leagues.update({_id : doc._id, "members.playerId" : element.playerId}, {$pop : {"members.$.picks" : 1}}, function (error, response) {
             SecureFuncs.makeRandomPick(element.picks, doc._id, element.playerId);
           });
@@ -31,22 +31,12 @@ SecureFuncs.randomPickSweep = function (callback) {
     });
     // add randoms to autopicks array in round event
     // TODO: check adding object to array
-    Leagues.update({_id : doc._id}, {$push : {events : {round : round, autoPicks : autoPickersArray}}});
+    Leagues.update({_id : doc._id}, {$push : {events : {round : doc.round, autoPicks : autoPickersArray}}});
     if(doc.acceptingNewMembers) {
       Leagues.update({_id : doc._id}, {$set : {acceptingNewMembers : false}});
     }
   });
   callback();
-};
-
-SecureFuncs.makeChoice = function (team, leagueId, playerId) {
-  var leagueObject = Leagues.findOne({_id : leagueId});
-  var choicesArray = leagueObject.members.filter(function (a) {
-    return a.playerId === playerId;
-  })[0].picks;
-  if(choicesArray.indexOf(team) === -1 && choicesArray.length === leagueObject.round - 1 && leagueObject.round > 0) {
-    Leagues.update({_id : leagueId, "members.playerId" : playerId}, {$push : {"members.$.picks" : team}});
-  }
 };
 
 SecureFuncs.makeRandomPick = function (picksArray, leagueId, playerId) {
@@ -60,13 +50,13 @@ SecureFuncs.makeRandomPick = function (picksArray, leagueId, playerId) {
   }
   //filter remaining teams to only those playing this week
   remaining = remaining.filter(function (b) {
-    return arrayOfPlayingTeams().indexOf(b) > -1;
+    return arrayOfPlayingTeams("long").indexOf(b) > -1;
   });
 
   var randomIndex = Math.round(Math.random() * (remaining.length - 1));
   var randomTeam = remaining[randomIndex];
   //make random choice
-  SecureFuncs.makeChoice(randomTeam, leagueId, playerId);
+  makeChoice(randomTeam, leagueId, playerId);
 };
 
 SecureFuncs.finishRound = function (callback) {
@@ -75,7 +65,7 @@ SecureFuncs.finishRound = function (callback) {
   if (Matches.findOne({killerRound : nextRound})) {
     // cycle through active leagues with mongo foreach; kill the losers or forgive them
     var liveLeaguesCursor = Leagues.find({round : {$gt : 0}, leagueStatus : "active", "members.1" : {$exists : true}});
-    var winnersIRL = ["CHE", "BOU", "TOT", "CPL"]; // TODO: Winners collection
+    var winnersIRL = Matches.findOne({killerRound : currentKillerRound()}).winners;
 
     liveLeaguesCursor.forEach(function (doc) {
 
@@ -154,14 +144,17 @@ SecureFuncs.denyJoiningLeague = function (code, player) {
 };
 
 SecureFuncs.deferSingletonLeagues = function() {
-  // TODO: place for deferred leagues
   // array of singlton league IDs
-  var singletonLeaguesArray = Leagues.distinct("_id",
-    {round : 1, leagueStatus : "active", "members.1" : {$exists : false}}
+  var nextGW = new Date(nextGameWeek()).toDateString();
+  var singletonLeaguesCursor = Leagues.find({round : 1, leagueStatus : "active", "members.1" : {$exists : false}}
   );
+
   Leagues.update(
     {round : 1, leagueStatus : "active", "members.1" : {$exists : false}},
-    {$set : {"members.0.picks" : [], dateStarting : nextGameWeek(), acceptingNewMembers : true}},
-    {multi : true}
+    {$set : {"members.0.picks" : [], dateStarting : nextGW, acceptingNewMembers : true}},
+    {multi : true},
+    function (error, response) {
+      // TODO: place for deferred leagues
+    }
   );
 };
