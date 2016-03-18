@@ -1,19 +1,24 @@
 <template name="KillerChoiceWidget">
   <div id="KillerChoiceWidget">
-    {{#if equals currentGameStatus "active"}}
-      {{#if chosenTeamName}}
-        <span>You picked: {{chosenTeamName}}</span>
-      {{else}}
-        {{> KillerChoiceForm}}
-      {{/if}}
+
+    {{#if userDiedInRound}}
+      <li>You died in round: {{userDiedInRound}}</li>
     {{else}}
-      {{#if chosenTeamName}}
-        <form id="REPICK_{{this._id}}" class="repickChoiceForm">
+      {{#if equals currentGameStatus "active"}}
+        {{#if chosenTeamName}}
           <span>You picked: {{chosenTeamName}}</span>
-          <button type="submit">Change your pick</button>
-        </form>
+        {{else}}
+          {{> KillerChoiceForm}}
+        {{/if}}
       {{else}}
-        {{> KillerChoiceForm}}
+        {{#if chosenTeamName}}
+          <form id="REPICK_{{this._id}}" class="repickChoiceForm">
+            <span>You picked: {{chosenTeamName}}</span>
+            <button type="submit">Change your pick</button>
+          </form>
+        {{else}}
+          {{> KillerChoiceForm}}
+        {{/if}}
       {{/if}}
     {{/if}}
   </div>

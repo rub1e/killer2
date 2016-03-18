@@ -12,7 +12,14 @@ Template.KillerChoiceWidget.helpers({
       //if choices are up to date, length of array is round - 1; if choices not up to date, length is round - 2, so undefined
       return choicesArray[this.round -1];
     }
+  },
+
+  userDiedInRound : function () {
+    return this.members.filter(function(a) {
+      return a.playerId === Meteor.userId();
+    })[0].diedInRound;
   }
+
 
 });
 
