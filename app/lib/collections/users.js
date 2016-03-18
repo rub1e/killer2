@@ -61,7 +61,7 @@ MeteorUsersSchema = new SimpleSchema({
 
 Meteor.users.attachSchema(MeteorUsersSchema);
 
-Meteor.users.allow({
+Meteor.users.deny({
   update: function () {
     return true;
   }

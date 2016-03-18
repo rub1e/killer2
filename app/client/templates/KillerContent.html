@@ -7,9 +7,13 @@
         {{#if currentUser}}
           {{> KillerAdBannerTop}}
           {{> KillerAdBannerLeft}}
-          {{> KillerGameweekMatches}}
-          {{> KillerInstructions}}
-          {{> KillerLeagues}}
+          {{#if Template.subscriptionsReady}}
+            {{> KillerGameweekMatches}}
+            {{> KillerInstructions}}
+            {{> KillerLeagues}}
+          {{else}}
+            {{> spinner}}
+          {{/if}}
           {{> KillerAdBannerRight}}
         {{else}}
           {{> SignUpLogIn}}
