@@ -8,7 +8,7 @@ Template.registerHelper("currentGameWeek", function(){
 });
 
 Template.registerHelper("currentGameStatus", function(){
-  return GameStatus.findOne().gameStatus;
+  return currentGameStatus();
 });
 
 Template.registerHelper("userAliveLeaguesList", function(){

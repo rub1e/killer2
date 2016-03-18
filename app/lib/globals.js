@@ -72,6 +72,10 @@ currentDeadline = function () {
   return Matches.findOne({killerRound : currentKillerRound()}).deadline;
 };
 
+currentGameStatus = function ()  {
+  return GameStatus.findOne().gameStatus;
+};
+
 arrayOfPlayingTeams = function (output) {
   // TODO: array of playing teams
   var matchesObjects = Matches.findOne({killerRound : currentKillerRound()}).matches;
