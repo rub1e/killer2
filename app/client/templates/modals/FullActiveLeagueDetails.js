@@ -23,8 +23,9 @@ Template.FullActiveLeagueDetails.helpers({
   },
 
   isAutoPick : function () {
-    var event = Template.currentData().events[Template.currentData().events.length - 1];
-    if(event.round === round && event.autoPicks) {
+    var league = Template.parentData(1);
+    var event = league.events[league.events.length - 1];
+    if(event && event.round === league.round && event.autoPicks) {
       return event.autoPicks.indexOf(this.playerId) > -1;
     }
   }
