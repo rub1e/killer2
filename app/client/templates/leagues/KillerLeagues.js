@@ -17,6 +17,7 @@ Template.KillerLeagues.helpers({
     }
     // TODO: add sorting
     // TODO: only publish other players' choices during active times
+    // TODO: table-layout auto
   },
 
   endedLeaguesExist : function () {
