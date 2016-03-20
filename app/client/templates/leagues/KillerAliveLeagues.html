@@ -1,32 +1,37 @@
 <template name="KillerAliveLeagues">
   <div id="KillerAliveLeagues">
-    <div class="table-responsive table-wrapper">
-      <table id="KillerAliveTable" class="table table-hover leagueTable">
-        <thead>
-          <tr>
-            <!-- TODO: give span below class of small text -->
-            <th>League name<br><span>(Tap for more details)</span></th>
-            <th>Pick for gameweek {{formatDate currentGameWeek "gameWeekDate"}}</th>
-            <th>Details</th>
-          </tr>
-        </thead>
-        <tbody>
+    <div class="container-fluid">
           <!-- TODO: if no leagues, display instructions -->
-          <!-- TODO: shade dead leagues red??? And sort to bottom??-->
-          {{#each this}}
-            <tr>
-              <td><button class="btn leagueDetailsButton" data-modal="modalFullActiveLeagueDetails">{{leagueName}}</button></td>
-              <td>
-                {{> KillerChoiceWidget}}
-                {{#if acceptingNewMembers}}
-                  (Starts on {{formatDate leagueDeadline "gameWeekDate"}})
-                {{/if}}
-              </td>
-              <td>{{> MiniActiveLeagueDetails}}</td>
-            </tr>
-          {{/each}}
-        </tbody>
-      </table>
+      {{#each this}}
+        <div class ="row leagueRow">
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h3 class="panel-title">League: <span class="league-name">{{leagueName}}</span></h3>
+            </div>
+            <div class="panel-body">
+
+              <div class="col-xs-12 col-md-4">
+                <button class="btn leagueDetailsButton" data-modal="modalFullActiveLeagueDetails">Details</button>
+              </div>
+
+              <div class="col-xs-12 col-md-4">
+                <div class="leagueText">
+                  {{> KillerChoiceWidget}}
+                  {{#if acceptingNewMembers}}
+                    <span>(Starts on {{formatDate leagueDeadline "gameWeekDate"}})</span>
+                  {{/if}}
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-4">
+                <div class="leagueText">
+                  {{> MiniActiveLeagueDetails}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {{/each}}
     </div>
   </div>
 </template>

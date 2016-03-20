@@ -40,8 +40,31 @@ body {
   margin-bottom: 0;
 }
 
-.leagueTable {
-  table-layout: auto;
+.leagueRow {
+  /*text-align: center;*/
+  /*background-color: green;*/
+}
+
+/* TODO: Is this needed? */
+.leagueCol {
+  display: inline-block;
+}
+
+.leagueText {
+  text-align: left;
+}
+
+.league-name {
+  /*background-color: red;
+  color: white;
+  border-bottom-right-radius: 12px 12px;
+  text-align: left;
+  width: auto;
+  padding-left: 0.6em;*/
+}
+
+.no-pad-left {
+  padding-left: 0;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
