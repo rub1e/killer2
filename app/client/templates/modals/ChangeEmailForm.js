@@ -1,7 +1,3 @@
-Template.ChangeEmailForm.onCreated = function(){
-
-};
-
 Template.ChangeEmailForm.events({
   "click #updateEmailButton" : function(event, template){
     event.preventDefault();

@@ -7,8 +7,6 @@
         Leagues updating!
       </p>
     {{else}}
-    <!-- TODO: add toggle for alive/dead leagues -->
-    <!-- TODO: this could be redone to only display toggle if there are any dead leagues but whole thing would have to be redone. Wrap it in a Leagues template and pass the data context from here, then display alive or dead tables based on status -->
       {{#if endedLeaguesExist}}
         <span>Showing {{leaguesShowing}} leagues <button type="btn btn-primary" id="leagueToggle">Show {{leaguesHidden}} leagues</button></span>
       {{/if}}

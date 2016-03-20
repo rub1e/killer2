@@ -16,7 +16,6 @@ Template.KillerLeagues.helpers({
       return Leagues.find({"members.playerId" : Meteor.userId(), leagueStatus : "ended"});
     }
     // TODO: add sorting
-    // TODO: only publish other players' choices during active times
     // TODO: table-layout auto
   },
 
