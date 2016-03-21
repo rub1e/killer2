@@ -78,6 +78,11 @@ text-align: center;
   padding-left: 0.6em;*/
 }
 
+.panel-deadline {
+  font-weight: bold;
+  text-align: right;
+}
+
 .no-pad-left {
   padding-left: 0;
 }
