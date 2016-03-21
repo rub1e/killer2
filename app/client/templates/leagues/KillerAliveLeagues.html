@@ -54,7 +54,11 @@
   <div id="MiniActiveLeagueDetails">
     <ul>
       {{#if acceptingNewMembers}}
-        <li>{{playersStarted}} players have joined</li>
+        {{#if equals playersStarted 1}}
+          <li>You're the only player so far...</li>
+        {{else}}
+          <li>{{playersStarted}} players have joined</li>
+        {{/if}}
         <li>Deadline: {{formatDate leagueDeadline "deadlineDate"}}</li>
         <li>Entry code: <span class="entry-code">{{_id}}</span></li>
       {{else}}
