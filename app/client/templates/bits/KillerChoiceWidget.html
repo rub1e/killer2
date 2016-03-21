@@ -2,18 +2,18 @@
   <div id="KillerChoiceWidget">
 
     {{#if userDiedInRound}}
-      <li>You died in round: {{userDiedInRound}}</li>
+      <span>Your final pick was {{lastChoice}} in round: {{userDiedInRound}}</span>
     {{else}}
       {{#if equals currentGameStatus "active"}}
         {{#if chosenTeamName}}
-          <span>You picked: {{chosenTeamName}}</span>
+          <span>You picked: <span class="pick-name">{{chosenTeamName}}</span></span>
         {{else}}
           {{> KillerChoiceForm}}
         {{/if}}
       {{else}}
         {{#if chosenTeamName}}
           <form id="REPICK_{{this._id}}" class="repickChoiceForm">
-            <span>You picked: {{chosenTeamName}}</span>
+            <span>You picked: <span class="pick-name">{{chosenTeamName}}</span></span>
             <button type="submit">Change your pick</button>
           </form>
         {{else}}
@@ -25,16 +25,26 @@
 </template>
 
 <template name="KillerChoiceForm">
-  <div id="killerChoiceForm">
-    <form class="killerChoiceForm">
-      <span>Pick a team</span>
-      <select class="teamsLeftDropDown" id="DD_{{this._id}}">
-        <option selected="true" disabled>Pick this week's team</option>
-        {{#each teamsLeft}}
-          <option value={{.}}>{{.}}</option>
-        {{/each}}
-      </select>
-      <button type="submit" name="killerChoiceButton" value="Submit">Submit</button>
-    </form>
+  <div id="KillerChoiceForm">
+    <div class="container-fluid">
+      <div class="row">
+        <form class="killerChoiceForm form-inline">
+          <div class="col-xs-8">
+            <div class="form-group">
+              <label class="sr-only" for="DD_{{this._id}}">Pick a team</label>
+              <select class="teamsLeftDropDown form-control" id="DD_{{this._id}}">
+                <option selected="true" disabled>Pick a team</option>
+                {{#each teamsLeft}}
+                  <option value={{.}}>{{.}}</option>
+                {{/each}}
+              </select>
+            </div>
+          </div>
+          <div class="col-xs-2">
+            <button type="submit" name="killerChoiceButton" value="Submit" class="btn btn-default">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 </template>

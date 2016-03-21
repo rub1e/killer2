@@ -56,13 +56,17 @@ body {
    }
 }
 
-/* TODO: Is this needed? */
-.leagueCol {
-  display: inline-block;
+.full-height  {
+  position: relative;
 }
 
 .leagueText {
-  text-align: left;
+text-align: center;
+}
+
+.pick-name {
+  font-weight: bold;
+  color: blue;
 }
 
 .league-name {

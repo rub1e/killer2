@@ -18,8 +18,15 @@ Template.KillerChoiceWidget.helpers({
     return this.members.filter(function(a) {
       return a.playerId === Meteor.userId();
     })[0].diedInRound;
-  }
+  },
 
+  lastChoice : function () {
+    var choicesArray = this.members.filter(function (a) {
+      return a.playerId === Meteor.userId();
+    })[0].picks;
+
+    return choicesArray[choicesArray.length - 1]; 
+  }
 
 });
 
