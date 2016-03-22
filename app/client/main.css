@@ -87,6 +87,16 @@ text-align: center;
   padding-left: 0;
 }
 
+/*show hide panels*/
+
+.hidden-mobile-details.in, .hidden-mobile-details.collapsing {
+  display: block !important;
+}
+
+.show-hide-info {
+
+}
+
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,
