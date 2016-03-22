@@ -15,7 +15,7 @@
     <div class="panel panel-success">
 
       <div class="panel-heading">
-        <h3 class="panel-title">League: <span class="league-name">"{{leagueName}}"</span><span class="panel-deadline pull-right">Deadline: {{formatDate leagueDeadline "deadlineDate"}}</span></h3>
+        <h3 class="panel-title">League: <span class="league-name">"{{leagueName}}"</span><span class="panel-deadline pull-right">{{formatDate leagueDeadline "gameWeekDate"}}</span></h3>
       </div>
 
       <div class="panel-body">
@@ -31,47 +31,34 @@
 
         {{#unless equals playersStarted 1}}
           <div>
-            <a class="show-hide-info" data-toggle="collapse" href="#collapseLivePlayers{{_id}}" aria-expanded="false">{{showHidePlayersChoices}} <span class="caret"></span></a>
+            <a class="show-hide-info-live" data-toggle="collapse" href="#collapseLivePlayers{{_id}}" aria-expanded="false">{{showHidePlayersChoices}} <span class="caret"></span></a>
             <div id="collapseLivePlayers{{_id}}" class="collapse hidden-mobile-details-alive">
               {{#if acceptingNewMembers}}
-                <ul>
+                <ul class="players-list">
                   {{#each members}}
-                    <li>{{memberName}}</li>
+                    <li><i class="fa fa-futbol-o"></i> {{memberName}}</li>
                   {{/each}}
                 </ul>
               {{else}}
-                <table>
-                  <h4>Remaining players</h4>
-                  <thead>
-                    <tr>
-                      <th>Name</th>
+                <ul class="players-list">
+                  {{#each aliveMembers}}
+                    <li><i class="fa fa-futbol-o"></i> {{memberName}}
                       {{#if equals currentGameStatus "active"}}
-                        <th>Choice</th>
+                         - {{memberChoice}}{{#if isAutoPick}} (autopick){{/if}}
                       {{/if}}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {{#each aliveMembers}}
-                      <tr>
-                        <td>{{memberName}}</td>
-                        {{#if equals currentGameStatus "active"}}
-                          <td>{{memberChoice}}{{#if isAutoPick}} (autopick){{/if}}</td>
-                        {{/if}}
-                      </tr>
-                    {{/each}}
-                  </tbody>
-                </table>
+                    </li>
+                  {{/each}}
+                </ul>
               {{/if}}
             </div>
 
             {{#if deadMembers}}
               <br>
-              <a class="show-hide-info" data-toggle="collapse" href="#collapseDeadPlayers{{_id}}" aria-expanded="false">Show eliminated players <span class="caret"></span></a>
+              <a class="show-hide-info-dead" data-toggle="collapse" href="#collapseDeadPlayers{{_id}}" aria-expanded="false">{{showHideDead}} eliminated players <span class="caret"></span></a>
               <div id="collapseDeadPlayers{{_id}}" class="collapse hidden-mobile-details-dead">
-                <h4>Eliminated players</h4>
-                <ul>
+                <ul class="two-cols players-list">
                   {{#each deadMembers}}
-                    <li>{{memberName}} (round {{diedInRound}})</li>
+                    <li><i class="fa fa-bomb"></i> {{memberName}} (round {{diedInRound}})</li>
                   {{/each}}
                 </ul>
               </div>

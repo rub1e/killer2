@@ -16,6 +16,15 @@ body {
   max-height : 100px;
 }
 
+.little-Logo {
+  height : 100%;
+  width: auto;
+}
+
+.navbar-brand {
+  padding : 0 5px;
+}
+
 .killer-dot {
   font-size: 50%;
 }
@@ -95,6 +104,18 @@ text-align: center;
 
 .show-hide-info {
 
+}
+
+.two-cols {
+  columns: 2;
+  -webkit-columns: 2;
+  -moz-columns: 2;
+}
+
+.players-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */

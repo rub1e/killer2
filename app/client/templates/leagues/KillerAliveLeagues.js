@@ -6,34 +6,44 @@ Template.KillerAliveLeagues.helpers({
 
 Template.LeaguePanel.events({
 
-  "click .show-hide-info" : function (event, template) {
-    var showHide = template.showHide.get() === "Show " ? "Hide " : "Show ";
-    template.showHide.set(showHide);
+  "click .show-hide-info-live" : function (event, template) {
+    var showHide = template.showHideLive.get() === "Show " ? "Hide " : "Show ";
+    template.showHideLive.set(showHide);
+  },
+
+  "click .show-hide-info-dead" : function (event, template) {
+    var showHide = template.showHideDead.get() === "Show" ? "Hide" : "Show";
+    template.showHideDead.set(showHide);
   }
 
 });
 
 
 Template.LeaguePanel.onCreated(function () {
-  this.showHide = new ReactiveVar("Show ");
+  this.showHideLive = new ReactiveVar("Show ");
+  this.showHideDead = new ReactiveVar("Show");
 });
 
 Template.LeaguePanel.helpers({
-  
+
   playersStarted: function () {
     return this.members.length;
   },
 
   showHidePlayersChoices : function () {
     var status = currentGameStatus();
-    var showHide = Template.instance().showHide.get();
+    var showHide = Template.instance().showHideLive.get();
     if (status === "pending" && this.acceptingNewMembers) {
-      return showHide + "league members so far";
+      return showHide + "players so far";
     } else if (status === "pending") {
-      return showHide + "league members";
+      return showHide + "active players";
     } else if (status === "active") {
-      return showHide + "league members & teams picked";
+      return showHide + "active players & teams picked";
     }
+  },
+
+  showHideDead : function () {
+    return Template.instance().showHideDead.get();
   },
 
   memberName : function () {

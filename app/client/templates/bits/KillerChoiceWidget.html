@@ -14,7 +14,7 @@
         {{#if chosenTeamName}}
           <form id="REPICK_{{this._id}}" class="repickChoiceForm">
             <span>You picked: <span class="pick-name">{{chosenTeamName}}</span></span>
-            <button type="submit">Change your pick</button>
+            <button class="btn btn-default" type="submit">Change</button>
           </form>
         {{else}}
           {{> KillerChoiceForm}}
