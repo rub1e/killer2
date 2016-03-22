@@ -150,6 +150,10 @@ text-align: center;
   display: inline;
 }
 
+.display-inline {
+  display: inline;
+}
+
 .btn-twitter {
     background: #00acee;
     border-radius: 0;
