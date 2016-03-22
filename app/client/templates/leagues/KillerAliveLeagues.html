@@ -19,88 +19,74 @@
       </div>
 
       <div class="panel-body">
-
-        <div>
-          <a class="show-hide-info" data-toggle="collapse" href="#collapseLivePlayers{{_id}}" aria-expanded="false">{{showHidePlayersChoices}} <span class="caret"></span></a>
-          <div id="collapseLivePlayers{{_id}}" class="collapse hidden-mobile-details-alive">
-            {{#if acceptingNewMembers}}
-              <p>
-                The following players have already joined this league:
-              </p>
-              <ul>
-                {{#each members}}
-                  <li>{{memberName}}</li>
-                {{/each}}
-              </ul>
-            {{else}}
-              <table>
-                <h4>Remaining players</h4>
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    {{#if equals currentGameStatus "active"}}
-                      <th>Choice</th>
-                    {{/if}}
-                  </tr>
-                </thead>
-                <tbody>
-                  {{#each aliveMembers}}
-                    <tr>
-                      <td>{{memberName}}</td>
-                      {{#if equals currentGameStatus "active"}}
-                        <td>{{memberChoice}}{{#if isAutoPick}} (autopick){{/if}}</td>
-                      {{/if}}
-                    </tr>
-                  {{/each}}
-                </tbody>
-              </table>
-            {{/if}}
+        <div class="row">
+          <div class="col-xs-12 col-lg-6 col-md-6">
+            {{> MiniActiveLeagueDetails}}
           </div>
-          {{#if deadMembers}}
-            <br>
-            <a class="show-hide-info" data-toggle="collapse" href="#collapseDeadPlayers{{_id}}" aria-expanded="false">Show eliminated players <span class="caret"></span></a>
-            <div id="collapseDeadPlayers{{_id}}" class="collapse hidden-mobile-details-dead">
-              <h4>Eliminated players</h4>
-              <ul>
-                {{#each deadMembers}}
-                  <li>{{memberName}} (round {{diedInRound}})</li>
-                {{/each}}
-              </ul>
-            </div>
-          {{/if}}
+
+          <div class="col-xs-12 col-lg-6 col-md-6">
+            {{> KillerChoiceWidget}}
+          </div>
         </div>
 
-        <!-- <div class ="row leagueRow row-eq-height">
-          <div class="col-xs-12 col-lg-6 full-height">
-            <div class="leagueText">
-              {{> KillerChoiceWidget}}
+        {{#unless equals playersStarted 1}}
+          <div>
+            <a class="show-hide-info" data-toggle="collapse" href="#collapseLivePlayers{{_id}}" aria-expanded="false">{{showHidePlayersChoices}} <span class="caret"></span></a>
+            <div id="collapseLivePlayers{{_id}}" class="collapse hidden-mobile-details-alive">
+              {{#if acceptingNewMembers}}
+                <ul>
+                  {{#each members}}
+                    <li>{{memberName}}</li>
+                  {{/each}}
+                </ul>
+              {{else}}
+                <table>
+                  <h4>Remaining players</h4>
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      {{#if equals currentGameStatus "active"}}
+                        <th>Choice</th>
+                      {{/if}}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {{#each aliveMembers}}
+                      <tr>
+                        <td>{{memberName}}</td>
+                        {{#if equals currentGameStatus "active"}}
+                          <td>{{memberChoice}}{{#if isAutoPick}} (autopick){{/if}}</td>
+                        {{/if}}
+                      </tr>
+                    {{/each}}
+                  </tbody>
+                </table>
+              {{/if}}
             </div>
-          </div>
 
-          <div class="col-xs-12 col-lg-6 full-height">
-            <div class="leagueText">
-              {{> MiniActiveLeagueDetails}}
-            </div>
+            {{#if deadMembers}}
+              <br>
+              <a class="show-hide-info" data-toggle="collapse" href="#collapseDeadPlayers{{_id}}" aria-expanded="false">Show eliminated players <span class="caret"></span></a>
+              <div id="collapseDeadPlayers{{_id}}" class="collapse hidden-mobile-details-dead">
+                <h4>Eliminated players</h4>
+                <ul>
+                  {{#each deadMembers}}
+                    <li>{{memberName}} (round {{diedInRound}})</li>
+                  {{/each}}
+                </ul>
+              </div>
+            {{/if}}
           </div>
+        {{/unless}}
 
-          <div class="col-xs-12 col-lg-6 full-height">
-            <div class="leagueText">
-              <button class="btn btn-primary leagueDetailsButton" data-modal="modalFullActiveLeagueDetails">Details</button>
-              <p>League in more depth</p>
-            </div>
-          </div>
+        <div class="col-xs-12 col-lg-12 col-md-12">
+          <ul class="sharingButtonsList">
+            <li><a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fkiller.football&text=Join+my+league+on+killerDOTfootball+-+entry+code%3A+{{_id}}" class="btn btn-default btn-twitter"><i class="fa fa-twitter"></i></a></li>
+            <li><a id="facebookNewLeagueShare" class="btn btn-default btn-facebook facebookShare"><i class="fa fa-facebook"></i></a></li>
+            <li><a id="emailNewLeagueShare" class="btn btn-default btn-email"><i class="fa fa-envelope"></i></a></li>
+          </ul>
+        </div>
 
-          <div class="col-xs-12 col-lg-6 full-height">
-            <div class="leagueText">
-              <ul class="sharingButtonsList">
-                <li><a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fkiller.football&text=Join+my+league+on+killerDOTfootball+-+entry+code%3A+{{_id}}" class="btn btn-default btn-twitter"><i class="fa fa-twitter"></i></a></li>
-                <li><a id="facebookNewLeagueShare" class="btn btn-default btn-facebook facebookShare"><i class="fa fa-facebook"></i></a></li>
-                <li><a id="emailNewLeagueShare" class="btn btn-default btn-email"><i class="fa fa-envelope"></i></a></li>
-              </ul>
-            </div>
-          </div>
-
-        </div> -->
       </div>
     </div>
   </div>

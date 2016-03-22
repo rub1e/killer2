@@ -19,6 +19,10 @@ Template.LeaguePanel.onCreated(function () {
 });
 
 Template.LeaguePanel.helpers({
+  
+  playersStarted: function () {
+    return this.members.length;
+  },
 
   showHidePlayersChoices : function () {
     var status = currentGameStatus();
