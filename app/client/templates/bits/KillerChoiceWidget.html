@@ -1,6 +1,5 @@
 <template name="KillerChoiceWidget">
-  <div id="KillerChoiceWidget">
-
+  <div class="KillerChoiceWidget">
     {{#if userDiedInRound}}
       <span>Your final pick was {{lastChoice}} in round: {{userDiedInRound}}</span>
     {{else}}
@@ -14,7 +13,7 @@
         {{#if chosenTeamName}}
           <form id="REPICK_{{this._id}}" class="repickChoiceForm">
             <span>You picked: <span class="pick-name">{{chosenTeamName}}</span></span>
-            <button class="btn btn-default" type="submit">Change</button>
+            <button class="btn btn-default btn-responsive" type="submit">Change</button>
           </form>
         {{else}}
           {{> KillerChoiceForm}}
@@ -32,7 +31,7 @@
           <div class="col-xs-8">
             <div class="form-group">
               <label class="sr-only" for="DD_{{this._id}}">Pick a team</label>
-              <select class="teamsLeftDropDown form-control" id="DD_{{this._id}}">
+              <select class="teamsLeftDropDown form-control select-responsive" id="DD_{{this._id}}">
                 <option selected="true" disabled>Pick a team</option>
                 {{#each teamsLeft}}
                   <option value={{.}}>{{.}}</option>
@@ -41,7 +40,9 @@
             </div>
           </div>
           <div class="col-xs-2">
-            <button type="submit" name="killerChoiceButton" value="Submit" class="btn btn-default">Submit</button>
+            <div class="form-group">
+              <button type="submit" name="killerChoiceButton" value="Submit" class="btn btn-default btn-responsive">Submit</button>
+            </div>
           </div>
         </form>
       </div>

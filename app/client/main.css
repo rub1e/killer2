@@ -98,11 +98,58 @@ text-align: center;
 
 .panel-deadline {
   font-weight: bold;
-  text-align: right;
+  text-align: center;
+  padding-bottom: 5px;
+}
+
+.killerChoiceForm .form-group, .repickChoiceForm .btn {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+@media only screen and (max-width: 320px) {
+
+   .panel-body { font-size: 90%; }
+
+   .select-responsive {
+      height: 22px;
+      padding: 2px 5px;
+      font-size: 12px;
+      line-height: 1.5;
+      border-radius: 3px;
+    }
+
+    .btn-responsive, .form-responsive {
+      padding:2px 4px;
+      font-size:80%;
+      line-height: 1;
+    }
 }
 
 .no-pad-left {
   padding-left: 0;
+}
+
+/*@media (max-width: 768px) {
+  .btn-responsive, .form-responsive {
+    padding:2px 4px;
+    font-size:80%;
+    line-height: 1;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+  .btn-responsive {
+    padding:4px 9px;
+    font-size:90%;
+    line-height: 1.2;
+  }
+}*/
+
+.KillerChoiceWidget {
+  background-color:rgba(70,214,11,0.7);
+  border-radius: 5px;
+  text-align: center;
 }
 
 /*show hide panels*/

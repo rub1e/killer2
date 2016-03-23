@@ -15,16 +15,21 @@
     <div class="panel panel-success">
 
       <div class="panel-heading">
-        <h3 class="panel-title">League: <span class="league-name">"{{leagueName}}"</span><span class="panel-deadline pull-right">{{formatDate leagueDeadline "gameWeekDate"}}</span></h3>
+        <h3 class="panel-title">League: <span class="league-name">"{{leagueName}}"</span></h3>
       </div>
 
       <div class="panel-body">
         <div class="row">
-          <div class="col-xs-12 col-lg-6 col-md-6">
+          <div class="panel-deadline">
+            <span>DEADLINE: {{formatDate leagueDeadline "deadlineDate"}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-lg-6 col-md-6 col-sm-6">
             {{> MiniActiveLeagueDetails}}
           </div>
 
-          <div class="col-xs-12 col-lg-6 col-md-6">
+          <div class="col-xs-12 col-lg-6 col-md-6 col-sm-6">
             {{> KillerChoiceWidget}}
           </div>
         </div>
