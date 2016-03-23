@@ -7,6 +7,15 @@ body {
   /*margin-bottom: 60px;*/
 }
 
+body {
+  padding-top: 51px;
+}
+@media (max-width: 767px) {
+  body {
+    padding-top: 56px;
+  }
+}
+
 #KillerContent {
   background-image: url("http://www.micronationalnews.com/wp-content/uploads/2015/06/Limes-Football-2015.jpg");
   background-size: cover;

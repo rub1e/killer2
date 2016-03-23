@@ -1,17 +1,23 @@
 <template name="KillerFinishedLeagues">
   <div id="KillerFinishedLeagues">
+    {{#each this}}
+      <div class="panel panel-danger">
+        <div class="panel-heading">
+          <h3 class="panel-title">League: <span class="league-name">"{{leagueName}}"</span></h3>
+        </div>
 
-    <div class="panel panel-failure">
-
-    </div>
-
-  {{#each this}}
-    <tr>
-      <td>{{leagueName}}</td>
-      <td>{{leagueWinner}}</td>
-      <td>{{> MiniFinishedLeagueDetails}}</td>
-    </tr>
-  {{/each}}
-
+        <div class="panel-body">
+          <ul>
+            <li>Winner: {{leagueWinner}}</li>
+            <li>Chairman: {{chairmanName}}</li>
+            <li>Last round: {{round}}</li>
+            <li>Number of players: {{numberOfPlayers}}</li>
+            {{#if userDiedInRound}}
+              <li>You were eliminated in round: {{userDiedInRound}}</li>
+            {{/if}}
+          </ul>
+        </div>
+      </div>
+    {{/each}}
   </div>
 </template>
