@@ -27,12 +27,10 @@
         <div class="row">
           <div class="col-xs-12 col-lg-12 col-md-12 col-sm-12">
             {{#if acceptingNewMembers}}
-              <div class="col-xs-12 col-lg-12 col-md-12">
-                <span>Invite friends: </span>
-                {{> SharingWithCode entryCode=_id}}
-              </div>
+              {{> SharingWithCode entryCode=_id}}
+            {{else}}
+              {{> MiniActiveLeagueDetails}}
             {{/if}}
-            {{> MiniActiveLeagueDetails}}
           </div>
         </div>
         <div class="row">
