@@ -20,16 +20,23 @@
 
       <div class="panel-body">
         <div class="row">
-          <div class="panel-deadline">
+          <div class="col-xs-12 panel-deadline">
             <span>DEADLINE: {{formatDate leagueDeadline "deadlineDate"}}</span>
           </div>
         </div>
         <div class="row">
-          <div class="col-xs-12 col-lg-6 col-md-6 col-sm-6">
+          <div class="col-xs-12 col-lg-12 col-md-12 col-sm-12">
+            {{#if acceptingNewMembers}}
+              <div class="col-xs-12 col-lg-12 col-md-12">
+                <span>Invite friends: </span>
+                {{> SharingWithCode entryCode=_id}}
+              </div>
+            {{/if}}
             {{> MiniActiveLeagueDetails}}
           </div>
-
-          <div class="col-xs-12 col-lg-6 col-md-6 col-sm-6">
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-lg-12 col-md-12 col-sm-12">
             {{> KillerChoiceWidget}}
           </div>
         </div>
@@ -70,18 +77,6 @@
             {{/if}}
           </div>
         {{/unless}}
-
-        {{#if acceptingNewMembers}}
-          <div class="col-xs-12 col-lg-12 col-md-12">
-            <span>Invite friends: </span>
-            <ul class="sharingButtonsList display-inline">
-              <li><a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fkiller.football&text=Join+my+league+on+killerDOTfootball+-+entry+code%3A+{{_id}}" class="btn btn-default btn-twitter"><i class="fa fa-twitter"></i></a></li>
-              <li><a id="facebookNewLeagueShare" class="btn btn-default btn-facebook facebookShare"><i class="fa fa-facebook"></i></a></li>
-              <li><a id="emailNewLeagueShare" class="btn btn-default btn-email"><i class="fa fa-envelope"></i></a></li>
-            </ul>
-          </div>
-        {{/if}}
-
       </div>
     </div>
   </div>
