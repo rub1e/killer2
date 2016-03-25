@@ -11,7 +11,7 @@
 </template>
 
 <template name="LeaguePanel">
-  <div id="LeaguePanel">
+  <div class="LeaguePanel">
     <div class="panel panel-success">
 
       <div class="panel-heading">
@@ -25,15 +25,15 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-xs-12 col-md-6 col-sm-12 col-lg-6">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             {{#if acceptingNewMembers}}
               {{> SharingWithCode entryCode=_id}}
             {{else}}
               {{> MiniActiveLeagueDetails}}
             {{/if}}
-            <div class="col-xs-12 col-lg-6 col-md-6 col-sm-12">
-              {{> KillerChoiceWidget}}
-            </div>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            {{> KillerChoiceWidget}}
           </div>
         </div>
 
@@ -79,7 +79,7 @@
 </template>
 
 <template name="MiniActiveLeagueDetails">
-  <div id="MiniActiveLeagueDetails">
+  <div class="MiniActiveLeagueDetails">
     <ul>
       {{#if acceptingNewMembers}}
         {{#if equals playersStarted 1}}
