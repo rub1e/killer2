@@ -21,6 +21,10 @@ body {
   background-size: cover;
 }
 
+.entry-code {
+  font-weight: bold;
+}
+
 .bigLogo {
   max-height : 100px;
 }
