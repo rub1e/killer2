@@ -1,19 +1,20 @@
-<template name="KillerGameweekMatches">
-  <div id="KillerGameweekMatches">
-    <table>
-      <thead>
-      </thead>
-      <tbody>
-        <tr>
+<template name="KillerGameWeekMatches">
+  <div id="KillerGameWeekMatches">
+    <div class="container-fluid match-border">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12  match-date">
+          <span>Fixtures - deadline {{formatDate currentDeadline "deadlineDate"}} (<a class="show-hide-fixtures" id="showHideFixtures" data-toggle="collapse" href="#collapseFixtures" aria-expanded="false">{{showHideFixtures}} <span class="caret"></span></a>)</span>
+        </div>
+      </div>
+      <div class="row row-centered collapse" id="collapseFixtures">
         {{#each listOfCurrentMatches}}
-          <td>
-            <span>{{home}}</span>
-            <br><span>v</span>
-            <span>{{away}}</span>
-          </td>
+        <div class="col-xs-1 col-sm-1 col-md-1 col-centered match-text">
+          <span class="home-team">{{home}}</span>
+          <p class="horizontal-line"></p>
+          <span class="away-team">{{away}}</span>
+        </div>
         {{/each}}
-        </tr>
-      </tbody>
-    </table>
+      </div>
+    </div>
   </div>
 </template>

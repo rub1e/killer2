@@ -17,25 +17,25 @@
           {{#if currentUser}}
             <div class="collapse navbar-collapse collapsingMenu">
               <ul class="nav navbar-nav navbar-left">
-                <li><button class="btn modalButton" data-modal="modalStartKillerLeague" id="buttonStartKillerLeague">Start a league</button></li>
-                <li><button class="btn modalButton" data-modal="modalJoinKillerLeague" id="buttonJoinKillerLeague">Join a league</button></li>
-                <li><button class="btn modalButton" data-modal="modalKillerRules" id="buttonKillerRules">Full rules</button></li>
-                <li><button class="btn modalButton" data-modal="modalGettingStarted" id="buttonGettingStarted">Getting started</button></li>
+                <li><a class="modalButton" data-modal="modalStartKillerLeague" id="buttonStartKillerLeague">Start a league</a></li>
+                <li><a class="modalButton" data-modal="modalJoinKillerLeague" id="buttonJoinKillerLeague">Join a league</a></li>
+                <li><a class="modalButton" data-modal="modalKillerRules" id="buttonKillerRules">Full rules</a></li>
+                <li><a class="modalButton" data-modal="modalGettingStarted" id="buttonGettingStarted">Getting started</a></li>
               </ul>
 
               <ul class="nav navbar-nav navbar-right">
-                <li>{{> MyKillerAccount}}</li>
+                {{> MyKillerAccount}}
               </ul>
 
             </div><!-- /.navbar-collapse -->
           {{else}}
             <div class="collapse navbar-collapse collapsingMenu">
               <ul class="nav navbar-nav navbar-left">
-                <li><button class="btn modalButton" data-modal="modalKillerRules" id="buttonKillerRules">Full rules</button></li>
-                <li><button class="btn modalButton" data-modal="modalGettingStarted" id="buttonGettingStarted">Getting started</button></li>
+                <li><button class="btn modalButton navbar-btn" data-modal="modalKillerRules" id="buttonKillerRules">Full rules</button></li>
+                <li><button class="btn modalButton navbar-btn" data-modal="modalGettingStarted" id="buttonGettingStarted">Getting started</button></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
-                <li><button class="btn modalButton" data-modal="modalLoginForm">Log in</button></li>
+                <li><button class="btn modalButton navbar-btn" data-modal="modalLoginForm">Log in</button></li>
               </ul>
             </div>
           {{/if}}

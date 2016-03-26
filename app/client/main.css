@@ -38,6 +38,13 @@ body {
   padding : 0 5px;
 }
 
+@media (max-width: 991px){
+  .navbar-nav > li {
+    float: left;
+    width: 50%;
+  }
+}
+
 .killer-dot {
   font-size: 50%;
 }
@@ -73,6 +80,7 @@ body {
 
 .LeaguePanel {
   display: inline-block;
+  max-width: 400px;
 }
 
 @media only screen and (min-width : 768px) {

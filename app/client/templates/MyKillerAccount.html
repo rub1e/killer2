@@ -1,18 +1,12 @@
 <template name="MyKillerAccount">
-  <div id="MyKillerAccount">
-    <ul class="nav nav-pills">
-      <li role="presentation" class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-          Account details <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu">
-          <li>Logged in as {{loggedInUserFullName}}</li>
-          <li><button id="changeEmailButton" class="modalButton" data-modal="modalChangeEmailForm">Change email</button></li>
-          <li><button id="changePwdButton" class="modalButton" data-modal="modalChangePwdForm">Change password</button></li>
-          <li><button id="logoutButton">Logout</button></li>
-          <li><a href="mailto:chairman@killer.football?subject=Help">Email help</a></li>
-        </ul>
-      </li>
-    </ul>
-  </div>
+<li class="dropdown">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Account details <span class="caret"></span></a>
+  <ul class="dropdown-menu">
+    <li class="navbar-link">Logged in as {{loggedInUserFullName}}</li>
+    <li class="navbar-link"><a href="#" id="changeEmailButton" class="modalButton" data-modal="modalChangeEmailForm">Change email</a></li>
+    <li class="navbar-link"><a href="#" id="changePwdButton" class="modalButton" data-modal="modalChangePwdForm">Change password</a></li>
+    <li class="navbar-link"><a href="#" id="logoutButton">Logout</a></li>
+    <li class="navbar-link"><a href="mailto:chairman@killer.football?subject=Help">Email help</a></li>
+  </ul>
+</li>
 </template>
