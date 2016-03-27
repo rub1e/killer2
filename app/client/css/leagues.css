@@ -63,4 +63,31 @@
   list-style-type: none;
   padding: 0;
   margin: 0;
+  text-align: left;
+}
+
+.killerChoiceForm select {
+  width : auto !important;
+  display: inline;
+}
+
+.killerChoiceForm .form-group, .repickChoiceForm .btn {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+/*show hide panels*/
+
+.hidden-mobile-details.in, .hidden-mobile-details.collapsing {
+  display: block !important;
+}
+
+.show-hide-info {
+
+}
+
+.two-cols {
+  columns: 2;
+  -webkit-columns: 2;
+  -moz-columns: 2;
 }

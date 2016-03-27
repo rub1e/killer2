@@ -1,7 +1,7 @@
 <template name="KillerLeagues">
   <div id="KillerLeagues">
     <!-- TODO: centre updating stuff in div-->
-    {{#unless noLeagues}}
+    {{#unless leaguesCount}}
       {{> WelcomeNote}}
     {{else}}
       {{#if equals currentGameStatus "updating"}}

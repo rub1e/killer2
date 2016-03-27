@@ -1,7 +1,6 @@
 <template name="KillerAliveLeagues">
   <div id="KillerAliveLeagues">
     <div class="container-fluid">
-          <!-- TODO: if no leagues, display instructions -->
           <!-- TODO: contextual classes -->
       {{#each this}}
         {{> LeaguePanel}}
@@ -37,42 +36,43 @@
           </div>
         </div>
 
-        {{#unless equals playersStarted 1}}
-          <div>
-            <a class="show-hide-info-live" data-toggle="collapse" href="#collapseLivePlayers{{_id}}" aria-expanded="false">{{showHidePlayersChoices}} <span class="caret"></span></a>
-            <div id="collapseLivePlayers{{_id}}" class="collapse hidden-mobile-details-alive">
+        <div>
+          <a class="show-hide-info" data-toggle="collapse" href="#collapseDetails{{_id}}" aria-expanded="false"><span class="caret"></span><span class="caret"></span><span class="caret"></span> {{showHidePlayersChoices}} <span class="caret"></span><span class="caret"></span><span class="caret"></span></a>
+          <div id="collapseDetails{{_id}}" class="collapse-details collapse">
+            <div class="row">
               {{#if acceptingNewMembers}}
-                <ul class="players-list">
-                  {{#each members}}
-                    <li><i class="fa fa-futbol-o"></i> {{memberName}}</li>
-                  {{/each}}
-                </ul>
+                <div class="col-xs-12 col-lg-12">
+                  <ul class="players-list">
+                    <h5>The following players have joined:</h5>
+                    {{#each members}}
+                      <li><i class="fa fa-futbol-o"></i> {{memberName}}</li>
+                    {{/each}}
+                  </ul>
+                </div>
               {{else}}
-                <ul class="players-list">
-                  {{#each aliveMembers}}
-                    <li><i class="fa fa-futbol-o"></i> {{memberName}}
-                      {{#if equals currentGameStatus "active"}}
-                         - {{memberChoice}}{{#if isAutoPick}} (autopick){{/if}}
-                      {{/if}}
-                    </li>
-                  {{/each}}
-                </ul>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                  <ul class="players-list">
+                    <h5>Active players</h5>
+                    {{#each aliveMembers}}
+                      <li><i class="fa fa-futbol-o"></i> {{memberName}}
+                        {{#if equals currentGameStatus "active"}}
+                           - {{memberChoice}}{{#if isAutoPick}} (autopick){{/if}}
+                        {{/if}}
+                      </li>
+                    {{/each}}
+                  </ul>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                  <ul class="players-list">
+                    {{#each deadMembers}}
+                      <li><i class="fa fa-bomb"></i> {{memberName}} (round {{diedInRound}})</li>
+                    {{/each}}
+                  </ul>
+                </div>
               {{/if}}
             </div>
-
-            {{#if deadMembers}}
-              <br>
-              <a class="show-hide-info-dead" data-toggle="collapse" href="#collapseDeadPlayers{{_id}}" aria-expanded="false">{{showHideDead}} eliminated players <span class="caret"></span></a>
-              <div id="collapseDeadPlayers{{_id}}" class="collapse hidden-mobile-details-dead">
-                <ul class="two-cols players-list">
-                  {{#each deadMembers}}
-                    <li><i class="fa fa-bomb"></i> {{memberName}} (round {{diedInRound}})</li>
-                  {{/each}}
-                </ul>
-              </div>
-            {{/if}}
           </div>
-        {{/unless}}
+        </div>
       </div>
     </div>
   </div>
@@ -81,16 +81,10 @@
 <template name="MiniActiveLeagueDetails">
   <div class="MiniActiveLeagueDetails">
     <ul>
-      {{#if acceptingNewMembers}}
-        {{#if equals playersStarted 1}}
-          <li>You're the only player so far...</li>
-        {{else}}
-          <li>{{playersStarted}} players have joined</li>
-        {{/if}}
-        <li>Entry code: <span class="entry-code">{{_id}}</span></li>
-      {{else}}
-        <li>Round: {{round}}</li>
-        <li>Players left/started: {{playersLeft}} / {{playersStarted}}</li>
+      <li>Round: {{round}}</li>
+      <li>Players left/started: {{playersLeft}} / {{playersStarted}}</li>
+      {{#if currentPlayerDiedInRound}}
+        <li>You were eliminated in round {{currentPlayerDiedInRound}}</li>
       {{/if}}
     </ul>
   </div>

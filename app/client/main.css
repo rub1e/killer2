@@ -127,21 +127,6 @@ text-align: center;
 }
 
 
-
-.killerChoiceForm select {
-  width : auto !important;
-  display: inline;
-}
-
-.killerChoiceForm .form-group, .repickChoiceForm .btn {
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-
-/*@media only screen and (max-width: 405px) {
-
-}*/
-
 .no-pad-left {
   padding-left: 0;
 }
@@ -167,23 +152,6 @@ text-align: center;
   border-radius: 5px;
   text-align: center;
 }
-
-/*show hide panels*/
-
-.hidden-mobile-details.in, .hidden-mobile-details.collapsing {
-  display: block !important;
-}
-
-.show-hide-info {
-
-}
-
-.two-cols {
-  columns: 2;
-  -webkit-columns: 2;
-  -moz-columns: 2;
-}
-
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,

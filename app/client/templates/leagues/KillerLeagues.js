@@ -1,6 +1,6 @@
 Template.KillerLeagues.helpers({
 
-  noLeagues : function () {
+  leaguesCount : function () {
     return Leagues.find({"members.playerId" : Meteor.userId(), leagueStatus : {$ne : "ended"}}).count();
   },
 
@@ -20,7 +20,6 @@ Template.KillerLeagues.helpers({
       return Leagues.find({"members.playerId" : Meteor.userId(), leagueStatus : "ended"});
     }
     // TODO: add sorting
-    // TODO: table-layout auto
   },
 
   endedLeaguesExist : function () {

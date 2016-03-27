@@ -6,22 +6,16 @@ Template.KillerAliveLeagues.helpers({
 
 Template.LeaguePanel.events({
 
-  "click .show-hide-info-live" : function (event, template) {
-    var showHide = template.showHideLive.get() === "Show " ? "Hide " : "Show ";
-    template.showHideLive.set(showHide);
+  "click .show-hide-info" : function (event, template) {
+    var showHide = template.showHide.get() === "Show details" ? "Hide details" : "Show details";
+    template.showHide.set(showHide);
   },
-
-  "click .show-hide-info-dead" : function (event, template) {
-    var showHide = template.showHideDead.get() === "Show" ? "Hide" : "Show";
-    template.showHideDead.set(showHide);
-  }
 
 });
 
 
 Template.LeaguePanel.onCreated(function () {
-  this.showHideLive = new ReactiveVar("Show ");
-  this.showHideDead = new ReactiveVar("Show");
+  this.showHide = new ReactiveVar("Show details");
 });
 
 Template.LeaguePanel.helpers({
@@ -31,23 +25,22 @@ Template.LeaguePanel.helpers({
   },
 
   showHidePlayersChoices : function () {
-    var status = currentGameStatus();
-    var showHide = Template.instance().showHideLive.get();
-    if (status === "pending" && this.acceptingNewMembers) {
-      return showHide + "players so far";
-    } else if (status === "pending") {
-      return showHide + "active players";
-    } else if (status === "active") {
-      return showHide + "active players & teams picked";
-    }
-  },
-
-  showHideDead : function () {
-    return Template.instance().showHideDead.get();
+    return Template.instance().showHide.get();
   },
 
   memberName : function () {
-    return Meteor.users.findOne(this.playerId).fullName();
+    var member;
+    var chairman = Template.parentData(1).members[0].playerId;
+    if (this.playerId === Meteor.userId()) {
+      member = "You";
+    } else {
+      member = Meteor.users.findOne(this.playerId).fullName();
+    }
+    if (this.playerId === chairman) {
+      return member + " (chairman)";
+    } else {
+      return member;
+    }
   },
 
   memberChoice : function () {
@@ -69,6 +62,7 @@ Template.LeaguePanel.helpers({
   },
 
   isAutoPick : function () {
+    // because this is in an each block, go up one level to get league object
     var league = Template.parentData(1);
     var event = league.events[league.events.length - 1];
     if(event && event.round === league.round && event.autoPicks) {
@@ -81,6 +75,7 @@ Template.LeaguePanel.helpers({
 //MiniActiveLeagueDetails template
 
 Template.MiniActiveLeagueDetails.helpers({
+
   playersLeft: function () {
     return this.members.filter(function(a) {
       return a.diedInRound === 0;
@@ -89,6 +84,13 @@ Template.MiniActiveLeagueDetails.helpers({
 
   playersStarted: function () {
     return this.members.length;
+  },
+
+  currentPlayerDiedInRound : function () {
+    var currentPlayer = this.members.filter(function (a) {
+      return a.playerId === Meteor.userId();
+    });
+    return currentPlayer.diedInRound;
   }
 
 });
