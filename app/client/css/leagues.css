@@ -1,0 +1,66 @@
+
+#KillerAliveLeagues {
+  text-align: center;
+}
+
+.LeaguePanel {
+  display: inline-block;
+  max-width: 400px;
+}
+
+.leagueRow {
+  /*text-align: center;*/
+  /*background-color: green;*/
+}
+
+@media only screen and (min-width : 768px) {
+   .leagueRow.row {
+	 display: flex;
+	 flex-wrap: wrap;
+   }
+   .leagueRow.row > [class*='col-'] {
+	 display: flex;
+	 flex-direction: column;
+   }
+}
+
+.leagueText {
+  text-align: center;
+}
+
+.panel-deadline {
+  font-weight: bold;
+  text-align: center;
+  padding-bottom: 5px;
+}
+
+@media only screen and (max-width: 405px) {
+
+   .panel-body { font-size: 90%; }
+
+   .select-responsive {
+      height: 22px;
+      padding: 2px 5px;
+      font-size: 10px;
+      line-height: 1.5;
+      border-radius: 3px;
+      width: auto;
+    }
+
+    .btn-responsive, .form-responsive {
+      padding:5px 5px;
+      font-size:10px;
+      line-height: 1;
+    }
+}
+
+.MiniActiveLeagueDetails ul {
+  padding-left: 0;
+  list-style-type: none;
+}
+
+.players-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}

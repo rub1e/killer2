@@ -1,22 +1,26 @@
 <template name="KillerLeagues">
   <div id="KillerLeagues">
     <!-- TODO: centre updating stuff in div-->
-    {{#if equals currentGameStatus "updating"}}
-      {{> spinner}}
-      <p>
-        Leagues updating!
-      </p>
+    {{#unless noLeagues}}
+      {{> WelcomeNote}}
     {{else}}
-      {{#if endedLeaguesExist}}
-        <span>Showing {{leaguesShowing}} leagues <button type="btn btn-primary" id="leagueToggle">Show {{leaguesHidden}} leagues</button></span>
-      {{/if}}
-      {{#with userLeaguesList}}
-        {{#if equals leaguesShowing "active"}}
-          {{> KillerAliveLeagues}}
-        {{else}}
-          {{> KillerFinishedLeagues}}
+      {{#if equals currentGameStatus "updating"}}
+        {{> spinner}}
+        <p>
+          Leagues updating!
+        </p>
+      {{else}}
+        {{#if endedLeaguesExist}}
+          <span>Showing {{leaguesShowing}} leagues <button type="btn btn-primary" id="leagueToggle">Show {{leaguesHidden}} leagues</button></span>
         {{/if}}
-      {{/with}}
-    {{/if}}
+        {{#with userLeaguesList}}
+          {{#if equals leaguesShowing "active"}}
+            {{> KillerAliveLeagues}}
+          {{else}}
+            {{> KillerFinishedLeagues}}
+          {{/if}}
+        {{/with}}
+      {{/if}}
+    {{/unless}}
   </div>
 </template>

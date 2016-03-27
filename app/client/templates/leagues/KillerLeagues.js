@@ -1,5 +1,9 @@
 Template.KillerLeagues.helpers({
 
+  noLeagues : function () {
+    return Leagues.find({"members.playerId" : Meteor.userId(), leagueStatus : {$ne : "ended"}}).count();
+  },
+
   leaguesShowing : function () {
     return Template.instance().liveOrDead.get();
   },
@@ -11,7 +15,7 @@ Template.KillerLeagues.helpers({
   userLeaguesList : function () {
     var display = Template.instance().liveOrDead.get();
     if(display === "active") {
-      return Leagues.find({"members.playerId" : Meteor.userId(), leagueStatus : {$ne : "ended"}});
+        return Leagues.find({"members.playerId" : Meteor.userId(), leagueStatus : {$ne : "ended"}});
     } else {
       return Leagues.find({"members.playerId" : Meteor.userId(), leagueStatus : "ended"});
     }

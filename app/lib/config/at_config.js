@@ -39,7 +39,7 @@ AccountsTemplates.configure({
   //privacyUrl : undefined,
   //termsUrl : undefined,
   // hooks
-  onLogoutHook : function() {}, 
+  onLogoutHook : function() {},
   onSubmitHook : function(error, state) {
     if(!error){
       Modal.hide();
@@ -75,6 +75,6 @@ AccountsTemplates.addField({
 AccountsTemplates.configureRoute('changePwd');
 AccountsTemplates.configureRoute('forgotPwd');
 AccountsTemplates.configureRoute('resetPwd');
-AccountsTemplates.configureRoute('signIn');
+// AccountsTemplates.configureRoute('signIn');
 // AccountsTemplates.configureRoute('signUp');
 AccountsTemplates.configureRoute('verifyEmail');
