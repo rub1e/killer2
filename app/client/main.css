@@ -1,5 +1,19 @@
 html, body {
   font-family: "Roboto Slab", serif;
+  height: 100%;
+  min-height: 100%;
+}
+
+body {
+
+}
+
+#homeLayout {
+  position: relative;
+  min-height: 100%;
+  background-image: url("http://www.micronationalnews.com/wp-content/uploads/2015/06/Limes-Football-2015.jpg");
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 body {
@@ -14,6 +28,10 @@ body {
   body {
     padding-top: 56px;
   }
+}
+
+#KillerLeagues {
+  margin-top: 10px;
 }
 
 .getting-started a {
@@ -40,11 +58,6 @@ body {
   list-style-type: none;
   padding: 5px;
   margin-left : 0;
-}
-
-#KillerContent {
-  background-image: url("http://www.micronationalnews.com/wp-content/uploads/2015/06/Limes-Football-2015.jpg");
-  background-size: cover;
 }
 
 .entry-code {
@@ -200,9 +213,8 @@ text-align: center;
 
 /*footer*/
 
-/* TODO: font-size */
 .footer {
-  /*position: absolute;*/
+  position: absolute;
   bottom: 0;
   width: 100%;
   /* Set the fixed height of the footer here */
@@ -219,7 +231,7 @@ text-align: center;
 /* TODO: padding for left and right */
 .footerLeft {
   float: left;
-  font-size: 10px;
+  font-size: 9px;
 }
 
 .footerRight {
@@ -242,5 +254,15 @@ text-align: center;
   /* Remove the bottom border on the jumbotron for visual effect */
   .jumbotron {
     border-bottom: 0;
+  }
+}
+
+@media screen and (max-width : 768px) {
+  .footer {
+    font-size: 9px;
+    text-align: center;
+  }
+  .footer a {
+    font-size: 9px;
   }
 }
