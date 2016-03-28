@@ -1,17 +1,9 @@
 pLTeamsShort = function () {
-  var shortNames = [];
-  for (var i = 0; i < pLTeamsArray.length; i += 1) {
-    shortNames.push(pLTeamsArray[i].shortName);
-  }
-  return shortNames;
+  return ["ARS", "AVL", "BOU", "CHE", "CPL", "EVE", "LEI", "LIV", "MCI", "MUN", "NEW", "NOR", "SOU", "STK", "SUN", "SWA", "TOT", "WAT", "WBA", "WHU"];
 };
 
 pLTeamsLong = function () {
-  var longNames = [];
-  for (var i = 0; i < pLTeamsArray.length; i += 1) {
-    longNames.push(pLTeamsArray[i].longName);
-  }
-  return longNames;
+  return ["Arsenal", "Aston Villa", "Bournemouth", "Chelsea", "Crystal Palace", "Everton", "Leicester City", "Liverpool", "Manchester City", "Manchester United", "Newcastle United", "Norwich City", "Southampton", "Stoke City", "Sunderland", "Swansea City", "Tottenham Hotspur", "Watford", "West Bromwich Albion", "West Ham United"];
 };
 
 pLTeamsArray = [{longName : "Arsenal", shortName : "ARS"},

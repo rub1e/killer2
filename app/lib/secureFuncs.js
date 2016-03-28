@@ -129,6 +129,7 @@ SecureFuncs.activateGameWeek = function () {
 };
 
 SecureFuncs.denyJoiningLeague = function (code, player) {
+  console.log("deny");
   var entry = Leagues.findOne({_id : code});
   if(!entry) {
     return "Incorrect code: please check and try again";
