@@ -11,7 +11,7 @@
         </p>
       {{else}}
         {{#if endedLeaguesExist}}
-          <span>Showing {{leaguesShowing}} leagues <button type="btn btn-primary" id="leagueToggle">Show {{leaguesHidden}} leagues</button></span>
+          <p class="toggleLeagues">Showing {{leaguesShowing}} leagues <button type="btn btn-primary" id="leagueToggle">Show {{leaguesHidden}} leagues</button></p>
         {{/if}}
         {{#with userLeaguesList}}
           {{#if equals leaguesShowing "active"}}

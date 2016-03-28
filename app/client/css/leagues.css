@@ -91,3 +91,10 @@
   -webkit-columns: 2;
   -moz-columns: 2;
 }
+
+.toggleLeagues {
+  background: rgba(232,219,219,0.9);
+  text-align: center;
+  padding: 5px;
+  border-radius: 5px;
+}

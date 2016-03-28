@@ -11,7 +11,7 @@ body {
 #homeLayout {
   position: relative;
   min-height: 100%;
-  background-image: url("http://www.micronationalnews.com/wp-content/uploads/2015/06/Limes-Football-2015.jpg");
+  background-image: url("https://s3-eu-west-1.amazonaws.com/killerpicks/ball-bg.jpg");
   background-size: cover;
   background-attachment: fixed;
 }
