@@ -1,0 +1,64 @@
+.horizontal-line {
+  width:1.5em;
+  text-align:center;
+  border-bottom:
+  1px solid #000;
+  line-height:0.1em;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.home-team {
+  font-weight: bold;
+}
+
+/* centered columns styles */
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    padding-left: 0;
+}
+
+.match-border {
+  border: 2px solid red;
+  border-radius: 0 0 5px 5px;
+  border-top: none;
+  background-color: navy;
+  padding-top: 3px;
+  text-align: center;
+}
+
+.match-text {
+  font-family: "teko";
+  color: white;
+}
+
+@media only screen and (max-width : 321px) {
+  .match-text {
+    font-size: 10px;
+  }
+}
+
+.match-date {
+  color: white;
+  padding: 3px 0 5px 0;
+}
+
+.match-date > span {
+  border-bottom: 1px dotted red;
+}
+
+@media only screen and (max-width : 400px) {
+  .match-date {
+    font-size: 10px;
+  }
+}
+
+.show-hide {
+  color: #9933ff !important;
+}

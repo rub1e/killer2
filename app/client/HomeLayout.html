@@ -1,15 +1,16 @@
 <template name="HomeLayout">
   <!-- <body> -->
+  <div id="homeLayout">
+
     <div>
       {{> Template.dynamic template=nav}}
     </div>
 
-    <div>
+    <div class="layoutDiv">
       {{> Template.dynamic template=main}}
     </div>
 
-    <footer>
       {{> Template.dynamic template=footer}}
-    </footer>
+  </div>
   <!-- </body> -->
 </template>

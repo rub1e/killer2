@@ -1,32 +1,92 @@
 <template name="KillerAliveLeagues">
   <div id="KillerAliveLeagues">
-    <div class="table-responsive table-wrapper">
-      <table id="KillerAliveTable" class="table table-hover">
-        <thead>
-          <tr>
-            <!-- TODO: give span below class of small text -->
-            <th>League name<br><span>(Tap for more details)</span></th>
-            <th>Pick for gameweek {{formatDate currentGameWeek "gameWeekDate"}}</th>
-            <th>Details</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- TODO: if no leagues, display instructions -->
-          <!-- TODO: shade dead leagues red??? And sort to bottom??-->
-          {{#each this}}
-            <tr>
-              <td><button class="btn leagueDetailsButton" data-modal="modalFullActiveLeagueDetails">{{leagueName}}</button></td>
-              <td>
-                {{> KillerChoiceWidget}}
-                {{#if acceptingNewMembers}}
-                  (Starts on {{formatDate leagueDeadline "gameWeekDate"}})
-                {{/if}}
-              </td>
-              <td>{{> MiniActiveLeagueDetails}}</td>
-            </tr>
-          {{/each}}
-        </tbody>
-      </table>
+    <div class="container-fluid">
+          <!-- TODO: contextual classes -->
+      {{#each this}}
+        {{> LeaguePanel}}
+      {{/each}}
     </div>
+  </div>
+</template>
+
+<template name="LeaguePanel">
+  <div class="LeaguePanel">
+    <div class="panel panel-success">
+
+      <div class="panel-heading">
+        <h3 class="panel-title">League: <span class="league-name">"{{leagueName}}"</span></h3>
+      </div>
+
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-xs-12 panel-deadline">
+            <span>DEADLINE: {{formatDate leagueDeadline "deadlineDate"}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            {{#if acceptingNewMembers}}
+              {{> SharingWithCode entryCode=_id}}
+            {{else}}
+              {{> MiniActiveLeagueDetails}}
+            {{/if}}
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            {{> KillerChoiceWidget}}
+          </div>
+        </div>
+
+        <div>
+          <a class="show-hide-info" data-toggle="collapse" href="#collapseDetails{{_id}}" aria-expanded="false"><span class="caret"></span><span class="caret"></span><span class="caret"></span> {{showHidePlayersChoices}} <span class="caret"></span><span class="caret"></span><span class="caret"></span></a>
+          <div id="collapseDetails{{_id}}" class="collapse-details collapse">
+            <div class="row">
+              {{#if acceptingNewMembers}}
+                <div class="col-xs-12 col-lg-12">
+                  <ul class="players-list">
+                    <h5>The following players have joined:</h5>
+                    {{#each members}}
+                      <li><i class="fa fa-futbol-o"></i> {{memberName}}</li>
+                    {{/each}}
+                  </ul>
+                </div>
+              {{else}}
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                  <ul class="players-list">
+                    <h5>Active players</h5>
+                    {{#each aliveMembers}}
+                      <li><i class="fa fa-futbol-o"></i> {{memberName}}
+                        {{#if equals currentGameStatus "active"}}
+                           - {{memberChoice}}{{#if isAutoPick}} (autopick){{/if}}
+                        {{/if}}
+                      </li>
+                    {{/each}}
+                  </ul>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                  <ul class="players-list">
+                    <h5>Eliminated players</h5>
+                    {{#each deadMembers}}
+                      <li><i class="fa fa-bomb"></i> {{memberName}} (round {{diedInRound}})</li>
+                    {{/each}}
+                  </ul>
+                </div>
+              {{/if}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="MiniActiveLeagueDetails">
+  <div class="MiniActiveLeagueDetails">
+    <ul>
+      <li>Round: {{round}}</li>
+      <li>Players left/started: {{playersLeft}} / {{playersStarted}}</li>
+      {{#if currentPlayerDiedInRound}}
+        <li>You were eliminated in round {{currentPlayerDiedInRound}}</li>
+      {{/if}}
+    </ul>
   </div>
 </template>

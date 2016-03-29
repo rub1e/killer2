@@ -1,7 +1,7 @@
 Meteor.startup(function() {
 
   WebFontConfig = {
-    google: { families: [ 'Roboto+Slab::latin' ] }
+    google: { families: [ 'Roboto+Slab::latin', 'Teko:400,300,700:latin' ] }
   };
   (function() {
     var wf = document.createElement('script');

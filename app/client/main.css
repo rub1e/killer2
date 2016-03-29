@@ -1,5 +1,19 @@
 html, body {
   font-family: "Roboto Slab", serif;
+  height: 100%;
+  min-height: 100%;
+}
+
+body {
+
+}
+
+#homeLayout {
+  position: relative;
+  min-height: 100%;
+  background-image: url("https://s3-eu-west-1.amazonaws.com/killerpicks/ball-bg.jpg");
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 body {
@@ -7,13 +21,76 @@ body {
   /*margin-bottom: 60px;*/
 }
 
-#KillerContent {
-  background-image: url("http://www.micronationalnews.com/wp-content/uploads/2015/06/Limes-Football-2015.jpg");
-  background-size: cover;
+body {
+  padding-top: 51px;
+}
+@media (max-width: 767px) {
+  body {
+    padding-top: 56px;
+  }
+}
+
+#KillerLeagues {
+  margin-top: 10px;
+  padding-bottom: 60px;
+}
+
+.getting-started a {
+  color: #9933ff !important;
+}
+
+.getting-started {
+  background-color: navy;
+  color: white;
+  border-radius: 3px;
+}
+
+.getting-started > p {
+  padding : 5px;
+  text-align: left;
+}
+
+.getting-started > h4 {
+  padding-top : 8px;
+}
+
+.getting-started > ul {
+  text-align : left;
+  list-style-type: none;
+  padding: 5px;
+  margin-left : 0;
+}
+
+.entry-code {
+  font-weight: bold;
+}
+
+.bold {
+  font-weight: bold;
 }
 
 .bigLogo {
   max-height : 100px;
+}
+
+.little-Logo {
+  height : 100%;
+  width: auto;
+}
+
+.navbar-brand {
+  padding : 0 5px;
+}
+
+.nav a {
+  cursor : pointer;
+}
+
+@media (max-width: 770px){
+  .dropdown-menu > li {
+    float: left;
+    width: 50%;
+  }
 }
 
 .killer-dot {
@@ -38,6 +115,56 @@ body {
 
 .navbar {
   margin-bottom: 0;
+}
+
+
+.full-height  {
+  position: relative;
+}
+
+.leagueText {
+text-align: center;
+}
+
+.pick-name {
+  font-weight: bold;
+  color: blue;
+}
+
+.league-name {
+  /*background-color: red;
+  color: white;
+  border-bottom-right-radius: 12px 12px;
+  text-align: left;
+  width: auto;
+  padding-left: 0.6em;*/
+}
+
+
+.no-pad-left {
+  padding-left: 0;
+}
+
+/*@media (max-width: 768px) {
+  .btn-responsive, .form-responsive {
+    padding:2px 4px;
+    font-size:80%;
+    line-height: 1;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+  .btn-responsive {
+    padding:4px 9px;
+    font-size:90%;
+    line-height: 1.2;
+  }
+}*/
+
+.KillerChoiceWidget {
+  background-color:rgba(70,214,11,0.7);
+  border-radius: 5px;
+  text-align: center;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -84,58 +211,11 @@ body {
   font-size: 21px;
 }
 
-/*Sharing buttons*/
-
-/* TODO: Change border radius */
-/* TODO: move to its own css file */
-
-.sharingButtonsList li {
-  display: inline;
-}
-
-.btn-twitter {
-    background: #00acee;
-    border-radius: 0;
-    color: #fff
-}
-.btn-twitter:link, .btn-twitter:visited {
-    color: #fff
-}
-.btn-twitter:active, .btn-twitter:hover {
-    background: #0087bd;
-    color: #fff
-}
-.btn-facebook {
-    background: #3b5998;
-    border-radius: 0;
-    color: #fff
-}
-.btn-facebook:link, .btn-facebook:visited {
-    color: #fff
-}
-.btn-facebook:active, .btn-facebook:hover {
-    background: #30477a;
-    color: #fff
-}
-/* TODO: change colours for email */
-.btn-email {
-    background: #3b5998;
-    border-radius: 0;
-    color: #fff
-}
-.btn-email:link, .btn-email:visited {
-    color: #fff
-}
-.btn-email:active, .btn-email:hover {
-    background: #30477a;
-    color: #fff
-}
 
 /*footer*/
 
-/* TODO: font-size */
 .footer {
-  /*position: absolute;*/
+  position: absolute;
   bottom: 0;
   width: 100%;
   /* Set the fixed height of the footer here */
@@ -152,7 +232,7 @@ body {
 /* TODO: padding for left and right */
 .footerLeft {
   float: left;
-  font-size: 10px;
+  font-size: 9px;
 }
 
 .footerRight {
@@ -175,5 +255,15 @@ body {
   /* Remove the bottom border on the jumbotron for visual effect */
   .jumbotron {
     border-bottom: 0;
+  }
+}
+
+@media screen and (max-width : 768px) {
+  .footer {
+    font-size: 9px;
+    text-align: center;
+  }
+  .footer a {
+    font-size: 9px;
   }
 }

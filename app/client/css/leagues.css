@@ -1,0 +1,100 @@
+
+#KillerAliveLeagues {
+  text-align: center;
+}
+
+.LeaguePanel {
+  display: inline-block;
+  max-width: 400px;
+}
+
+.leagueRow {
+  /*text-align: center;*/
+  /*background-color: green;*/
+}
+
+@media only screen and (min-width : 768px) {
+   .leagueRow.row {
+	 display: flex;
+	 flex-wrap: wrap;
+   }
+   .leagueRow.row > [class*='col-'] {
+	 display: flex;
+	 flex-direction: column;
+   }
+}
+
+.leagueText {
+  text-align: center;
+}
+
+.panel-deadline {
+  font-weight: bold;
+  text-align: center;
+  padding-bottom: 5px;
+}
+
+@media only screen and (max-width: 405px) {
+
+   .panel-body { font-size: 90%; }
+
+   .select-responsive {
+      height: 22px;
+      padding: 2px 5px;
+      font-size: 10px;
+      line-height: 1.5;
+      border-radius: 3px;
+      width: auto;
+    }
+
+    .btn-responsive, .form-responsive {
+      padding:5px 5px;
+      font-size:10px;
+      line-height: 1;
+    }
+}
+
+.MiniActiveLeagueDetails ul {
+  padding-left: 0;
+  list-style-type: none;
+}
+
+.players-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.killerChoiceForm select {
+  width : auto !important;
+  display: inline;
+}
+
+.killerChoiceForm .form-group, .repickChoiceForm .btn {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+/*show hide panels*/
+
+.hidden-mobile-details.in, .hidden-mobile-details.collapsing {
+  display: block !important;
+}
+
+.show-hide-info {
+
+}
+
+.two-cols {
+  columns: 2;
+  -webkit-columns: 2;
+  -moz-columns: 2;
+}
+
+.toggleLeagues {
+  background: rgba(232,219,219,0.9);
+  text-align: center;
+  padding: 5px;
+  border-radius: 5px;
+}

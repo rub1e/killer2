@@ -12,6 +12,20 @@ Template.KillerChoiceWidget.helpers({
       //if choices are up to date, length of array is round - 1; if choices not up to date, length is round - 2, so undefined
       return choicesArray[this.round -1];
     }
+  },
+
+  userDiedInRound : function () {
+    return this.members.filter(function(a) {
+      return a.playerId === Meteor.userId();
+    })[0].diedInRound;
+  },
+
+  lastChoice : function () {
+    var choicesArray = this.members.filter(function (a) {
+      return a.playerId === Meteor.userId();
+    })[0].picks;
+
+    return choicesArray[choicesArray.length - 1];
   }
 
 });
@@ -22,7 +36,7 @@ Template.KillerChoiceWidget.events({
     event.preventDefault();
     var id = "#DD_" + this._id;
     var choice = $(id).find(":selected").text();
-    if(choice !== "Pick this week's team"){
+    if(choice !== "Pick a team"){
       Meteor.call("makeChoice", choice, this._id);
     }
   },

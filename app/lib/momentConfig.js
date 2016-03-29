@@ -1,4 +1,6 @@
 MomentDateFormats = {
-  deadlineDate : "hh:mm a, ddd Do MMM, YYYY",
-  gameWeekDate : "ddd Do MMM, YYYY"
+  deadlineDate : "hh:mm a, ddd Do MMM",
+  startingDate : "ddd Do MMM (hh:mm a)",
+  gameWeekDate : "ddd Do MMM",
+  dayMonthDate : "Do MMM"
 };

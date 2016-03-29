@@ -29,17 +29,17 @@ AccountsTemplates.configure({
   },
   // client-side validation
   continuousValidation : false,
-  negativeValidation : true, //TODO check what this looks like!
+  negativeValidation : true,
   positiveValidation : false,
-  negativeFeedback : true, //TODO again
+  negativeFeedback : true,
   positiveFeedback : false,
   showValidating : true,
   // links
   homeRoutePath : "/",
-  //privacyUrl : undefined, //TODO modal??
-  //termsUrl : undefined, //TODO modal??
+  //privacyUrl : undefined,
+  //termsUrl : undefined,
   // hooks
-  onLogoutHook : function() {}, //TODO redirect to / ???
+  onLogoutHook : function() {},
   onSubmitHook : function(error, state) {
     if(!error){
       Modal.hide();
@@ -72,11 +72,9 @@ AccountsTemplates.addField({
   errStr : "Please enter your last name without special characters"
 });
 
-//TODO Add location and fave team etc.??
-
 AccountsTemplates.configureRoute('changePwd');
 AccountsTemplates.configureRoute('forgotPwd');
 AccountsTemplates.configureRoute('resetPwd');
-AccountsTemplates.configureRoute('signIn');
+// AccountsTemplates.configureRoute('signIn');
 // AccountsTemplates.configureRoute('signUp');
 AccountsTemplates.configureRoute('verifyEmail');

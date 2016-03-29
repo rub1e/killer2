@@ -1,24 +1,26 @@
 <template name="KillerLeagues">
   <div id="KillerLeagues">
     <!-- TODO: centre updating stuff in div-->
-    {{#if equals currentGameStatus "updating"}}
-      {{> spinner}}
-      <p>
-        Leagues updating!
-      </p>
+    {{#unless leaguesCount}}
+      {{> WelcomeNote}}
     {{else}}
-    <!-- TODO: add toggle for alive/dead leagues -->
-    <!-- TODO: this could be redone to only display toggle if there are any dead leagues but whole thing would have to be redone. Wrap it in a Leagues template and pass the data context from here, then display alive or dead tables based on status -->
-      {{#if endedLeaguesExist}}
-        <span>Showing {{leaguesShowing}} leagues <button type="btn btn-primary" id="leagueToggle">Show {{leaguesHidden}} leagues</button></span>
-      {{/if}}
-      {{#with userLeaguesList}}
-        {{#if equals leaguesShowing "active"}}
-          {{> KillerAliveLeagues}}
-        {{else}}
-          {{> KillerFinishedLeagues}}
+      {{#if equals currentGameStatus "updating"}}
+        {{> spinner}}
+        <p>
+          Leagues updating!
+        </p>
+      {{else}}
+        {{#if endedLeaguesExist}}
+          <p class="toggleLeagues">Showing {{leaguesShowing}} leagues <button type="btn btn-primary" id="leagueToggle">Show {{leaguesHidden}} leagues</button></p>
         {{/if}}
-      {{/with}}
-    {{/if}}
+        {{#with userLeaguesList}}
+          {{#if equals leaguesShowing "active"}}
+            {{> KillerAliveLeagues}}
+          {{else}}
+            {{> KillerFinishedLeagues}}
+          {{/if}}
+        {{/with}}
+      {{/if}}
+    {{/unless}}
   </div>
 </template>

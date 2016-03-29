@@ -1,0 +1,59 @@
+.SharingWithCode {
+  text-align: center;
+}
+
+.sharingButtonsList .btn {
+
+}
+
+.SharingWithCode ul {
+  padding-left: 0;
+}
+
+/* TODO: Change border radius */
+
+.sharingButtonsList li {
+  display: inline;
+}
+
+.display-inline {
+  display: inline;
+}
+
+.btn-twitter {
+    background: #00acee;
+    border-radius: 0;
+    color: #fff
+}
+.btn-twitter:link, .btn-twitter:visited {
+    color: #fff
+}
+.btn-twitter:active, .btn-twitter:hover {
+    background: #0087bd;
+    color: #fff
+}
+.btn-facebook {
+    background: #3b5998;
+    border-radius: 0;
+    color: #fff
+}
+.btn-facebook:link, .btn-facebook:visited {
+    color: #fff
+}
+.btn-facebook:active, .btn-facebook:hover {
+    background: #30477a;
+    color: #fff
+}
+/* TODO: change colours for email */
+.btn-email {
+    background: #353333;
+    border-radius: 0;
+    color: #fff
+}
+.btn-email:link, .btn-email:visited {
+    color: #fff
+}
+.btn-email:active, .btn-email:hover {
+    background: #171616;
+    color: #fff
+}

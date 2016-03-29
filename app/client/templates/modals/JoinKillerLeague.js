@@ -28,6 +28,8 @@ Template.JoinKillerLeague.events({
       if(!error) {
        template.errorMessage.set(result);
        if(result === undefined) {
+         console.log("preview");
+
           template.displayControlJoin.set("preview");
           template.leagueCode.set(code);
         }

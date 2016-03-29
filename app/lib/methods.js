@@ -6,6 +6,7 @@ Meteor.methods({
 
   joinLeaguePreviewCheck : function (code) {
     // TODO: check return
+    console.log("check");
     return SecureFuncs.denyJoiningLeague(code, Meteor.userId());
   },
 
