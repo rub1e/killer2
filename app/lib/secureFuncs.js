@@ -25,6 +25,7 @@ SecureFuncs.randomPickSweep = function (callback) {
         if (arrayOfPlayingTeams("long").indexOf(element.picks[doc.round - 1]) === -1) {
           Leagues.update({_id : doc._id, "members.playerId" : element.playerId}, {$pop : {"members.$.picks" : 1}}, function (error, response) {
             SecureFuncs.makeRandomPick(element.picks, doc._id, element.playerId);
+            autoPickersArray.push(element.playerId);
           });
         }
       }
@@ -68,7 +69,7 @@ SecureFuncs.finishRound = function (callback) {
     var winnersIRL = Matches.findOne({killerRound : currentKillerRound()}).winners;
 
     liveLeaguesCursor.forEach(function (doc) {
-
+      console.log("name", doc.leagueName);
       var losers = [];
       var winners = [];
       var aliveMembers = doc.members.filter(function (a) {
@@ -103,7 +104,9 @@ SecureFuncs.finishRound = function (callback) {
 
 SecureFuncs.loseLeagueLives = function (id, losers, round) {
   // TODO: check the query operator works
-  Leagues.update({_id : id, "members.playerId" : {$in : losers}}, {$set : {"members.diedInRound" : round}}, {multi : true});
+  losers.forEach(function (element, index, array) {
+    Leagues.update({_id : id, "members.playerId" : element}, {$set : {"members.$.diedInRound" : round}});
+  });
   Leagues.update({_id : id}, {$inc : {round : 1}});
 };
 
@@ -119,7 +122,8 @@ SecureFuncs.announceWinner = function (id, winner) {
 };
 
 SecureFuncs.activateGameWeek = function () {
-  Leagues.update({round : 0, dateStarting : nextGameWeek()},{$set : {round : 1}}, function (error, response) {
+  var nextGW = new Date(nextGameWeek()).toDateString();
+  Leagues.update({round : 0, dateStarting : nextGW},{$set : {round : 1}}, function (error, response) {
     if(error) {
       console.log(error);
     } else {

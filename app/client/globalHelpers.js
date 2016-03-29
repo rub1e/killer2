@@ -50,3 +50,8 @@ Template.registerHelper("pLGameweeksRemainingOptions", function () {
 Template.registerHelper("currentDeadline", function () {
   return currentDeadline();
 });
+
+Template.registerHelper("shorten", function(team){
+  var index = pLTeamsLong().indexOf(team);
+  return pLTeamsShort()[index];
+});

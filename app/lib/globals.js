@@ -33,8 +33,9 @@ pLGameweeks = function () {
   objectArray.forEach(function (doc) {
     gWArray.push(doc.deadline);
   });
-  // TODO: sort by date?
-  return gWArray;
+  return gWArray.sort(function (a, b) {
+    return a > b;
+  });
 };
 
 pLGameweeksRemainingFormatted = function () {
@@ -76,16 +77,16 @@ arrayOfPlayingTeams = function (output) {
   }
 
   var playingTeams = [];
-  if (output === "short") {
+  if (output === "long") {
     matchesObjects.forEach(function (element, index, array) {
       playingTeams.push(element.home, element.away);
     });
   }
-  if (output === "long") {
+  if (output === "short") {
     matchesObjects.forEach(function (element, index, array) {
-      var homeIndex = pLTeamsShort().indexOf(element.home);
-      var awayIndex = pLTeamsShort().indexOf(element.away);
-      playingTeams.push(pLTeamsLong()[homeIndex], pLTeamsLong()[awayIndex]);
+      var homeIndex = pLTeamsLong().indexOf(element.home);
+      var awayIndex = pLTeamsLong().indexOf(element.away);
+      playingTeams.push(pLTeamsShort()[homeIndex], pLTeamsShort()[awayIndex]);
     });
   }
   return playingTeams;
