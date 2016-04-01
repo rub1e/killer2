@@ -24,6 +24,7 @@ SecureFuncs.randomPickSweep = function (callback) {
         // check in case inelegible team
         if (arrayOfPlayingTeams("long").indexOf(element.picks[doc.round - 1]) === -1) {
           Leagues.update({_id : doc._id, "members.playerId" : element.playerId}, {$pop : {"members.$.picks" : 1}}, function (error, response) {
+            autoPickersArray.push(element.playerId);
             SecureFuncs.makeRandomPick(element.picks, doc._id, element.playerId);
           });
         }
