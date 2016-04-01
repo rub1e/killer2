@@ -105,24 +105,25 @@ SecureFuncs.finishRound = function (callback) {
 };
 
 SecureFuncs.loseLeagueLives = function (id, losers, round) {
-  // TODO: check the query operator works
-  Leagues.update({_id : id, "members.playerId" : {$in : losers}}, {$set : {"members.diedInRound" : round}}, {multi : true});
+  losers.forEach(function (element, index, array) {
+    Leagues.update({_id : id, "members.playerId" : element}, {$set : {"members.$.diedInRound" : round}});
+  });
   Leagues.update({_id : id}, {$inc : {round : 1}});
 };
 
 SecureFuncs.forgiveDeath = function (id) {
   // TODO: place for forgiven leagues
   console.log("forgiven", id);
-  Leagues.update({_id : id}, {$inc : {round : 1}});
+  Leagues.update({_id : id}, {$inc : {round : 1}}, {multi : true});
 };
 
 SecureFuncs.announceWinner = function (id, winner) {
-  Leagues.update({_id : id}, {$set : {winner : winner, leagueStatus : "ended"}});
+  Leagues.update({_id : id}, {$set : {winner : winner, leagueStatus : "ended"}}, {multi : true});
   //TODO email winners and template for won leagues and trophies
 };
 
 SecureFuncs.activateGameWeek = function () {
-  Leagues.update({round : 0, dateStarting : nextGameWeek()},{$set : {round : 1}}, function (error, response) {
+  Leagues.update({round : 0, dateStarting : nextGameWeek()}, {$set : {round : 1}}, {multi : true}, function (error, response) {
     if(error) {
       console.log(error);
     } else {
