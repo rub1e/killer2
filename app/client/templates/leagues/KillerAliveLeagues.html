@@ -20,7 +20,11 @@
       <div class="panel-body">
         <div class="row">
           <div class="col-xs-12 panel-deadline">
-            <span>DEADLINE: {{formatDate leagueDeadline "deadlineDate"}}</span>
+            {{#if equals currentGameStatus "active"}}
+              <span>Matches are being played. See who your rivals picked below</span>
+            {{else}}
+              <span>DEADLINE: {{formatDate leagueDeadline "deadlineDate"}}</span>
+            {{/if}}
           </div>
         </div>
         <div class="row">
