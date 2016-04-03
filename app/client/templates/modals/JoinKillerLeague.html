@@ -12,16 +12,20 @@
   				</div>
 
   				<div class="modal-body">
-            <div id="joinLeagueForm" hidden={{showLeaguePreview}}>
-              <p>
-                If you've been sent a league entry code, paste it below. You will be able to review the details after pressing "submit".
-              </p>
-              <input type="text" id="userLeagueCode" placeholder="Paste code here">
+            <p>
+              If you've been sent a league entry code, paste it below. You will be able to review the details after pressing "submit".
+            </p>
+            <form id="joinLeagueForm" hidden={{showLeaguePreview}} class="form-inline">
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="text" id="userLeagueCode" placeholder="Paste code here" class="form-control">
+                  <span class="input-group-btn"><button type="submit" class="btn btn-primary" id="submitLeagueCodeButton">Submit</button></span>
+                </div>
+              </div>
               <div id="leagueCodeErrors" class="formErrorMessages">
                 <span>{{codeErrorMessage}}</span>
               </div>
-              <button type="submit" class="btn btn-primary" id="submitLeagueCodeButton">Submit</button>
-            </div>
+            </form>
 
             {{#if equals displayControlJoin "preview"}}
               {{#with leaguePreviewDetails}}
@@ -64,19 +68,11 @@
   <div id="JoinLeagueSuccess">
     <h3>Success!</h3>
     <p>
-      You have successfully joined {{leagueName}} - good luck!
+      You have successfully joined "{{leagueName}}" - good luck!
     </p>
-    <div>
-      <ul>
-        <li>Invite your friends using the sharing buttons below</li>
-        <li>Or send them the league code however you like: {{_id}}</li>
-        <li>First round deadline: {{formatDate leagueDeadline "deadlineDate"}}</li>
-      </ul>
-      <ul class="sharingButtonsList">
-        <li><a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fkiller.football&text=Join+my+league+on+killerDOTfootball+-+entry+code%3A+{{_id}}" class="btn btn-default btn-twitter"><i class="fa fa-twitter"></i> Twitter</a></li>
-        <li><a id="facebookNewLeagueShare" class="btn btn-default btn-facebook facebookShare"><i class="fa fa-facebook"></i> Facebook</a></li>
-        <li><a id="emailNewLeagueShare" class="btn btn-default btn-email"><i class="fa fa-envelope"></i> Email</a></li>
-      </ul>
-    </div>
+    <p>
+      Use the sharing buttons below to invite your friends before the first round deadline: {{formatDate leagueDeadline "deadlineDate"}}
+    </p>
+    {{> SharingWithCodeSmall entryCode=_id}}
   </div>
 </template>
