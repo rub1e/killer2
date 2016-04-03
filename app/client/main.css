@@ -32,6 +32,9 @@ body {
 
 #KillerLeagues {
   margin-top: 10px;
+}
+
+#KillerContent {
   padding-bottom: 60px;
 }
 
@@ -43,6 +46,7 @@ body {
   background-color: navy;
   color: white;
   border-radius: 3px;
+  padding : 8px;
 }
 
 .getting-started > p {
@@ -205,6 +209,7 @@ text-align: center;
   padding-top: 18px;
   padding-bottom: 18px;
   margin-top: 10px;
+  opacity: 0.85;
 }
 .jumbotron .btn {
   padding: 14px 24px;
