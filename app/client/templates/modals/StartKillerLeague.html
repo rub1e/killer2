@@ -17,13 +17,13 @@
                 <fieldset>
                   <div id="startLeagueIntro">
                     <p>
-                      Starting a new league couldn't be simpler! Just choose a name and pick which weekend you want to start with.
+                      Just choose a name and pick which weekend you want to start with.
                     </p>
                     <p>
-                      Once you've created your league, you'll get a unique code to send to your friends so they can join you.
+                      Once the league is created you'll get a unique entry code to share with your friends.
                     </p>
                     <p>
-                      If you have any questions, just email <a href="mailto:chairman@killer.football?subject=help">chairman@killer.football</a>
+                      Questions? <a href="mailto:chairman@killer.football?subject=help">chairman@killer.football</a>
                     </p>
                   </div>
                   {{> afQuickField name="leagueName" placeholder="Give your league a name"}}
@@ -72,26 +72,17 @@
 
 <template name="StartLeagueSuccess">
   <div id="StartLeagueSuccess">
-    <h3>Success!</h3>
-    <p>
-      League "{{insertDoc.leagueName}}" has been successfully created - now you can invite your friends
-    </p>
-    <div>
+    {{#if newLeagueCode}}
+      <h3>Success!</h3>
       <p>
-        Your unique league entry code is: {{newLeagueCode}}
+        You have successfully created "{{insertDoc.leagueName}}" - good luck!
       </p>
-      <ul>
-        <ul>
-          <li>Invite your friends using the sharing buttons below</li>
-          <li>Or send them the league code however you like: {{newLeagueCode}}</li>
-          <li>First round deadline: {{formatDate newLeagueDeadline "deadlineDate"}}</li>
-        </ul>
-      </ul>
-      <ul class="sharingButtonsList">
-        <li><a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fkiller.football&text=Join+my+league+on+killerDOTfootball+-+entry+code%3A+{{newLeagueCode}}" class="btn btn-default btn-twitter"><i class="fa fa-twitter"></i> Twitter</a></li>
-        <li><a class="btn btn-default btn-facebook facebookShare"><i class="fa fa-facebook"></i> Facebook</a></li>
-        <li><a id="emailNewLeagueShare" class="btn btn-default btn-email"><i class="fa fa-envelope"></i> Email</a></li>
-      </ul>
-    </div>
+      <p>
+        Use the sharing buttons below to invite your friends before the first round deadline: {{formatDate newLeagueDeadline "deadlineDate"}}
+      </p>
+      {{> SharingWithCodeSmall entryCode=newLeagueCode}}
+    {{else}}
+      {{> spinner}}
+    {{/if}}
   </div>
 </template>
