@@ -29,14 +29,16 @@
               <span>{{formatDate leagueDeadline "deadlineDate"}}</span>
             {{/if}}
           </div>
-          <div class="col-xs-12 killer-panel-bar">
+          <div class="col-xs-12 killer-panel-bar killer-panel-widget">
+              <span class="pull-left killer-panel-icon"><i class="fa fa-crosshairs"></i></span>
             {{> KillerChoiceWidget}}
           </div>
           <div class="col-xs-12 killer-panel-bar killer-panel-bar-double">
             {{#if acceptingNewMembers}}
-              <span class="pull-left killer-panel-icon-double"><i class="fa fa-clock-o"></i></span>
+              <span class="pull-left killer-panel-icon-double"><i class="fa fa-share"></i></span>
               {{> SharingWithCodeSmall entryCode=_id}}
             {{else}}
+              <span class="pull-left killer-panel-icon-double"><i class="fa fa-info"></i></span>
               {{> MiniActiveLeagueDetails}}
             {{/if}}
           </div>
@@ -44,12 +46,13 @@
       </div>
       <div class="col-xs-2 killer-panel-matches">
         <ul>
+          <li class="matches-title">Fixtures</li>
           {{#each listOfCurrentMatches}}
             <li><span class="home-team">{{shorten home}}</span> v <span class="away-team">{{shorten away}}</span></li>
           {{/each}}
         </ul>
       </div>
-      <div class="col-xs-12 killer-panel-pulldown">
+      <div class="col-xs-12 killer-panel-bar killer-panel-pulldown">
         {{> FullActiveLeagueDetails}}
       </div>
     </div>
