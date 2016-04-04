@@ -165,12 +165,6 @@ text-align: center;
   }
 }*/
 
-.KillerChoiceWidget {
-  background-color:rgba(70,214,11,0.7);
-  border-radius: 5px;
-  text-align: center;
-}
-
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,

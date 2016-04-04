@@ -10,6 +10,53 @@
 </template>
 
 <template name="LeaguePanel">
+  <!-- <div class="container"> -->
+    <div class="row killer-panel">
+
+      <div class="col-xs-10 killer-panel-set">
+  	    <div class="row">
+
+          <div class="col-xs-12 killer-panel-bar killer-panel-name">
+            <span class="pull-left killer-panel-icon"><i class="fa fa-trophy"></i></span>
+            <span class="league-name">"{{leagueName}}"</span>
+          </div>
+
+          <div class="col-xs-12 killer-panel-bar">
+            <span class="pull-left killer-panel-icon"><i class="fa fa-clock-o"></i></span>
+            {{#if equals currentGameStatus "active"}}
+              <span>Matches in progress...</span>
+            {{else}}
+              <span>{{formatDate leagueDeadline "deadlineDate"}}</span>
+            {{/if}}
+          </div>
+          <div class="col-xs-12 killer-panel-bar">
+            {{> KillerChoiceWidget}}
+          </div>
+          <div class="col-xs-12 killer-panel-bar killer-panel-bar-double">
+            {{#if acceptingNewMembers}}
+              <span class="pull-left killer-panel-icon-double"><i class="fa fa-clock-o"></i></span>
+              {{> SharingWithCodeSmall entryCode=_id}}
+            {{else}}
+              {{> MiniActiveLeagueDetails}}
+            {{/if}}
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-2 killer-panel-matches">
+        <ul>
+          {{#each listOfCurrentMatches}}
+            <li><span class="home-team">{{shorten home}}</span> v <span class="away-team">{{shorten away}}</span></li>
+          {{/each}}
+        </ul>
+      </div>
+      <div class="col-xs-12 killer-panel-pulldown">
+        {{> FullActiveLeagueDetails}}
+      </div>
+    </div>
+  <!-- </div> -->
+</template>
+
+<!-- <template name="LeaguePanel">
   <div class="LeaguePanel">
     <div class="panel panel-success">
 
@@ -81,7 +128,7 @@
       </div>
     </div>
   </div>
-</template>
+</template> -->
 
 <template name="MiniActiveLeagueDetails">
   <div class="MiniActiveLeagueDetails">
@@ -92,5 +139,46 @@
         <li>You were eliminated in round {{currentPlayerDiedInRound}}</li>
       {{/if}}
     </ul>
+  </div>
+</template>
+
+<template name="FullActiveLeagueDetails">
+  <div>
+    <a class="show-hide-info" data-toggle="collapse" href="#collapseDetails{{_id}}" aria-expanded="false"><span class="caret"></span><span class="caret"></span><span class="caret"></span> {{showHidePlayersChoices}} <span class="caret"></span><span class="caret"></span><span class="caret"></span></a>
+    <div id="collapseDetails{{_id}}" class="collapse-details collapse">
+      <div class="row">
+        {{#if acceptingNewMembers}}
+          <div class="col-xs-12 col-lg-12">
+            <ul class="players-list">
+              <h5>The following players have joined:</h5>
+              {{#each members}}
+                <li><i class="fa fa-futbol-o"></i> {{memberName}}</li>
+              {{/each}}
+            </ul>
+          </div>
+        {{else}}
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <ul class="players-list">
+              <h5>Active players</h5>
+              {{#each aliveMembers}}
+                <li><i class="fa fa-futbol-o"></i> {{memberName}}
+                  {{#if equals currentGameStatus "active"}}
+                     - {{memberChoice}}{{#if isAutoPick}} (autopick){{/if}}
+                  {{/if}}
+                </li>
+              {{/each}}
+            </ul>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <ul class="players-list">
+              <h5>Eliminated players</h5>
+              {{#each deadMembers}}
+                <li><i class="fa fa-bomb"></i> {{memberName}} (round {{diedInRound}})</li>
+              {{/each}}
+            </ul>
+          </div>
+        {{/if}}
+      </div>
+    </div>
   </div>
 </template>

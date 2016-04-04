@@ -99,3 +99,84 @@
   padding: 5px;
   border-radius: 5px;
 }
+
+
+/*bars*/
+
+#KillerAliveLeagues > div {
+  margin-bottom: 10px;
+}
+
+.killer-panel {
+  background-color : rgba(200,200,200,0.4);
+  width : 290px;
+  margin-bottom: 10px;
+}
+
+.killer-panel-matches {
+  padding: 0;
+}
+
+.killer-panel-matches ul {
+  padding-left : 0;
+  list-style-type: none;
+  font-size: 8px;
+  text-align: left;
+}
+
+.killer-panel-matches ul li {
+  background-color: rgba(8, 10, 64, 0.8);
+  margin-bottom : 3px;
+  color: white;
+}
+
+.killer-panel-bar {
+  margin-bottom : 3px;
+  margin-right: 3px;
+  background-color: rgba(8, 10, 64, 0.8);
+  color : white;
+  padding-left : 5px;
+  height: 25px;
+}
+
+.killer-panel-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-style: italic;
+}
+
+.killer-panel-bar i {
+  padding-top: 5px;
+}
+
+.killer-panel-bar-double {
+  height: 60px !important;
+}
+
+.killer-panel-icon-double {
+  border-right : 1px solid white;
+  padding-right: 4px;
+  height: 60px;
+  width: 18px;
+  padding-top: 18px;
+}
+
+.killer-panel-icon {
+  border-right : 1px solid white;
+  padding-right: 4px;
+  height: 25px;
+  width: 18px;
+}
+
+.killer-panel-set {
+  max-width : 235px;
+  margin-right : 3px;
+}
+
+.league-name {
+  font-size: 130%;
+}
+
+.KillerChoiceWidget {
+  text-align: center;
+}
