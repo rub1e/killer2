@@ -6,8 +6,12 @@
 
 }
 
-.SharingWithCodeSmall ul {
+.sharingButtonsList {
   padding-left: 0;
+}
+
+.SharingButtonsGeneral .btn {
+  padding: 3px 6px;
 }
 
 /* TODO: Change border radius */
