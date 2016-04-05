@@ -5,14 +5,14 @@
     {{else}}
       {{#if equals currentGameStatus "active"}}
         {{#if chosenTeamName}}
-          <span class="small-text">You<br>picked</span><span class="pick-name">{{chosenTeamName}}</span>
+          <span class="pick-name">{{chosenTeamName}}</span>
         {{else}}
           {{> KillerChoiceForm}}
         {{/if}}
       {{else}}
         {{#if chosenTeamName}}
           <form id="REPICK_{{this._id}}" class="repickChoiceForm form-inline">
-            <span class="small-text"></span><span class="pick-name">{{chosenTeamName}}</span>
+            <span class="pick-name">{{chosenTeamName}}</span>
             <button class="btn btn-xs killer-choice-button" type="submit">Change pick</button>
           </form>
         {{else}}

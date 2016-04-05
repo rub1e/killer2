@@ -62,7 +62,7 @@
 
 .players-list {
   list-style-type: none;
-  padding: 0;
+  padding-left: 3px;
   margin: 0;
   text-align: left;
 }
@@ -260,4 +260,9 @@ li:before {
 
 .show-hide-info {
   color: white !important;
+  text-decoration: underline;
 }
+
+ .killer-full-details {
+   padding-bottom: 5px;
+ }
