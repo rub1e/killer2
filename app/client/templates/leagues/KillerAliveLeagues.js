@@ -6,7 +6,21 @@ Template.KillerAliveLeagues.helpers({
 
 Template.LeaguePanel.helpers({
 
-
+  leagueMatches : function () {
+    if(!this.acceptingNewMembers) {
+      return arrayOfPlayingTeams("object");
+    } else {
+      var dateProper = new Date(this.dateStarting);
+      var year = dateProper.getFullYear();
+      var month = dateProper.getMonth() + 1;
+      var day = dateProper.getDate();
+      var dateString;
+      month = month < 10 ? "0" + month : month;
+      day = day < 10 ? "0" + day : day;
+      dateString = year + " " + month + " " + day;
+      return Matches.findOne({gameWeek : dateString}).matches;
+    }
+  }
 
 });
 
@@ -99,5 +113,5 @@ Template.FullActiveLeagueDetails.helpers({
       return a - b;
     });
   }
-  
+
 });
