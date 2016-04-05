@@ -5,15 +5,15 @@
     {{else}}
       {{#if equals currentGameStatus "active"}}
         {{#if chosenTeamName}}
-          <span>You picked: <span class="pick-name">{{chosenTeamName}}</span></span>
+          <span class="pick-name">{{chosenTeamName}}</span>
         {{else}}
           {{> KillerChoiceForm}}
         {{/if}}
       {{else}}
         {{#if chosenTeamName}}
           <form id="REPICK_{{this._id}}" class="repickChoiceForm form-inline">
-            <span>You picked: <span class="pick-name">{{chosenTeamName}}</span></span>
-            <button class="btn btn-default btn-responsive" type="submit">Change</button>
+            <span class="pick-name">{{chosenTeamName}}</span>
+            <button class="btn btn-xs killer-choice-button" type="submit">Change pick</button>
           </form>
         {{else}}
           {{> KillerChoiceForm}}
@@ -24,22 +24,14 @@
 </template>
 
 <template name="KillerChoiceForm">
-  <div id="KillerChoiceForm">
-    <div class="container-fluid">
-      <form class="killerChoiceForm form-inline">
-        <div class="form-group">
-          <div class="input-group">
-            <label class="sr-only" for="DD_{{this._id}}">Pick a team</label>
-            <select class="teamsLeftDropDown form-control select-responsive" id="DD_{{this._id}}">
-              <option selected="true" disabled>Pick a team</option>
-              {{#each teamsLeft}}
-                <option value={{.}}>{{.}}</option>
-              {{/each}}
-            </select>
-            <span class="input-group-btn"><button type="submit" name="killerChoiceButton" value="Submit" class="btn btn-default btn-responsive">Submit</button></span>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
+  <form class="killerChoiceForm form-inline">
+    <label class="sr-only" for="DD_{{this._id}}">Pick a team</label>
+    <select class="teamsLeftDropDown" id="DD_{{this._id}}">
+      <option selected="true" disabled>Pick a team</option>
+      {{#each teamsLeft}}
+        <option value={{.}}>{{.}}</option>
+      {{/each}}
+    </select>
+    <button type="submit" value="Submit" class="btn btn-xs killer-choice-button">Submit</button>
+  </form>
 </template>

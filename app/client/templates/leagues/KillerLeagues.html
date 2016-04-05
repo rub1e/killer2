@@ -11,6 +11,7 @@
         </p>
       {{else}}
         {{#if endedLeaguesExist}}
+        <!-- FIXME: make look nice -->
           <p class="toggleLeagues">Showing {{leaguesShowing}} leagues <button type="btn btn-primary" id="leagueToggle">Show {{leaguesHidden}} leagues</button></p>
         {{/if}}
         {{#with userLeaguesList}}

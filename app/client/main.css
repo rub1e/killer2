@@ -130,11 +130,6 @@ body {
 text-align: center;
 }
 
-.pick-name {
-  font-weight: bold;
-  color: blue;
-}
-
 .league-name {
   /*background-color: red;
   color: white;
@@ -164,12 +159,6 @@ text-align: center;
     line-height: 1.2;
   }
 }*/
-
-.KillerChoiceWidget {
-  background-color:rgba(70,214,11,0.7);
-  border-radius: 5px;
-  text-align: center;
-}
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
