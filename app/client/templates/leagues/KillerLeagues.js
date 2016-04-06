@@ -4,10 +4,6 @@ Template.KillerLeagues.helpers({
     return Leagues.find({"members.playerId" : Meteor.userId(), leagueStatus : {$ne : "ended"}}).count();
   },
 
-  leaguesShowing : function () {
-    return Template.instance().liveOrDead.get();
-  },
-
   leaguesHidden : function () {
     return Template.instance().liveOrDead.get() === "active" ? "finished" : "active";
   },

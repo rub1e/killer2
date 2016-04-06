@@ -215,6 +215,8 @@ text-align: center;
   /* Set the fixed height of the footer here */
   height: 60px;
   background-color: #f5f5f5;
+  font-size: 7px;
+  text-align: center;
 }
 
 /*.footer {
@@ -225,12 +227,14 @@ text-align: center;
 
 /* TODO: padding for left and right */
 .footerLeft {
-  float: left;
+  float: left !important;
   font-size: 9px;
+  padding-left: 5px;
 }
 
 .footerRight {
-  float: right;
+  float: right !important;
+  padding-right: 5px;
 }
 
 /* Responsive: Portrait tablets and up */
