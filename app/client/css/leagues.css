@@ -90,12 +90,10 @@
 }
 
 .toggleLeagues {
-  background: rgba(8, 10, 64, 0.8);
+  background: rgba(232,219,219,0.9);
   text-align: center;
   padding: 5px;
   border-radius: 5px;
-  width: 290px;
-  margin: 0 auto 5px auto;
 }
 
 
@@ -162,7 +160,7 @@
 }
 
 .league-name {
-  font-size: 130%;
+  /*font-size: 130%;*/
 }
 
 .killer-panel-widget {
