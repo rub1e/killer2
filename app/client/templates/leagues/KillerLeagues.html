@@ -11,10 +11,12 @@
         </p>
       {{else}}
         {{#if endedLeaguesExist}}
-          <p class="toggleLeagues">Showing {{leaguesShowing}} leagues <button type="btn btn-primary" id="leagueToggle">Show {{leaguesHidden}} leagues</button></p>
+          <div class="toggleLeagues">
+            <button class="btn btn-default" id="leagueToggle"><i class="fa fa-bomb"></i> Switch to {{leaguesHidden}} leagues</button>
+          </div>
         {{/if}}
         {{#with userLeaguesList}}
-          {{#if equals leaguesShowing "active"}}
+          {{#if equals leaguesHidden "finished"}}
             {{> KillerAliveLeagues}}
           {{else}}
             {{> KillerFinishedLeagues}}

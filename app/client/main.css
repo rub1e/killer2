@@ -32,6 +32,9 @@ body {
 
 #KillerLeagues {
   margin-top: 10px;
+}
+
+#KillerContent {
   padding-bottom: 60px;
 }
 
@@ -43,6 +46,7 @@ body {
   background-color: navy;
   color: white;
   border-radius: 3px;
+  padding : 8px;
 }
 
 .getting-started > p {
@@ -126,11 +130,6 @@ body {
 text-align: center;
 }
 
-.pick-name {
-  font-weight: bold;
-  color: blue;
-}
-
 .league-name {
   /*background-color: red;
   color: white;
@@ -160,12 +159,6 @@ text-align: center;
     line-height: 1.2;
   }
 }*/
-
-.KillerChoiceWidget {
-  background-color:rgba(70,214,11,0.7);
-  border-radius: 5px;
-  text-align: center;
-}
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
@@ -205,6 +198,7 @@ text-align: center;
   padding-top: 18px;
   padding-bottom: 18px;
   margin-top: 10px;
+  opacity: 0.85;
 }
 .jumbotron .btn {
   padding: 14px 24px;
@@ -221,6 +215,8 @@ text-align: center;
   /* Set the fixed height of the footer here */
   height: 60px;
   background-color: #f5f5f5;
+  font-size: 7px;
+  text-align: center;
 }
 
 /*.footer {
@@ -231,12 +227,14 @@ text-align: center;
 
 /* TODO: padding for left and right */
 .footerLeft {
-  float: left;
+  float: left !important;
   font-size: 9px;
+  padding-left: 5px;
 }
 
 .footerRight {
-  float: right;
+  float: right !important;
+  padding-right: 5px;
 }
 
 /* Responsive: Portrait tablets and up */

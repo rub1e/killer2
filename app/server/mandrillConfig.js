@@ -9,3 +9,4 @@ Meteor.startup(function(){
     // baseUrl: 'https://mandrillapp.com/api/1.0/'  // update this in case Mandrill changes its API endpoint URL or version
   });
 });
+// FIXME: env variables

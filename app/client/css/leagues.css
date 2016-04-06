@@ -5,7 +5,8 @@
 
 .LeaguePanel {
   display: inline-block;
-  max-width: 400px;
+  width: 400px;
+  max-width: 100%;;
 }
 
 .leagueRow {
@@ -61,15 +62,15 @@
 
 .players-list {
   list-style-type: none;
-  padding: 0;
+  padding-left: 3px;
   margin: 0;
   text-align: left;
 }
 
-.killerChoiceForm select {
+/*.killerChoiceForm select {
   width : auto !important;
   display: inline;
-}
+}*/
 
 .killerChoiceForm .form-group, .repickChoiceForm .btn {
   margin-top: 5px;
@@ -82,10 +83,6 @@
   display: block !important;
 }
 
-.show-hide-info {
-
-}
-
 .two-cols {
   columns: 2;
   -webkit-columns: 2;
@@ -93,8 +90,181 @@
 }
 
 .toggleLeagues {
-  background: rgba(232,219,219,0.9);
+  background: rgba(8, 10, 64, 0.8);
   text-align: center;
   padding: 5px;
   border-radius: 5px;
+  width: 290px;
+  margin: 0 auto 5px auto;
 }
+
+
+/*bars*/
+
+#KillerAliveLeagues > div {
+  margin-bottom: 10px;
+}
+
+.killer-panel {
+  /*background-color : rgba(200,200,200,0.4);*/
+  width : 290px;
+  margin-bottom: 10px;
+}
+
+@media screen and (min-width : 350px) {
+  .killer-panel {
+    margin-right: auto !important;
+    margin-left: auto !important;
+  }
+}
+
+.killer-panel-bar {
+  margin-bottom : 3px;
+  margin-right: 3px;
+  background-color: rgba(8, 10, 64, 0.8);
+  color : white;
+  padding-left : 5px;
+  height: 25px;
+}
+
+.killer-panel-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-style: italic;
+}
+
+.killer-panel-bar i {
+  padding-top: 5px;
+}
+
+.killer-panel-bar-double {
+  height: 60px !important;
+}
+
+.killer-panel-icon-double {
+  border-right : 1px solid white;
+  padding-right: 4px;
+  height: 60px;
+  width: 18px;
+  padding-top: 18px;
+}
+
+.killer-panel-icon {
+  border-right : 1px solid white;
+  padding-right: 4px;
+  height: 25px;
+  width: 18px;
+}
+
+.killer-panel-set {
+  max-width : 238px;
+  margin-right : 3px;
+}
+
+.league-name {
+  font-size: 130%;
+}
+
+.killer-panel-widget {
+  padding-right : 5px;
+}
+
+.KillerChoiceWidget {
+  text-align: center;
+}
+
+.killerChoiceForm {
+  display: inline-block;
+  font-size: 10px;
+  height: 22px;
+  color: black;
+}
+
+.killerChoiceForm select {
+  border-radius: 3px;
+}
+
+.killer-choice-button {
+  line-height: 1;
+  font-size: 10px;
+  padding: 3px 5px;
+  border-radius: 2px;
+  color: black;
+}
+
+.pick-name {
+  font-weight: bold;
+  font-size: 12px;
+  color: white;
+}
+
+.small-text {
+  /*text-shadow: 7px;*/
+}
+
+.matches-title {
+  text-align: center;
+  background-color: white !important;
+  color: black !important;
+}
+/*
+li:before {
+    content:'•';
+    float: left;
+    width: 20px;
+    font-size: 1.8em;
+    line-height: 0.75em;
+}*/
+
+
+.killer-panel-matches {
+  padding: 0;
+}
+
+.killer-panel-matches ul {
+  padding-left : 0;
+  list-style-type: none;
+  font-size: 8px;
+  text-align: center;
+  height: 144px;
+  display: table;
+  margin-bottom: 0;
+}
+
+.killer-panel-matches ul li {
+  background-color: rgba(8, 10, 64, 0.8);
+  margin-bottom : 3px;
+  color: white;
+  display: table-row;
+}
+
+.MiniActiveLeagueDetails {
+  display: inline-block;
+}
+
+.MiniActiveLeagueDetails ul {
+  padding-left: 0;
+  list-style-type: none;
+  display: table;
+  height: 56px;
+}
+
+.MiniActiveLeagueDetails ul li {
+  padding-left: 0;
+  list-style-type: none;
+  display: table-row;
+}
+
+.killer-panel-pulldown {
+  height : auto !important;
+  min-height: 25px;
+}
+
+.show-hide-info {
+  color: white !important;
+  text-decoration: underline;
+}
+
+ .killer-full-details {
+   padding-bottom: 5px;
+ }
