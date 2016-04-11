@@ -1,4 +1,3 @@
-Template.HomeLayout.onCreated(function () {
   DocHead.setTitle("killerDOTfootball - free premier league predictions game");
   //facebook meta tags
   DocHead.addMeta({property : "og:type", content : "website"});
@@ -19,4 +18,3 @@ Template.HomeLayout.onCreated(function () {
 
 
   DocHead.addLink({rel : "icon",  sizes : "16x16 32x32", href : "/favicon.ico"});
-});
