@@ -1,6 +1,7 @@
 Template.HomeLayout.onCreated(function () {
   DocHead.setTitle("killerDOTfootball - free premier league predictions game");
   //facebook meta tags
+  DocHead.addMeta({property : "og:type", content : "website"});
   DocHead.addMeta({property : "og:url", content : "http://killer.football"});
   DocHead.addMeta({property : "og:title", content : "Free premier league predictions game"});
   DocHead.addMeta({property : "og:description", content : "Pit your wits against your friends in a simple game of footie predictions. Sign up now for free."});
