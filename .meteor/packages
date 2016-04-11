@@ -18,7 +18,6 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
 
 twbs:bootstrap
 fortawesome:fontawesome
-wylio:mandrill
 useraccounts:bootstrap
 accounts-password
 kadira:flow-router
@@ -40,3 +39,4 @@ sacha:spin
 tsega:bootstrap3-datetimepicker@=3.1.3_3
 aldeed:autoform-bs-datetimepicker
 momentjs:moment
+kadira:dochead
