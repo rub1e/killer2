@@ -1,4 +1,4 @@
-Meteor.startup(function () {
+Template.HomeLayout.onCreated(function () {
   DocHead.setTitle("killerDOTfootball - free premier league predictions game");
   //facebook meta tags
   DocHead.addMeta({property : "og:url", content : "http://killer.football"});
@@ -14,7 +14,7 @@ Meteor.startup(function () {
   DocHead.addMeta({name : "twitter:title", content : "killerDOTfootball - free premier league predictions game"});
   DocHead.addMeta({name : "twitter:description", content : "Pit your wits against your friends in a simple game of footie predictions. Sign up now for free."});
   DocHead.addMeta({name : "twitter:image", content : "https://s3-eu-west-1.amazonaws.com/killerpicks/killerZip.png"});
-  DocHead.addMeta({name : "twitter:image:alt", content : "Logo of killerDOTfootball"});  
+  DocHead.addMeta({name : "twitter:image:alt", content : "Logo of killerDOTfootball"});
 
 
   DocHead.addLink({rel : "icon",  sizes : "16x16 32x32", href : "/favicon.ico"});
