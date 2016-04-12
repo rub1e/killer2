@@ -1,33 +1,33 @@
 <template name="KillerContent">
   <div id="KillerContent">
     <div class="container-fluid">
-      {{#if loggingIn}}
-        {{> LoggingInDialogue}}
-      {{else}}
-        {{#if currentUser}}
-          <div class="row">
-            <div class="col-xs-12">
-              {{> KillerAdBannerTop}}
-            </div>
-            <div class="col-md-3 mobile-hidden" style="display:none">
-              {{> KillerAdBannerLeft}}
-            </div>
-            <div class="col-md-6">
+      <div class="row">
+        <div class="col-xs-12">
+          {{> KillerAdBannerTop}}
+        </div>
+        <div class="col-md-3 mobile-hidden" style="display:none">
+          {{> KillerAdBannerLeft}}
+        </div>
+        <div class="col-md-6">
+          {{#if loggingIn}}
+            {{> LoggingInDialogue}}
+          {{else}}
+            {{#if currentUser}}
               {{#if Template.subscriptionsReady}}
                 {{> KillerGameWeekMatches}}
                 {{> KillerLeagues}}
               {{else}}
                 {{> spinner}}
               {{/if}}
-            </div>
-            <div class="col-md-3 mobile-hidden" style="display:none">
-              {{> KillerAdBannerRight}}
-            </div>
-          </div>
-        {{else}}
-          {{> SignUpLogIn}}
-        {{/if}}
-      {{/if}}
+            {{else}}
+              {{> SignUpLogIn}}
+            {{/if}}
+          {{/if}}
+        </div>
+        <div class="col-md-3 mobile-hidden" style="display:none">
+          {{> KillerAdBannerRight}}
+        </div>
+      </div>
     </div>
   </div>
 </template>
