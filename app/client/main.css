@@ -268,4 +268,7 @@ text-align: center;
   .footer a {
     font-size: 8px;
   }
+  .jumbotron {
+    display: inline-block;
+  }
 }
