@@ -174,7 +174,7 @@ SecureFuncs.emailWinner = function (leagueId, winner) {
   var name = Meteor.users.findOne({_id : winner}).fullName;
   var emails = [];
   league.members.forEach(function (a) {
-    emails.push(Meteor.users.findOne({_id : a.playerId}).profile.emails[0].address);
+    emails.push(Meteor.users.findOne({_id : a.playerId}).emails[0].address);
   });
   var text = "Your league '" + league.leagueName + "' is over. \n\n Congratulations to the winner " + name + "! \n\n Start a new league for free at http://killer.football" ;
   if (league.winner === winner) {
