@@ -127,7 +127,8 @@ SecureFuncs.announceWinner = function (id, winner) {
 };
 
 SecureFuncs.activateGameWeek = function () {
-  Leagues.update({round : 0, dateStarting : nextGameWeek()}, {$set : {round : 1}}, {multi : true}, function (error, response) {
+  var nextGW = new Date(nextGameWeek()).toDateString();
+  Leagues.update({round : 0, dateStarting : nextGW}, {$set : {round : 1}}, {multi : true}, function (error, response) {
     if(error) {
       console.log(error);
     } else {
