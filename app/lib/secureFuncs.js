@@ -180,7 +180,7 @@ SecureFuncs.emailWinner = function (leagueId, winner) {
   if (league.winner === winner) {
     Email.send({
       from : "The Chairman <chairman@killer.football>",
-      to : emails,
+      bcc : emails,
       subject : "killerDOTfootball: we have a winner!",
       text : text
     });
