@@ -169,7 +169,7 @@ SecureFuncs.deferSingletonLeagues = function() {
 };
 
 SecureFuncs.emailWinner = function (leagueId, winner) {
-  var league = Leagues.find({_id : leagueId});
+  var league = Leagues.findOne({_id : leagueId});
   var name = Meteor.users.findOne({_id : winner}).fullName;
   var emails = [];
   league.members.forEach(function (a) {
