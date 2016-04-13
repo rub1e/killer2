@@ -1,7 +1,7 @@
 <template name="KillerChoiceWidget">
   <div class="KillerChoiceWidget">
     {{#if userDiedInRound}}
-      <span>Your final pick was {{lastChoice}} in round: {{userDiedInRound}}</span>
+      <span>Dying pick: {{lastChoice}}</span>
     {{else}}
       {{#if equals currentGameStatus "active"}}
         {{#if chosenTeamName}}

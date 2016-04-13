@@ -5,5 +5,4 @@ Template.KillerAdBannerRight.rendered = function() {
     $('#KillerAdBannerRight').html(ads);
     return (adsbygoogle = window.adsbygoogle || []).push({});
   });
-  console.log("right rendered");
 };

@@ -16,7 +16,8 @@ Template.body.events({
     FB.ui({
       method: 'share',
       href: 'http://killer.football',
+      app_id : "436461956559485"
     }, function(response){});
   }
-  
+
 });

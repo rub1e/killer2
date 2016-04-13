@@ -127,7 +127,8 @@ SecureFuncs.announceWinner = function (id, winner) {
 };
 
 SecureFuncs.activateGameWeek = function () {
-  Leagues.update({round : 0, dateStarting : nextGameWeek()}, {$set : {round : 1}}, {multi : true}, function (error, response) {
+  var nextGW = new Date(nextGameWeek()).toDateString();
+  Leagues.update({round : 0, dateStarting : nextGW}, {$set : {round : 1}}, {multi : true}, function (error, response) {
     if(error) {
       console.log(error);
     } else {
@@ -169,17 +170,17 @@ SecureFuncs.deferSingletonLeagues = function() {
 };
 
 SecureFuncs.emailWinner = function (leagueId, winner) {
-  var league = Leagues.find({_id : leagueId});
-  var name = Meteor.users.findOne({_id : winner}).fullName;
+  var league = Leagues.findOne({_id : leagueId});
+  var name = Meteor.users.findOne({_id : winner}).fullName();
   var emails = [];
   league.members.forEach(function (a) {
-    emails.push(Meteor.users.findOne({_id : a.playerId}).profile.emails[0].address);
+    emails.push(Meteor.users.findOne({_id : a.playerId}).emails[0].address);
   });
   var text = "Your league '" + league.leagueName + "' is over. \n\n Congratulations to the winner " + name + "! \n\n Start a new league for free at http://killer.football" ;
   if (league.winner === winner) {
     Email.send({
       from : "The Chairman <chairman@killer.football>",
-      to : emails,
+      bcc : emails,
       subject : "killerDOTfootball: we have a winner!",
       text : text
     });
