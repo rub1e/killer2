@@ -5,5 +5,4 @@ Template.KillerAdBannerTop.rendered = function() {
     $('#KillerAdBannerTop').html(ads);
     return (adsbygoogle = window.adsbygoogle || []).push({});
   });
-  console.log("top rendered");
 };
