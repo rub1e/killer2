@@ -24,7 +24,11 @@
           <div class="col-xs-12 killer-panel-bar">
             <span class="pull-left killer-panel-icon"><i class="fa fa-clock-o"></i></span>
             {{#if equals currentGameStatus "active"}}
-              <span>Matches in progress...</span>
+              {{#if acceptingNewMembers}}
+                <span>Matches in progress...</span>
+              {{else}}
+                <span>{{formatDate leagueDeadline "deadlineDate"}}</span>
+              {{/if}}
             {{else}}
               <span>{{formatDate leagueDeadline "deadlineDate"}}</span>
             {{/if}}
